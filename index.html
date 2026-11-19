@@ -258,17 +258,21 @@ footer .fl img{height:22px}
 
   <!-- 系统 -->
   <section id="what">
-    <div class="shead"><span class="no">01</span><h2>系统长这样</h2><span class="en">The system</span></div>
+    <div class="shead"><span class="no">01</span><h2>系统现状</h2><span class="en">Status</span></div>
     <p class="txt">
-      一个判定内核，四个端：<b>中控台</b>看测点与告警，<b>服务器端</b>管人员、组织、数据源，
-      <b>井下站点</b>做就地判定，<b>演示端</b>给评审看。内核版本 <b>0.2.63-r181</b>，
-      SQLite 单库 <b>16,779</b> 行，服务 API <b>8790</b>，全部跑在真机验证过。
+      一个判定内核，四个端（中控台、服务器端、井下站点、演示端），能跑到"数据进来—规则判定—告警出来"的完整链路。
+      内核 <b>0.2.63-r181</b>，SQLite 单库 <b>16,779</b> 行，服务 API <b>8790</b>。
     </p>
 
-    <div class="terminals">
-      <div class="shot"><span class="lbl">中控台</span><img src="assets/img/ui_page1.png" alt="服务器端界面"><div class="cap">人员 / 角色 / 组织 / 审计，四级权限</div></div>
-      <div class="shot"><span class="lbl">组织树</span><img src="assets/img/ui_page3.png" alt="组织树界面"><div class="cap">矿 → 单元 → 班组，固定三级</div></div>
-      <div class="shot"><span class="lbl">井下站点</span><img src="assets/img/smoke_downhole.png" alt="井下站点界面"><div class="cap">就地判定，断网可跑</div></div>
+    <div class="frank" style="grid-template-columns:1fr;margin-top:18px">
+      <div class="fr" style="border-left-color:rgba(200,164,92,.6);background:rgba(200,164,92,.05)">
+        <h4 style="color:#EEDCB4">先说清楚三件事，不藏</h4>
+        <p>
+          <b>界面没做视觉设计。</b>现在四端是可跑的最小可用版，功能通、样式没打磨，谈不上好看——这块是我们欠的账，也正是要拉人一起补的。<br>
+          <b>系统只连续跑了约两周。</b>"12/12 测点在线、0 告警"是这两周实机的结果，不是长期稳定性结论。<br>
+          <b>真实矿井数据还没接进来。</b>现在跑的是公开数据与自建仿真集，签下来才谈得上真正磨合。
+        </p>
+      </div>
     </div>
 
     <div class="gates">
@@ -278,6 +282,7 @@ footer .fl img{height:22px}
       <div class="gate"><b>13 / 13</b><span>容差为零</span></div>
       <div class="gate"><b>5 / 5</b><span>复现验收</span></div>
     </div>
+    <p class="txt" style="margin-top:14px;font-size:13px;color:var(--dim)">五道关卡是文档与模型的自检项，不是系统稳定性评级。</p>
   </section>
 
   <!-- 四线 -->
@@ -317,7 +322,6 @@ footer .fl img{height:22px}
       <div class="row hot"><div class="w">2026.11.19</div><div class="t">中期答辩<small>14 页答辩稿 + 28 问预设问答集；评委肯定进展，也提了模型有效性的改进意见</small></div><div class="s">已完成</div></div>
       <div class="row"><div class="w">2026.11—12</div><div class="t">招募与组队<small>就是这一页在做的事</small></div><div class="s">进行中</div></div>
       <div class="row"><div class="w">2027.01—03</div><div class="t">挑战杯校赛申报与答辩<small>名单定死后，复赛只能删人不能加人</small></div><div class="s">待启动</div></div>
-      <div class="row"><div class="w">2027.07—09</div><div class="t">中国国际大学生创新大赛报名<small>另一条线，等挑战杯打完再动</small></div><div class="s">备选</div></div>
     </div>
 
     <p class="txt">三处没解决的问题，报名前先看清楚——我们不做"完美项目"的包装。</p>
@@ -416,7 +420,7 @@ footer .fl img{height:22px}
 
     <p class="txt">四条硬门槛，只卡时间和态度，不卡技能：</p>
     <div class="bars">
-      <div class="bar"><b>每周约 5 小时，加固定例会。</b>时间不必多，但要有稳定的一段。</div>
+      <div class="bar"><b>每周约 5 小时，开会不定期。</b>按节点凑齐就行，不搞形式化周会。</div>
       <div class="bar"><b>能跟到 2027 年 11 月。</b>中途退出会直接导致申报不成。</div>
       <div class="bar"><b>能自己查、自己想办法。</b>我们给方法和素材，不给答案。</div>
       <div class="bar"><b>能追别人。</b>这里的活儿一半是催支援、定 deadline、对成品负责。</div>
@@ -442,7 +446,7 @@ footer .fl img{height:22px}
       <div class="dc a">
         <h4>我们要</h4>
         <ul>
-          <li>每周约 5 小时 + 固定例会</li>
+          <li>每周约 5 小时，开会不定期</li>
           <li>能自己查文献、跑实验</li>
           <li>能接受"数据还没签下来"的现实</li>
           <li>2027 年 1 月前把申报书改到能交</li>
