@@ -28,8 +28,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
-.wrap{max-width:1240px;margin:0 auto;padding:0 32px;position:relative;z-index:2}
-@media (min-width:1560px){.wrap{max-width:1380px}}
+.wrap{max-width:1360px;margin:0 auto;padding:0 36px;position:relative;z-index:2}
+@media (min-width:1600px){.wrap{max-width:1520px}}
 
 /* 液态玻璃基类 */
 .glass{position:relative;border:1px solid var(--lg-edge);border-radius:14px;background:var(--lg-tint);
@@ -53,6 +53,7 @@ img{display:block;max-width:100%}
   background:linear-gradient(150deg,rgba(255,243,220,.055),rgba(18,13,9,.28));
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(255,241,216,.14)}
 .nav a{padding:5px 10px;border-radius:9px;color:var(--muted);text-decoration:none;font-size:11.5px;white-space:nowrap;transition:.2s}
+.nav a.on{color:#FFF3DA;background:rgba(242,185,78,.13)}
 .nav a:hover{color:#FFF4E2;background:rgba(255,255,255,.07);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.18)}
 
 /* 首屏 */
@@ -77,7 +78,11 @@ h1{font-family:var(--serif);font-weight:900;font-size:clamp(40px,5.4vw,82px);lin
 
 /* 首屏双栏 */
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 460px;gap:44px;align-items:start;margin:0}
-@media (min-width:1560px){.hero-grid{grid-template-columns:minmax(0,1fr) 520px}}
+@media (min-width:1440px){.hero-grid{grid-template-columns:minmax(0,1fr) 500px}}
+@media (min-width:1700px){.hero-grid{grid-template-columns:minmax(0,1fr) 540px;gap:48px}}
+@media (min-width:1440px){.videoband{grid-template-columns:minmax(0,1fr) 372px}}
+@media (min-width:1700px){.videoband{grid-template-columns:minmax(0,1fr) 400px}}
+@media (min-width:1440px){.txt{max-width:1040px}}
 .hero-side{display:grid;gap:12px}
 .hero-side .hshot{overflow:hidden;padding:0}
 .hshot .hbar{display:flex;justify-content:space-between;gap:10px;padding:9px 13px;font-size:10.5px;
@@ -93,6 +98,12 @@ h1{font-family:var(--serif);font-weight:900;font-size:clamp(40px,5.4vw,82px);lin
 .metalines{}
 .metaline .m span:first-child{color:var(--dim);flex:0 0 auto}
 .metaline .m span:last-child{font-family:var(--mono);color:#E8D7B9;text-align:right;min-width:0;overflow-wrap:anywhere}
+
+#heroShader{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;
+  opacity:.62;mix-blend-mode:screen}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.72,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
 /* 视频 */
 .videoband{display:grid;grid-template-columns:minmax(0,1fr) 336px;gap:16px;align-items:center;margin:34px 0 0}
@@ -138,7 +149,7 @@ section{padding:72px 0 0;position:relative}
 /* 四线（带图卡片） */
 .lines{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin:24px 0 0}
 .ln{overflow:hidden;padding:0}
-.ln .thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0C0907}
+.ln .thumb{position:relative;aspect-ratio:2.2/1;overflow:hidden;background:#0C0907}
 .ln .thumb img{width:100%;height:100%;object-fit:cover;object-position:center;
   filter:saturate(.95) brightness(.92)}
 .ln .thumb::after{content:"";position:absolute;inset:0;
@@ -180,7 +191,7 @@ section{padding:72px 0 0;position:relative}
 
 .roles{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:18px 0 0}
 .role{overflow:hidden;padding:0}
-.role .thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0C0907}
+.role .thumb{position:relative;aspect-ratio:2.2/1;overflow:hidden;background:#0C0907}
 .role .thumb img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.92) saturate(.95)}
 .role .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,9,6,.05),rgba(12,9,6,.55) 78%,rgba(12,9,6,.8) 100%)}
 .role .body{padding:17px 20px 18px}
@@ -236,6 +247,7 @@ td:last-child{color:var(--dim)}
   box-shadow:0 10px 26px rgba(200,164,92,.30),inset 0 1px 0 rgba(255,255,255,.45)}
 .btn.main:hover{box-shadow:0 14px 32px rgba(242,185,78,.40),inset 0 1px 0 rgba(255,255,255,.55)}
 .hero-cta{margin:26px 0 0}
+.hero-figs{grid-template-columns:repeat(2,1fr);gap:10px;margin:26px 0 0}
 .hero-cta .btn.main{padding:13px 26px}
 .fine{margin:14px 0 0;font-size:11px;color:var(--dim);line-height:1.85}
 
@@ -345,6 +357,7 @@ footer .fl img{height:20px}
 
   <div class="hero">
     <div class="bg"></div>
+    <canvas id="heroShader" aria-hidden="true"></canvas>
     <div class="eyebrow">中国矿业大学（北京）· 2024 级大学生创新训练项目</div>
     <div class="hero-grid">
       <div class="hero-copy">
@@ -357,6 +370,13 @@ footer .fl img{height:20px}
         <div class="btns hero-cta">
           <a class="btn main" href="https://my.feishu.cn/share/base/shrcnCTyPK2fv3bGCa7dnagl1gc" target="_blank" rel="noopener">填写报名表</a>
           <a class="btn" href="assets/deck.pdf" target="_blank" rel="noopener">查看答辩稿 PDF</a>
+        </div>
+        <div class="figrow hero-figs">
+          <div class="fig glass"><b>33.0→42.7%</b><span>突出先验概率抬升</span></div>
+          <div class="fig glass"><b>1.718</b><span>时序预警 MAE（基线 2.275）</span></div>
+          <div class="fig glass"><b>82.5%</b><span>前四项归因贡献合计</span></div>
+          <div class="fig glass"><b>5 / 5</b><span>可信度校验通过</span></div>
+        
         </div>
       </div>
       <div class="hero-side">
@@ -389,12 +409,7 @@ footer .fl img{height:20px}
       </aside>
     </div>
 
-    <div class="figrow">
-      <div class="fig glass"><b>33.0→42.7%</b><span>突出先验概率抬升</span></div>
-      <div class="fig glass"><b>1.718</b><span>时序预警 MAE（基线 2.275）</span></div>
-      <div class="fig glass"><b>82.5%</b><span>前四项归因贡献合计</span></div>
-      <div class="fig glass"><b>5 / 5</b><span>可信度校验通过</span></div>
-    </div>
+
   </div>
 
   <!-- 系统 -->
@@ -429,7 +444,7 @@ footer .fl img{height:20px}
     <div class="shead"><span class="no">02</span><h2>四条模型线</h2><span class="en">Model lines</span></div>
     <div class="lines">
       <div class="ln glass">
-        <div class="thumb"><img src="assets/img/slide3.png" alt="数据治理页"></div>
+        <div class="thumb"><img src="assets/img/gen_line1.jpg" alt="数据治理配图"></div>
         <div class="body">
           <h3>数据治理</h3>
           <p>86,400 行原始数据入库，清洗至 306,791 行、28 通道；70 字段封版，246 点结果台账，指标口径唯一。</p>
@@ -437,7 +452,7 @@ footer .fl img{height:20px}
         </div>
       </div>
       <div class="ln glass">
-        <div class="thumb"><img src="assets/img/slide6.png" alt="因果归因页"></div>
+        <div class="thumb"><img src="assets/img/gen_line2.jpg" alt="因果归因配图"></div>
         <div class="body">
           <h3>因果归因</h3>
           <p>DAG 16 条边、贝叶斯网络与 SHAP 双向互证，方向一致率 100%。埋深单项贡献 38.6%，前四项合计 82.5%。</p>
@@ -445,7 +460,7 @@ footer .fl img{height:20px}
         </div>
       </div>
       <div class="ln glass">
-        <div class="thumb"><img src="assets/img/slide4.png" alt="时序预测页"></div>
+        <div class="thumb"><img src="assets/img/gen_line3.jpg" alt="时序预测配图"></div>
         <div class="body">
           <h3>时序预测</h3>
           <p>ARIMA、LSTM 与融合模型三段推进，MAE 2.381 → 1.948 → 1.788；三折回测与公开真实数据均设对照。</p>
@@ -453,7 +468,7 @@ footer .fl img{height:20px}
         </div>
       </div>
       <div class="ln glass">
-        <div class="thumb"><img src="assets/img/slide8.png" alt="空间外推页"></div>
+        <div class="thumb"><img src="assets/img/gen_line4.jpg" alt="空间外推配图"></div>
         <div class="body">
           <h3>空间外推</h3>
           <p>IDW 与克里金采用留点交叉，量化跨地质单元的精度代价：单元内 R² 0.995，全局转负，变程 1,642 m。</p>
@@ -525,7 +540,7 @@ footer .fl img{height:20px}
 
     <div class="roles">
       <div class="role glass">
-        <div class="thumb"><img src="assets/img/slide6.png" alt="模型页"></div>
+        <div class="thumb"><img src="assets/img/gen_role1.jpg" alt="技术与作品主笔"></div>
         <div class="body">
           <span class="no">岗位一 · 1 人</span>
           <h3>技术与作品主笔</h3>
@@ -543,7 +558,7 @@ footer .fl img{height:20px}
         </div>
       </div>
       <div class="role glass">
-        <div class="thumb"><img src="assets/img/slide10.png" alt="系统页"></div>
+        <div class="thumb"><img src="assets/img/gen_role2.jpg" alt="落地与答辩"></div>
         <div class="body">
           <span class="no">岗位二 · 1 人</span>
           <h3>落地、答辩与实践</h3>
@@ -580,7 +595,7 @@ footer .fl img{height:20px}
 
     <p class="txt">准入条件共四项：</p>
     <div class="bars">
-      <div class="bar glass"><b>每周投入约 5 小时。</b>会议按节点召开，提前三日通知。</div>
+      <div class="bar glass"><b>学期内每周投入不超过 5 小时。</b>寒假设项目进展另行安排；会议按节点召开，提前三日通知。</div>
       <div class="bar glass"><b>持续参与至挑战杯参赛流程结束。</b>中途退出将直接影响申报。</div>
       <div class="bar glass"><b>具备独立检索与问题解决能力。</b>项目提供方法与素材，不代做具体工作。</div>
       <div class="bar glass"><b>具备推进与协调能力。</b>承担任务跟进、节点控制与成果验收。</div>
@@ -606,7 +621,7 @@ footer .fl img{height:20px}
       <div class="dc glass a">
         <h4>成员需承担</h4>
         <ul>
-          <li>每周约 5 小时投入</li>
+          <li>学期内每周投入不超过 5 小时，寒假视项目进展而定</li>
           <li>独立完成文献检索与实验</li>
           <li>在真实数据未接入的条件下推进工作</li>
           <li>2027 年 1 月前完成申报书定稿</li>
@@ -651,5 +666,81 @@ footer .fl img{height:20px}
   </footer>
 
 </div>
+
+<script>
+/* 首屏着色器：低密雾流 + 金尘，时间种子取当前时刻 */
+(function(){
+  const cv = document.getElementById('heroShader');
+  if(!cv) return;
+  const gl = cv.getContext('webgl', {alpha:true, antialias:false, premultipliedAlpha:true});
+  if(!gl) return;
+  const vs = `attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}`;
+  const fs = `
+  precision highp float;
+  uniform vec2 u_res; uniform float u_t; uniform vec2 u_seed;
+  float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+  float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
+    return mix(mix(h(i),h(i+vec2(1.,0.)),f.x),mix(h(i+vec2(0.,1.)),h(i+vec2(1.,1.)),f.x),f.y);}
+  float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<4;i++){v+=a*n(p);p*=2.02;a*=.5;}return v;}
+  void main(){
+    vec2 uv=(gl_FragCoord.xy - .5*u_res)/u_res.y;
+    float t=u_t*0.06;
+    vec2 q=uv*2.2+u_seed;
+    float warp=fbm(q+vec2(t,-t*.6));
+    float f=fbm(q*1.8+vec2(warp*1.4+t*1.2,-t*0.9));
+    float fog=smoothstep(.32,.92,f)*(1.0-.55*length(uv*vec2(.9,1.3)));
+    vec3 gold=vec3(.86,.68,.36), warm=vec3(.55,.30,.16), deep=vec3(.02,.015,.01);
+    vec3 col=mix(deep,warm,fog*.9); col=mix(col,gold,pow(fog,3.2)*.85);
+    /* 金尘 */
+    vec2 g=gl_FragCoord.xy/u_res.y*46.;
+    vec2 id=floor(g), fr=fract(g)-.5;
+    float rnd=h(id+u_seed*7.3);
+    float tw=pow(max(0.,sin(u_t*0.9+rnd*6.28)),6.);
+    float d=length(fr)*2.4;
+    float dust=smoothstep(.16,0.,d)*step(.965,rnd)*tw;
+    col+= vec3(.95,.78,.45)*dust*1.4;
+    float vig=1.-.6*pow(length(uv*vec2(.72,.62)),2.2);
+    gl_FragColor=vec4(col*vig, 1.);
+  }`;
+  function sh(t,s){const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);
+    if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)) return null; return o;}
+  const v=sh(gl.VERTEX_SHADER,vs), f=sh(gl.FRAGMENT_SHADER,fs);
+  if(!v||!f) return;
+  const pr=gl.createProgram();gl.attachShader(pr,v);gl.attachShader(pr,f);gl.linkProgram(pr);
+  if(!gl.getProgramParameter(pr,gl.LINK_STATUS)) return;
+  gl.useProgram(pr);
+  const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+  const loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  const uRes=gl.getUniformLocation(pr,'u_res'), uT=gl.getUniformLocation(pr,'u_t'), uS=gl.getUniformLocation(pr,'u_seed');
+  const now=new Date();
+  const seed=[(now.getHours()+now.getMinutes()/60)*0.18, (now.getDay()+now.getSeconds()/60)*0.12];
+  gl.uniform2f(uS,seed[0],seed[1]);
+  let DPR=Math.min(window.devicePixelRatio||1,1.5), running=true, t0=performance.now();
+  function size(){const w=cv.clientWidth,h=cv.clientHeight;
+    cv.width=Math.max(1,Math.round(w*DPR));cv.height=Math.max(1,Math.round(h*DPR));
+    gl.viewport(0,0,cv.width,cv.height);gl.uniform2f(uRes,cv.width,cv.height);}
+  size(); window.addEventListener('resize',size,{passive:true});
+  function loop(now){ if(!running) return;
+    gl.uniform1f(uT,(now-t0)/1000);
+    gl.drawArrays(gl.TRIANGLES,0,3);
+    requestAnimationFrame(loop);}
+  requestAnimationFrame(loop);
+  document.addEventListener('visibilitychange',()=>{ if(document.hidden){running=false;} else {running=true;t0=performance.now()-1;requestAnimationFrame(loop);} });
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{ if(!e.isIntersecting){running=false; requestAnimationFrame(()=>{});} });},{threshold:0});
+  io.observe(cv);
+  /* 滚动揭示 */
+  const rv=document.querySelectorAll('section, .hero-side, .videoband, .figrow, .deck, .tablewrap');
+  const io2=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io2.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px'});
+  rv.forEach(el=>{el.classList.add('reveal');io2.observe(el);});
+  setTimeout(()=>{document.querySelectorAll('.reveal:not(.in)').forEach(el=>{ if(el.getBoundingClientRect().top < innerHeight*1.2) el.classList.add('in'); });},1200);
+  /* 导航高亮 */
+  const links=[...document.querySelectorAll('.nav a')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const io3=new IntersectionObserver(es=>{es.forEach(e=>{ if(e.isIntersecting){ links.forEach(l=>l.classList.remove('on')); const i=secs.indexOf(e.target); if(i>-1) links[i].classList.add('on'); } });},{rootMargin:'-45% 0px -50% 0px'});
+  secs.forEach(s=>io3.observe(s));
+})();
+</script>
 </body>
 </html>
