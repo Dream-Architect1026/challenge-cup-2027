@@ -25,6 +25,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.82;
+  overflow-x:hidden;
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
 .wrap{max-width:1240px;margin:0 auto;padding:0 32px;position:relative;z-index:2}
@@ -78,19 +79,31 @@ h1{font-family:var(--serif);font-weight:900;font-size:clamp(40px,5.4vw,82px);lin
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 460px;gap:44px;align-items:start;margin:0}
 @media (min-width:1560px){.hero-grid{grid-template-columns:minmax(0,1fr) 520px}}
 .hero-side{display:grid;gap:12px}
-.hero-side .shot{aspect-ratio:1950/1211}
+.hero-side .hshot{overflow:hidden;padding:0}
+.hshot .hbar{display:flex;justify-content:space-between;gap:10px;padding:9px 13px;font-size:10.5px;
+  letter-spacing:.04em;color:#EFE3D2;border-bottom:1px solid rgba(214,176,112,.14)}
+.hshot .hbar span:last-child{color:var(--dim);font-family:var(--mono)}
+.hshot img{display:block;width:100%;height:auto}
+.hshot .hfoot{padding:8px 13px;font-size:10.5px;color:var(--dim);border-top:1px solid rgba(214,176,112,.12)}
+.hero-side .metaline{border-radius:14px;overflow:hidden}
 .metaline{border-radius:14px;overflow:hidden}
 .metaline .m{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 15px;
   font-size:11.5px;border-bottom:1px solid rgba(214,176,112,.12)}
 .metaline .m:last-child{border-bottom:0}
-.metaline .m span:first-child{color:var(--dim)}
-.metaline .m span:last-child{font-family:var(--mono);color:#E8D7B9;text-align:right}
+.metalines{}
+.metaline .m span:first-child{color:var(--dim);flex:0 0 auto}
+.metaline .m span:last-child{font-family:var(--mono);color:#E8D7B9;text-align:right;min-width:0;overflow-wrap:anywhere}
 
 /* 视频 */
-.videoband{margin:34px 0 0}
+.videoband{display:grid;grid-template-columns:minmax(0,1fr) 336px;gap:16px;align-items:center;margin:34px 0 0}
+.vnotes{padding:16px 17px 15px}
+.vnotes h4{font-family:var(--serif);font-size:12px;margin:0 0 12px;letter-spacing:.12em;color:var(--gold)}
+.vnotes .vi{display:flex;gap:9px;font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:9px}
+.vnotes .vi b{font-family:var(--mono);font-size:11px;color:var(--gold-hi);flex:0 0 auto}
+.vnotes .vi span{color:var(--ink)}
 .screen{position:relative;overflow:hidden;border-radius:16px;border:1px solid rgba(214,176,112,.26);background:#000;
   box-shadow:inset 0 1px 0 rgba(255,241,216,.24),0 24px 54px rgba(0,0,0,.58)}
-.screen video{width:100%;display:block;aspect-ratio:3070/1918}
+.screen video{width:100%;display:block;aspect-ratio:3070/1918;background:#000}
 .lbl{position:absolute;left:13px;top:13px;font-size:10.5px;letter-spacing:.08em;color:#F6EAD6;
   background:rgba(10,8,5,.72);border:1px solid rgba(214,176,112,.30);border-radius:8px;padding:3px 9px;z-index:2;
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
@@ -125,11 +138,11 @@ section{padding:72px 0 0;position:relative}
 /* 四线（带图卡片） */
 .lines{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin:24px 0 0}
 .ln{overflow:hidden;padding:0}
-.ln .thumb{position:relative;height:138px;overflow:hidden}
-.ln .thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;
-  filter:saturate(.9) brightness(.8)}
+.ln .thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0C0907}
+.ln .thumb img{width:100%;height:100%;object-fit:cover;object-position:center;
+  filter:saturate(.95) brightness(.92)}
 .ln .thumb::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(12,9,6,.18),rgba(12,9,6,.88) 88%)}
+  background:linear-gradient(180deg,rgba(12,9,6,.05),rgba(12,9,6,.62) 82%,rgba(12,9,6,.78) 100%)}
 .ln .body{padding:18px 20px 16px;position:relative;z-index:2}
 .ln h3{font-family:var(--serif);font-size:16px;margin:0 0 8px;font-weight:600;letter-spacing:.03em}
 .ln p{margin:0;font-size:13px;color:var(--muted);line-height:1.85}
@@ -167,9 +180,9 @@ section{padding:72px 0 0;position:relative}
 
 .roles{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:18px 0 0}
 .role{overflow:hidden;padding:0}
-.role .thumb{position:relative;height:120px;overflow:hidden}
-.role .thumb img{width:100%;height:100%;object-fit:cover;object-position:center 18%;filter:brightness(.78) saturate(.9)}
-.role .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,9,6,.22),rgba(12,9,6,.9) 92%)}
+.role .thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0C0907}
+.role .thumb img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.92) saturate(.95)}
+.role .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,9,6,.05),rgba(12,9,6,.55) 78%,rgba(12,9,6,.8) 100%)}
 .role .body{padding:17px 20px 18px}
 .role .no{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--gold)}
 .role h3{font-family:var(--serif);font-size:17px;margin:8px 0 11px;font-weight:700;letter-spacing:.03em}
@@ -222,6 +235,8 @@ td:last-child{color:var(--dim)}
 .btn.main{background:linear-gradient(120deg,var(--gold-hi),#C08A2E);color:#1A1206;font-weight:500;border-color:transparent;
   box-shadow:0 10px 26px rgba(200,164,92,.30),inset 0 1px 0 rgba(255,255,255,.45)}
 .btn.main:hover{box-shadow:0 14px 32px rgba(242,185,78,.40),inset 0 1px 0 rgba(255,255,255,.55)}
+.hero-cta{margin:26px 0 0}
+.hero-cta .btn.main{padding:13px 26px}
 .fine{margin:14px 0 0;font-size:11px;color:var(--dim);line-height:1.85}
 
 footer{margin:78px 0 0;border-top:1px solid rgba(214,176,112,.16);padding:26px 0 54px;font-size:11px;color:var(--dim);
@@ -229,8 +244,8 @@ footer{margin:78px 0 0;border-top:1px solid rgba(214,176,112,.16);padding:26px 0
 footer b{color:var(--muted);font-weight:500}
 footer .fl{display:flex;gap:12px;align-items:center;margin-bottom:12px;position:relative;z-index:2}
 footer .fl img{height:20px}
-.footbg{position:absolute;left:0;right:0;bottom:0;height:320px;background:url("assets/img/slide13.png") center bottom/cover no-repeat;
-  opacity:.10;pointer-events:none;-webkit-mask-image:linear-gradient(0deg,rgba(0,0,0,.92),transparent);
+.footbg{position:absolute;right:-40px;bottom:0;width:480px;height:280px;background:url("assets/img/slide13.png") center bottom/cover no-repeat;
+  opacity:.11;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent,rgba(0,0,0,.8) 62%,rgba(0,0,0,.8));
   mask-image:linear-gradient(0deg,rgba(0,0,0,.92),transparent)}
 
 @media (hover:hover){
@@ -238,8 +253,11 @@ footer .fl img{height:20px}
 }
 @media (max-width:980px){
   .wrap{padding:0 20px}
-  .hero-grid{grid-template-columns:1fr;gap:24px}
+  .hero-grid{grid-template-columns:minmax(0,1fr);gap:24px}
+  .videoband{grid-template-columns:minmax(0,1fr);gap:12px}
+  .vnotes{margin-top:2px}
   .hero-side{grid-template-columns:1fr;gap:10px}
+  .hshot img{aspect-ratio:4/3;object-fit:cover;object-position:top left}
   .hero-side .shot{aspect-ratio:16/10}
   .lines,.roles,.deal,.frank,.muster,.bars{grid-template-columns:1fr}
   .deck{grid-template-columns:1fr 1fr}
@@ -248,13 +266,12 @@ footer .fl img{height:20px}
   .row{grid-template-columns:84px 1fr}
   .row .s{display:none}
   /* 导航改为可横滑的胶囊条 */
-  .nav{display:flex;overflow-x:auto;max-width:100%;margin-left:0;padding:3px 4px;scrollbar-width:none}
+  .nav{display:flex;overflow-x:auto;max-width:100%;min-width:0;flex:1 1 auto;margin-left:0;padding:3px 4px;scrollbar-width:none}
   .nav::-webkit-scrollbar{display:none}
-  .top .wrap{flex-wrap:nowrap;height:auto;padding-top:10px;padding-bottom:10px;gap:10px;row-gap:8px}
-  .top .tagline{display:none}
-  .top .sep{display:none}
-  .nav{order:3;width:100%}
-  .nav a{padding:6px 12px;font-size:12px}
+  .top .wrap{flex-wrap:wrap;height:auto;padding-top:9px;padding-bottom:9px;gap:8px;row-gap:6px}
+  .top .brand{white-space:nowrap}
+  .nav{order:3;width:100%;gap:2px;padding:2px}
+  .nav a{padding:6px 9px;font-size:11px;letter-spacing:0}
 }
 @media (max-width:640px){
   body{line-height:1.78}
@@ -276,9 +293,7 @@ footer .fl img{height:20px}
   .gate{padding:10px 8px}
   .gate span{font-size:10px}
   .lines{gap:10px}
-  .ln .thumb{height:110px}
   .ln .body{padding:15px 16px 14px}
-  .role .thumb{height:96px}
   .role .body{padding:15px 16px 16px}
   .tl{padding:4px 14px}
   .row{grid-template-columns:76px 1fr;gap:10px;padding:11px 0}
@@ -339,12 +354,16 @@ footer .fl img{height:20px}
           四条模型线已完成，四端系统已上线，五道可信度校验全部通过，2026 年 11 月 19 日完成中期答辩。
           <b>现面向 2027 年「挑战杯」课外学术科技作品竞赛，招募 2 名主力成员。</b>
         </p>
+        <div class="btns hero-cta">
+          <a class="btn main" href="https://my.feishu.cn/share/base/shrcnCTyPK2fv3bGCa7dnagl1gc" target="_blank" rel="noopener">填写报名表</a>
+          <a class="btn" href="assets/deck.pdf" target="_blank" rel="noopener">查看答辩稿 PDF</a>
+        </div>
       </div>
       <div class="hero-side">
-        <div class="shot">
-          <span class="lbl">中控台 · 最小可用版</span>
+        <div class="hshot glass">
+          <div class="hbar"><span>中控台 · 最小可用版</span><span>12 / 12 在线</span></div>
           <img src="assets/img/smoke_center.png" alt="中控台界面截图">
-          <div class="cap">12/12 测点在线 · 最高预警值 0.38% · 0 条告警</div>
+          <div class="hfoot">最高预警值 0.38% · 0 条告警 · 2026-11-19 21:09 采集</div>
         </div>
         <div class="metaline glass">
           <div class="m"><span>判定内核</span><span>0.2.63-r181 · 四端共用</span></div>
@@ -361,6 +380,13 @@ footer .fl img{height:20px}
           <source src="assets/demo-1080p.mp4" type="video/mp4">
         </video>
       </div>
+      <aside class="vnotes glass">
+        <h4>片内要点</h4>
+        <div class="vi"><b>01</b><span>四条模型线并跑，先验概率由 33.0% 抬到 42.7%</span></div>
+        <div class="vi"><b>02</b><span>归因与时序同源，埋深一项占 38.6%</span></div>
+        <div class="vi"><b>03</b><span>四端共用同一判定内核 0.2.63-r181</span></div>
+        <div class="vi"><b>04</b><span>246 点台账、70 字段封版，口径唯一可复算</span></div>
+      </aside>
     </div>
 
     <div class="figrow">
@@ -559,7 +585,7 @@ footer .fl img{height:20px}
       <div class="bar glass"><b>具备独立检索与问题解决能力。</b>项目提供方法与素材，不代做具体工作。</div>
       <div class="bar glass"><b>具备推进与协调能力。</b>承担任务跟进、节点控制与成果验收。</div>
     </div>
-    <p class="txt" style="font-size:12.5px;margin-top:13px">本科一年级、二年级优先；须保证 2027 年 6 月前在校（挑战杯对学籍有明确要求）。</p>
+    <p class="txt" style="font-size:12.5px;margin-top:13px">本科一年级、二年级优先；须保证在校身份覆盖至挑战杯参赛流程结束（赛事对学籍有明确要求）。</p>
   </section>
 
   <!-- 条件 -->
