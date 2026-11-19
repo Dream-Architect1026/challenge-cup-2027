@@ -3,221 +3,302 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>智警预安 · 煤与瓦斯突出预警 · 挑战杯 2027 招募</title>
-<meta name="description" content="中国矿业大学（北京）2024 级大创项目「多源数据融合驱动的煤与瓦斯突出预警模型研究」，招募 2027 年挑战杯参赛线成员。">
+<title>智警御安 · 挑战杯 2027 招募</title>
+<meta name="description" content="智警御安——多源数据融合驱动的煤与瓦斯突出预警模型研究。2024 级大创项目，招募 2027 年挑战杯参赛线成员。">
 <link rel="icon" href="assets/img/logo-tile.png">
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
 <style>
 :root{
-  --bg:#0B0906; --bg2:#100D0A; --panel:#161210; --panel2:#1C1713;
-  --line:#2A2320; --line2:#3A3028;
-  --ink:#EFE5D6; --muted:#AFA292; --dim:#786C5E;
-  --gold:#C8A45C; --gold-hi:#F0B448;
-  --teal:#2FD1A6; --red:#E2533F;
+  --bg:#080604; --bg2:#0D0A07;
+  --ink:#F1E7D8; --muted:#B4A794; --dim:#7C7060;
+  --gold:#C8A45C; --gold-hi:#F2B94E; --red:#E2533F; --teal:#59D3B4;
+  --line:rgba(214,176,112,.20);
+  /* 液态玻璃令牌 */
+  --lg-rim:rgba(255,241,216,.26);
+  --lg-edge:rgba(214,176,112,.26);
+  --lg-tint:linear-gradient(155deg,rgba(255,243,220,.11),rgba(255,255,255,.035) 34%,rgba(18,13,9,.52) 100%);
+  --lg-shadow:inset 0 1px 0 var(--lg-rim),0 14px 34px rgba(0,0,0,.46);
   --serif:"Noto Serif SC",Georgia,"Songti SC",serif;
   --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
   --mono:"Consolas","SFMono-Regular",Menlo,monospace;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.85;
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.82;
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
-.wrap{max-width:1140px;margin:0 auto;padding:0 26px;position:relative;z-index:2}
+.wrap{max-width:1160px;margin:0 auto;padding:0 26px;position:relative;z-index:2}
+
+/* 液态玻璃基类 */
+.glass{position:relative;border:1px solid var(--lg-edge);border-radius:14px;background:var(--lg-tint);
+  backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);
+  box-shadow:var(--lg-shadow);transition:border-color .28s,box-shadow .28s,transform .28s}
+.glass::before{content:"";position:absolute;left:1px;right:1px;top:0;height:1px;border-radius:14px 14px 0 0;
+  background:linear-gradient(90deg,transparent,rgba(255,244,222,.55),rgba(214,176,112,.35),transparent);opacity:.8;pointer-events:none}
+.glass::after{content:"";position:absolute;inset:0;border-radius:14px;pointer-events:none;
+  background:radial-gradient(420px 120px at 12% -10%,rgba(255,246,226,.12),transparent 70%)}
+.glass:hover{border-color:rgba(214,176,112,.46);box-shadow:inset 0 1px 0 rgba(255,246,226,.40),0 18px 40px rgba(0,0,0,.52)}
 
 /* 顶部 */
-.top{position:sticky;top:0;z-index:60;background:rgba(11,9,6,.86);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line)}
-.top .wrap{display:flex;align-items:center;gap:18px;height:60px}
-.logo{height:24px;width:auto}
-.top .sep{width:1px;height:18px;background:var(--line2)}
-.top .tagline{font-size:12px;color:var(--dim);letter-spacing:.07em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.nav{margin-left:auto;display:flex;gap:18px;font-size:12px}
-.nav a{color:var(--muted);text-decoration:none;white-space:nowrap}
-.nav a:hover{color:var(--gold-hi)}
+.top{position:sticky;top:0;z-index:60;background:rgba(8,6,4,.62);backdrop-filter:blur(16px) saturate(150%);
+  -webkit-backdrop-filter:blur(16px) saturate(150%);border-bottom:1px solid rgba(214,176,112,.16)}
+.top .wrap{display:flex;align-items:center;gap:16px;height:60px}
+.logo{height:23px;width:auto}
+.top .brand{font-family:var(--serif);font-size:15px;letter-spacing:.16em;color:#F3E4C8}
+.top .sep{width:1px;height:16px;background:rgba(214,176,112,.30)}
+.top .tagline{font-size:11.5px;color:var(--dim);letter-spacing:.08em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav{margin-left:auto;display:flex;gap:4px;padding:3px;border:1px solid rgba(214,176,112,.16);border-radius:12px;
+  background:linear-gradient(150deg,rgba(255,243,220,.055),rgba(18,13,9,.28));
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(255,241,216,.14)}
+.nav a{padding:5px 10px;border-radius:9px;color:var(--muted);text-decoration:none;font-size:11.5px;white-space:nowrap;transition:.2s}
+.nav a:hover{color:#FFF4E2;background:rgba(255,255,255,.07);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.18)}
 
-/* 首屏：中控大厅背景 */
-.hero{position:relative;padding:78px 0 0;overflow:hidden}
-.hero .bg{position:absolute;inset:0;background-image:url("assets/img/control-room.png");
-  background-size:cover;background-position:center;opacity:.30;filter:saturate(.62) contrast(1.08)}
+/* 首屏 */
+.hero{position:relative;padding:76px 0 0;overflow:hidden}
+.hero .bg{position:absolute;inset:0;background:url("assets/img/control-room.png") center/cover no-repeat;
+  opacity:.34;filter:saturate(.55) contrast(1.1)}
 .hero .bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(11,9,6,.55) 0%,rgba(11,9,6,.80) 46%,var(--bg) 92%)}
+  background:linear-gradient(180deg,rgba(8,6,4,.42) 0%,rgba(8,6,4,.78) 44%,var(--bg) 92%)}
 .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(760px 380px at 8% 0%,rgba(200,164,92,.10),transparent 64%),
-             radial-gradient(620px 340px at 96% 12%,rgba(226,83,63,.09),transparent 66%)}
-.eyebrow{display:flex;align-items:center;gap:12px;font-size:11.5px;letter-spacing:.18em;color:var(--gold)}
-.eyebrow::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,rgba(58,48,40,.9),transparent)}
-h1{font-family:var(--serif);font-weight:900;font-size:clamp(30px,4.4vw,50px);line-height:1.24;
-  margin:26px 0 0;letter-spacing:.01em;text-shadow:0 2px 26px rgba(0,0,0,.6)}
-h1 em{font-style:normal;background:linear-gradient(100deg,var(--gold-hi),var(--gold) 72%);
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.lede{margin:22px 0 0;max-width:730px;font-size:15.5px;color:#C8BAAB;line-height:2}
+  background:radial-gradient(720px 360px at 6% 0%,rgba(200,164,92,.13),transparent 64%),
+             radial-gradient(560px 320px at 97% 14%,rgba(226,83,63,.10),transparent 66%)}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.2em;color:var(--gold)}
+.eyebrow::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,rgba(214,176,112,.42),transparent)}
+h1{font-family:var(--serif);font-weight:900;font-size:clamp(38px,6vw,68px);line-height:1.12;
+  margin:24px 0 0;letter-spacing:.12em;
+  background:linear-gradient(100deg,#FFF2D2 0%,var(--gold-hi) 46%,#C08A2E 92%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 4px 44px rgba(0,0,0,.62)}
+.sub{font-family:var(--serif);font-size:clamp(14px,1.7vw,18px);color:#DCCDB6;margin:16px 0 0;letter-spacing:.06em}
+.lede{margin:22px 0 0;max-width:760px;font-size:15px;color:#C3B5A5;line-height:2}
 .lede b{color:var(--ink);font-weight:500}
 
-/* 视频与截图 */
-.stage{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin:42px 0 0}
-.screen{border:1px solid var(--line2);background:#000;position:relative;overflow:hidden;
-  box-shadow:0 18px 46px rgba(0,0,0,.5)}
+/* 视频 + 截图 */
+.stage{display:grid;grid-template-columns:1.42fr 1fr;gap:14px;margin:38px 0 0}
+.screen{position:relative;overflow:hidden;border-radius:14px;border:1px solid rgba(214,176,112,.26);background:#000;
+  box-shadow:inset 0 1px 0 rgba(255,241,216,.24),0 20px 46px rgba(0,0,0,.56)}
 .screen video{width:100%;display:block;aspect-ratio:3070/1918}
-.screen .lbl,.shot .lbl{position:absolute;left:11px;top:11px;font-size:11px;letter-spacing:.08em;
-  background:rgba(8,7,5,.82);border:1px solid var(--line2);color:var(--ink);padding:3px 8px;z-index:2}
-.shot{border:1px solid var(--line2);position:relative;overflow:hidden;background:var(--panel);
-  box-shadow:0 18px 46px rgba(0,0,0,.5)}
+.lbl{position:absolute;left:11px;top:11px;font-size:10.5px;letter-spacing:.08em;color:#F6EAD6;
+  background:rgba(10,8,5,.72);border:1px solid rgba(214,176,112,.30);border-radius:8px;padding:3px 8px;z-index:2;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.shot{position:relative;overflow:hidden;border-radius:14px;border:1px solid rgba(214,176,112,.24);
+  background:#0E0B08;box-shadow:inset 0 1px 0 rgba(255,241,216,.22),0 20px 46px rgba(0,0,0,.56)}
 .shot img{width:100%;height:100%;object-fit:cover;object-position:top left}
-.shot .cap{position:absolute;left:0;right:0;bottom:0;padding:9px 11px;font-size:11px;color:var(--ink);
-  background:linear-gradient(0deg,rgba(8,7,5,.96),rgba(8,7,5,.6) 62%,transparent)}
+.cap{position:absolute;left:0;right:0;bottom:0;padding:9px 11px;font-size:10.5px;color:#EFE3D2;line-height:1.6;
+  background:linear-gradient(0deg,rgba(8,6,4,.96),rgba(8,6,4,.62) 60%,transparent)}
 
 /* 数字条 */
-.figrow{display:grid;grid-template-columns:repeat(4,1fr);margin:40px 0 0;
-  border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);background:rgba(16,13,10,.72)}
-.fig{padding:18px 16px 16px;border-right:1px solid var(--line)}
-.fig:last-child{border-right:0}
-.fig b{display:block;font-family:var(--mono);font-size:clamp(18px,2.4vw,25px);color:var(--gold-hi);
-  letter-spacing:-.01em;line-height:1.25}
-.fig span{display:block;margin-top:6px;font-size:11.5px;color:var(--dim);line-height:1.65}
+.figrow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:34px 0 0}
+.fig{padding:16px 16px 14px}
+.fig b{display:block;font-family:var(--mono);font-size:clamp(19px,2.4vw,26px);color:var(--gold-hi);line-height:1.24}
+.fig span{display:block;margin-top:6px;font-size:11px;color:var(--dim);line-height:1.6}
 
 /* 节 */
-section{padding:76px 0 0;position:relative}
-.shead{display:flex;align-items:baseline;gap:14px;padding-bottom:13px;border-bottom:1px solid var(--line2)}
-.shead .no{font-family:var(--mono);font-size:11.5px;color:var(--gold);letter-spacing:.14em}
-.shead h2{font-family:var(--serif);font-weight:700;font-size:clamp(20px,2.6vw,25px);margin:0}
-.shead .en{margin-left:auto;font-size:10.5px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase}
-.txt{color:var(--muted);font-size:15px;line-height:1.95;margin:20px 0 0;max-width:880px}
+section{padding:72px 0 0;position:relative}
+.shead{display:flex;align-items:baseline;gap:13px;padding-bottom:12px;border-bottom:1px solid rgba(214,176,112,.18)}
+.shead .no{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:.14em}
+.shead h2{font-family:var(--serif);font-weight:700;font-size:clamp(20px,2.6vw,26px);margin:0;letter-spacing:.04em}
+.shead .en{margin-left:auto;font-size:10px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase}
+.txt{color:var(--muted);font-size:14.5px;line-height:1.95;margin:18px 0 0;max-width:900px}
 .txt b{color:var(--ink);font-weight:500}
 
-/* 现状说明 */
-.notebox{border:1px solid rgba(200,164,92,.32);background:linear-gradient(150deg,rgba(200,164,92,.055),rgba(16,13,10,.9));
-  padding:20px 22px;margin:22px 0 0}
-.notebox h4{font-family:var(--serif);font-size:14px;margin:0 0 12px;color:#EEDCB4;letter-spacing:.02em}
-.notebox ul{margin:0;padding-left:16px;font-size:13.5px;color:var(--muted);line-height:1.95}
+/* 现状 */
+.notebox{padding:20px 22px;margin:20px 0 0}
+.notebox h4{font-family:var(--serif);font-size:14px;margin:0 0 11px;color:#F1DFBC;letter-spacing:.04em}
+.notebox ul{margin:0;padding-left:16px;font-size:13px;color:var(--muted);line-height:1.9}
 .notebox li{margin-bottom:7px}
 .notebox li b{color:var(--ink);font-weight:500}
 
-/* 四线 */
-.lines{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:26px 0 0}
-.ln{border:1px solid var(--line);background:linear-gradient(160deg,var(--panel2),var(--panel));
-  padding:20px 22px 16px;position:relative}
-.ln::before{content:attr(data-k);position:absolute;right:16px;top:10px;font-family:var(--serif);
-  font-size:23px;color:rgba(200,164,92,.2);font-weight:900}
-.ln h3{font-family:var(--serif);font-size:16px;margin:0 0 9px;font-weight:600}
-.ln p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.85}
-.ln .kv{margin-top:12px;padding-top:10px;border-top:1px dashed var(--line2);font-family:var(--mono);
-  font-size:11.5px;color:var(--teal);letter-spacing:.01em}
+/* 四线（带图卡片） */
+.lines{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin:24px 0 0}
+.ln{overflow:hidden;padding:0}
+.ln .thumb{position:relative;height:138px;overflow:hidden}
+.ln .thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;
+  filter:saturate(.9) brightness(.8)}
+.ln .thumb::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(12,9,6,.18),rgba(12,9,6,.88) 88%)}
+.ln .body{padding:18px 20px 16px;position:relative;z-index:2}
+.ln h3{font-family:var(--serif);font-size:16px;margin:0 0 8px;font-weight:600;letter-spacing:.03em}
+.ln p{margin:0;font-size:13px;color:var(--muted);line-height:1.85}
+.ln .kv{margin-top:11px;padding-top:10px;border-top:1px solid rgba(214,176,112,.16);
+  font-family:var(--mono);font-size:11px;color:var(--teal)}
 
 /* 关卡 */
-.gates{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:22px 0 0}
-.gate{border:1px solid rgba(200,164,92,.32);background:rgba(200,164,92,.05);padding:12px 10px;text-align:center}
-.gate b{display:block;font-family:var(--mono);font-size:16px;color:var(--gold-hi)}
-.gate span{display:block;font-size:11px;color:var(--dim);margin-top:5px;line-height:1.55}
+.gates{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:20px 0 0}
+.gate{padding:12px 10px;text-align:center;border-radius:12px}
+.gate b{display:block;font-family:var(--mono);font-size:15.5px;color:var(--gold-hi)}
+.gate span{display:block;font-size:10.5px;color:var(--dim);margin-top:5px;line-height:1.5}
 
 /* 时间线 */
-.tl{margin:26px 0 0}
-.row{display:grid;grid-template-columns:116px 1fr 92px;gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}
-.row .w{font-family:var(--mono);font-size:12px;color:var(--gold)}
-.row .t{font-size:13.5px;color:var(--ink)}
-.row .t small{display:block;color:var(--dim);font-size:11.5px;margin-top:3px;line-height:1.7}
-.row .s{font-size:11.5px;color:var(--dim);text-align:right;align-self:center}
+.tl{margin:24px 0 0;padding:6px 20px}
+.row{display:grid;grid-template-columns:112px 1fr 86px;gap:14px;padding:12px 0;border-bottom:1px solid rgba(214,176,112,.12)}
+.row:last-child{border-bottom:0}
+.row .w{font-family:var(--mono);font-size:11.5px;color:var(--gold)}
+.row .t{font-size:13px;color:var(--ink)}
+.row .t small{display:block;color:var(--dim);font-size:11px;margin-top:2px;line-height:1.65}
+.row .s{font-size:11px;color:var(--dim);text-align:right;align-self:center}
 .row.hot .w{color:var(--red)}
 
-/* 三块现状 */
-.frank{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:22px 0 0}
-.fr{border-left:2px solid rgba(226,83,63,.55);background:rgba(226,83,63,.045);padding:16px 17px}
-.fr h4{font-family:var(--serif);font-size:13.5px;margin:0 0 7px;color:#F0C4B3;font-weight:600}
+/* 短板 */
+.frank{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:20px 0 0}
+.fr{padding:16px 17px;border-left:2px solid rgba(226,83,63,.55)}
+.fr h4{font-family:var(--serif);font-size:13px;margin:0 0 7px;color:#F0C4B3;font-weight:600}
 .fr p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.85}
 
 /* 编制 */
-.muster{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line2);margin:24px 0 0;background:var(--bg2)}
-.muster .c{padding:19px 21px}
-.muster .c:first-child{border-right:1px solid var(--line2)}
-.muster .c h4{font-family:var(--serif);font-size:14px;margin:0 0 9px;color:var(--ink);font-weight:600}
+.muster{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0 0}
+.muster .c{padding:18px 20px}
+.muster .c h4{font-family:var(--serif);font-size:14px;margin:0 0 9px;color:#F1DFBC;font-weight:600}
 .muster .c p{margin:0;font-size:13px;color:var(--muted);line-height:1.9}
 .muster .c p b{color:var(--gold-hi);font-weight:500}
 
-.roles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0 0}
-.role{border:1px solid var(--line2);background:var(--panel);padding:20px 20px 18px}
-.role .no{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--gold)}
-.role h3{font-family:var(--serif);font-size:17px;margin:9px 0 12px;font-weight:700}
-.role h5{margin:14px 0 5px;font-size:11px;letter-spacing:.12em;color:var(--dim)}
-.role ul{margin:0;padding-left:16px;font-size:13px;color:var(--muted);line-height:1.85}
+.roles{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:18px 0 0}
+.role{overflow:hidden;padding:0}
+.role .thumb{position:relative;height:120px;overflow:hidden}
+.role .thumb img{width:100%;height:100%;object-fit:cover;object-position:center 18%;filter:brightness(.78) saturate(.9)}
+.role .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,9,6,.22),rgba(12,9,6,.9) 92%)}
+.role .body{padding:17px 20px 18px}
+.role .no{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--gold)}
+.role h3{font-family:var(--serif);font-size:17px;margin:8px 0 11px;font-weight:700;letter-spacing:.03em}
+.role h5{margin:13px 0 5px;font-size:10.5px;letter-spacing:.16em;color:var(--dim)}
+.role ul{margin:0;padding-left:16px;font-size:12.5px;color:var(--muted);line-height:1.85}
 .role ul li{margin-bottom:5px}
 .role ul li b{color:var(--ink);font-weight:500}
 
-table{width:100%;border-collapse:collapse;margin:24px 0 0;font-size:13px}
-th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-th{font-size:10.5px;letter-spacing:.12em;color:var(--gold);font-weight:500;background:rgba(28,23,19,.72)}
+table{width:100%;border-collapse:collapse;margin:22px 0 0;font-size:12.5px;border-radius:14px;overflow:hidden}
+th,td{padding:10px 12px;border-bottom:1px solid rgba(214,176,112,.12);text-align:left;vertical-align:top}
+th{font-size:10.5px;letter-spacing:.12em;color:var(--gold);font-weight:500;background:rgba(255,243,220,.055)}
 td:first-child{color:var(--ink)}
 td:nth-child(2){color:var(--muted)}
 td:last-child{color:var(--dim)}
 
-.bars{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin:22px 0 0}
-.bar{border:1px solid var(--line);padding:13px 15px;font-size:13px;color:var(--muted);line-height:1.85;background:var(--panel)}
+.bars{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:20px 0 0}
+.bar{padding:13px 15px;font-size:12.5px;color:var(--muted);line-height:1.85;border-radius:12px}
 .bar b{color:var(--ink);font-weight:500}
 
 /* 条件 */
-.deal{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:24px 0 0}
-.dc{border:1px solid var(--line);background:var(--bg2);padding:19px 18px}
-.dc h4{font-family:var(--serif);font-size:13.5px;margin:0 0 10px}
+.deal{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:22px 0 0}
+.dc{padding:18px 17px}
+.dc h4{font-family:var(--serif);font-size:13px;margin:0 0 10px;letter-spacing:.03em}
 .dc.g h4{color:var(--teal)} .dc.a h4{color:var(--gold-hi)} .dc.n h4{color:#EDA392}
-.dc ul{margin:0;padding-left:15px;font-size:12.5px;color:var(--muted);line-height:1.85}
+.dc ul{margin:0;padding-left:15px;font-size:12px;color:var(--muted);line-height:1.85}
 .dc ul li b{color:var(--ink);font-weight:500}
 
-/* 报名 */
-.cta{margin:28px 0 0;border:1px solid rgba(200,164,92,.4);padding:30px 28px;
-  background:linear-gradient(135deg,rgba(200,164,92,.09),rgba(22,18,16,.94) 58%)}
-.cta h3{font-family:var(--serif);font-size:clamp(18px,2.3vw,23px);margin:0 0 9px}
-.cta p{color:var(--muted);font-size:13px;margin:0;line-height:1.9}
-.btns{display:flex;flex-wrap:wrap;gap:11px;margin:20px 0 0}
-.btn{display:inline-flex;align-items:center;padding:12px 22px;font-size:13.5px;text-decoration:none;
-  letter-spacing:.05em;transition:.16s;border:1px solid transparent}
-.btn.main{background:var(--gold);color:#17120A;font-weight:500}
-.btn.main:hover{background:var(--gold-hi)}
-.btn.ghost{border-color:rgba(200,164,92,.42);color:var(--gold)}
-.btn.ghost:hover{color:var(--gold-hi);border-color:var(--gold-hi)}
-.fine{margin:15px 0 0;font-size:11.5px;color:var(--dim);line-height:1.85}
-
-.dossier{margin:24px 0 0;border:1px solid var(--line2);background:var(--panel)}
-.dossier .d{display:grid;grid-template-columns:150px 1fr;border-bottom:1px solid var(--line);font-size:12.5px}
+/* 作品 */
+.deck{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:22px 0 0}
+.deck .shot{aspect-ratio:16/9}
+.deck .cap{font-size:10px}
+.dossier{margin:20px 0 0;overflow:hidden}
+.dossier .d{display:grid;grid-template-columns:148px 1fr;font-size:12px;border-bottom:1px solid rgba(214,176,112,.12)}
 .dossier .d:last-child{border-bottom:0}
-.dossier .d span:first-child{padding:9px 13px;color:var(--dim);border-right:1px solid var(--line)}
-.dossier .d span:last-child{padding:9px 13px;color:var(--muted);font-family:var(--mono);font-size:12px}
+.dossier .d span:first-child{padding:9px 13px;color:var(--dim);border-right:1px solid rgba(214,176,112,.12)}
+.dossier .d span:last-child{padding:9px 13px;color:var(--muted);font-family:var(--mono);font-size:11.5px}
 
-footer{margin:80px 0 0;border-top:1px solid var(--line2);padding:26px 0 56px;font-size:11.5px;color:var(--dim);line-height:1.9;position:relative;overflow:hidden}
+/* 报名 */
+.cta{margin:24px 0 0;padding:30px 28px;border-radius:16px;
+  background:linear-gradient(140deg,rgba(255,243,220,.12),rgba(200,164,92,.06) 42%,rgba(18,13,9,.62) 100%)}
+.cta h3{font-family:var(--serif);font-size:clamp(18px,2.3vw,24px);margin:0 0 9px;letter-spacing:.03em}
+.cta p{color:var(--muted);font-size:12.5px;margin:0;line-height:1.9}
+.btns{display:flex;flex-wrap:wrap;gap:11px;margin:20px 0 0}
+.btn{display:inline-flex;align-items:center;padding:12px 22px;font-size:13px;text-decoration:none;
+  letter-spacing:.05em;border-radius:11px;transition:.22s;border:1px solid rgba(214,176,112,.34);
+  background:rgba(255,243,220,.06);color:#F6EAD6;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:inset 0 1px 0 rgba(255,241,216,.22),0 8px 20px rgba(0,0,0,.32)}
+.btn:hover{transform:translateY(-1px);border-color:rgba(242,185,78,.72)}
+.btn.main{background:linear-gradient(120deg,var(--gold-hi),#C08A2E);color:#1A1206;font-weight:500;border-color:transparent;
+  box-shadow:0 10px 26px rgba(200,164,92,.30),inset 0 1px 0 rgba(255,255,255,.45)}
+.btn.main:hover{box-shadow:0 14px 32px rgba(242,185,78,.40),inset 0 1px 0 rgba(255,255,255,.55)}
+.fine{margin:14px 0 0;font-size:11px;color:var(--dim);line-height:1.85}
+
+footer{margin:78px 0 0;border-top:1px solid rgba(214,176,112,.16);padding:26px 0 54px;font-size:11px;color:var(--dim);
+  line-height:1.9;position:relative;overflow:hidden}
 footer b{color:var(--muted);font-weight:500}
-footer .fl{display:flex;gap:13px;align-items:center;margin-bottom:13px;position:relative;z-index:2}
+footer .fl{display:flex;gap:12px;align-items:center;margin-bottom:12px;position:relative;z-index:2}
 footer .fl img{height:20px}
-.footbg{position:absolute;left:0;right:0;bottom:0;height:340px;background-image:url("assets/img/slide10.png");
-  background-size:cover;background-position:center bottom;opacity:.09;pointer-events:none;
-  -webkit-mask-image:linear-gradient(0deg,rgba(0,0,0,.9),transparent);mask-image:linear-gradient(0deg,rgba(0,0,0,.9),transparent)}
+.footbg{position:absolute;left:0;right:0;bottom:0;height:320px;background:url("assets/img/slide13.png") center bottom/cover no-repeat;
+  opacity:.10;pointer-events:none;-webkit-mask-image:linear-gradient(0deg,rgba(0,0,0,.92),transparent);
+  mask-image:linear-gradient(0deg,rgba(0,0,0,.92),transparent)}
 
+@media (hover:hover){
+  .glass:hover{transform:translateY(-2px)}
+}
 @media (max-width:980px){
+  .wrap{padding:0 20px}
   .stage{grid-template-columns:1fr}
   .lines,.roles,.deal,.frank,.muster,.bars{grid-template-columns:1fr}
   .deck{grid-template-columns:1fr 1fr}
   .gates{grid-template-columns:repeat(3,1fr)}
   .figrow{grid-template-columns:1fr 1fr}
-  .nav{display:none}
-  .row{grid-template-columns:92px 1fr}
+  .row{grid-template-columns:84px 1fr}
   .row .s{display:none}
+  /* 导航改为可横滑的胶囊条 */
+  .nav{display:flex;overflow-x:auto;max-width:100%;margin-left:0;padding:3px 4px;scrollbar-width:none}
+  .nav::-webkit-scrollbar{display:none}
+  .top .wrap{flex-wrap:nowrap;height:auto;padding-top:10px;padding-bottom:10px;gap:10px;row-gap:8px}
+  .top .tagline{display:none}
+  .top .sep{display:none}
+  .nav{order:3;width:100%}
+  .nav a{padding:6px 12px;font-size:12px}
 }
-@media (max-width:560px){
-  h1{font-size:26px}
-  .hero{padding:46px 0 0}
-  .deck,.figrow,.gates{grid-template-columns:1fr 1fr}
+@media (max-width:640px){
+  body{line-height:1.78}
+  .wrap{padding:0 16px}
+  h1{font-size:34px;letter-spacing:.09em;margin-top:18px}
+  .sub{font-size:14px;line-height:1.7}
+  .lede{font-size:14px;line-height:1.9;margin-top:16px}
+  .hero{padding:38px 0 0}
+  section{padding:52px 0 0}
+  .shead{flex-wrap:wrap;row-gap:4px}
+  .shead .en{margin-left:0;width:100%;order:3}
+  .screen video{aspect-ratio:auto}
+  .shot{max-height:none}
+  .figrow{grid-template-columns:1fr 1fr;gap:8px;margin-top:24px}
+  .fig{padding:13px 13px 11px}
+  .fig b{font-size:19px}
+  .fig span{font-size:10.5px}
+  .gates{grid-template-columns:1fr 1fr;gap:8px}
+  .gate{padding:10px 8px}
+  .gate span{font-size:10px}
+  .lines{gap:10px}
+  .ln .thumb{height:110px}
+  .ln .body{padding:15px 16px 14px}
+  .role .thumb{height:96px}
+  .role .body{padding:15px 16px 16px}
+  .tl{padding:4px 14px}
+  .row{grid-template-columns:76px 1fr;gap:10px;padding:11px 0}
+  .row .t{font-size:12.5px}
+  .frank{gap:9px}
+  .muster{gap:10px}
+  .deck{grid-template-columns:1fr 1fr;gap:9px}
+  .deck .cap{font-size:10px;padding:7px 9px}
   .dossier .d{grid-template-columns:1fr}
+  .dossier .d span:first-child{border-right:0;border-bottom:1px solid rgba(214,176,112,.10);padding-bottom:3px}
+  .cta{padding:22px 18px}
+  .btns{gap:9px}
+  .btn{flex:1 1 auto;justify-content:center;padding:13px 16px;font-size:13px}
+  .notebox{padding:16px 16px}
+  .notebox ul{font-size:12.5px}
+  footer{font-size:10.5px;padding-bottom:44px}
+  .footbg{height:220px}
 }
-.deck{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:24px 0 0}
-.deck .shot{aspect-ratio:16/9}
-.deck .shot img{object-fit:cover}
-.deck .cap{font-size:10.5px}
+@media (max-width:380px){
+  h1{font-size:29px}
+  .figrow,.gates,.deck{grid-template-columns:1fr}
+  .deck .shot{aspect-ratio:16/10}
+}
+.tablewrap{margin:22px 0 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tablewrap table{margin:0;min-width:560px}
 </style>
 </head>
 <body>
 
 <div class="top">
   <div class="wrap">
-    <img class="logo" src="assets/img/logo.png" alt="智警预安">
+    <img class="logo" src="assets/img/logo.png" alt="智警御安">
+    <span class="brand">智警御安</span>
     <span class="sep"></span>
-    <span class="tagline">煤与瓦斯突出预警 · 挑战杯 2027 招募</span>
+    <span class="tagline">挑战杯 2027 参赛线 · 成员招募</span>
     <nav class="nav">
       <a href="#what">系统</a>
       <a href="#model">模型</a>
@@ -234,8 +315,9 @@ footer .fl img{height:20px}
 
   <div class="hero">
     <div class="bg"></div>
-    <div class="eyebrow">中国矿业大学（北京）· 2024 级大学生创新训练项目 · 挑战杯 2027 参赛线</div>
-    <h1>多源数据融合驱动的<br><em>煤与瓦斯突出预警</em>模型研究</h1>
+    <div class="eyebrow">中国矿业大学（北京）· 2024 级大学生创新训练项目</div>
+    <h1>智警御安</h1>
+    <p class="sub">多源数据融合驱动的煤与瓦斯突出预警模型研究</p>
     <p class="lede">
       四条模型线已完成，四端系统已上线，五道可信度校验全部通过，2026 年 11 月 19 日完成中期答辩。
       <b>现面向 2027 年「挑战杯」课外学术科技作品竞赛，招募 2 名主力成员。</b>
@@ -249,17 +331,17 @@ footer .fl img{height:20px}
         </video>
       </div>
       <div class="shot">
-        <span class="lbl">中控台 · 12 测点</span>
+        <span class="lbl">中控台 · 最小可用版</span>
         <img src="assets/img/smoke_center.png" alt="中控台界面截图">
         <div class="cap">12/12 测点在线 · 最高预警值 0.38% · 0 条告警</div>
       </div>
     </div>
 
     <div class="figrow">
-      <div class="fig"><b>33.0→42.7%</b><span>突出先验概率抬升</span></div>
-      <div class="fig"><b>1.718</b><span>时序预警 MAE（基线 2.275）</span></div>
-      <div class="fig"><b>82.5%</b><span>前四项归因贡献合计</span></div>
-      <div class="fig"><b>5 / 5</b><span>可信度校验通过</span></div>
+      <div class="fig glass"><b>33.0→42.7%</b><span>突出先验概率抬升</span></div>
+      <div class="fig glass"><b>1.718</b><span>时序预警 MAE（基线 2.275）</span></div>
+      <div class="fig glass"><b>82.5%</b><span>前四项归因贡献合计</span></div>
+      <div class="fig glass"><b>5 / 5</b><span>可信度校验通过</span></div>
     </div>
   </div>
 
@@ -271,7 +353,7 @@ footer .fl img{height:20px}
       服务 API <b>8790</b>，链路覆盖数据接入、规则判定与告警输出。
     </p>
 
-    <div class="notebox">
+    <div class="notebox glass">
       <h4>现状说明</h4>
       <ul>
         <li><b>界面尚未完成视觉设计。</b>四端为可运行的最小可用版本，功能可用、样式未打磨；界面重构列为挑战杯前的工作项。</li>
@@ -281,38 +363,50 @@ footer .fl img{height:20px}
     </div>
 
     <div class="gates">
-      <div class="gate"><b>16 / 16</b><span>口径一致性</span></div>
-      <div class="gate"><b>6 / 6</b><span>真值入模</span></div>
-      <div class="gate"><b>7 / 7</b><span>方向可辨</span></div>
-      <div class="gate"><b>13 / 13</b><span>容差为零</span></div>
-      <div class="gate"><b>5 / 5</b><span>复现验收</span></div>
+      <div class="gate glass"><b>16 / 16</b><span>口径一致性</span></div>
+      <div class="gate glass"><b>6 / 6</b><span>真值入模</span></div>
+      <div class="gate glass"><b>7 / 7</b><span>方向可辨</span></div>
+      <div class="gate glass"><b>13 / 13</b><span>容差为零</span></div>
+      <div class="gate glass"><b>5 / 5</b><span>复现验收</span></div>
     </div>
-    <p class="txt" style="font-size:12px;color:var(--dim);margin-top:12px">五道校验为文档与模型的自检项，不等同于系统稳定性评级。</p>
+    <p class="txt" style="font-size:11.5px;color:var(--dim);margin-top:11px">五道校验为文档与模型的自检项，不等同于系统稳定性评级。</p>
   </section>
 
   <!-- 四线 -->
   <section id="model">
     <div class="shead"><span class="no">02</span><h2>四条模型线</h2><span class="en">Model lines</span></div>
     <div class="lines">
-      <div class="ln" data-k="A">
-        <h3>数据治理</h3>
-        <p>86,400 行原始数据入库，清洗至 306,791 行、28 通道；70 字段封版，246 点结果台账，指标口径唯一。</p>
-        <div class="kv">13,155 文件 · 9,420 MB · 65 篇文献</div>
+      <div class="ln glass">
+        <div class="thumb"><img src="assets/img/slide3.png" alt="数据治理页"></div>
+        <div class="body">
+          <h3>数据治理</h3>
+          <p>86,400 行原始数据入库，清洗至 306,791 行、28 通道；70 字段封版，246 点结果台账，指标口径唯一。</p>
+          <div class="kv">13,155 文件 · 9,420 MB · 65 篇文献</div>
+        </div>
       </div>
-      <div class="ln" data-k="B">
-        <h3>因果归因</h3>
-        <p>DAG 16 条边、贝叶斯网络与 SHAP 双向互证，方向一致率 100%。埋深单项贡献 38.6%，前四项合计 82.5%。</p>
-        <div class="kv">XGBoost · MAE 1.718±0.618 · −24% vs 基线</div>
+      <div class="ln glass">
+        <div class="thumb"><img src="assets/img/slide6.png" alt="因果归因页"></div>
+        <div class="body">
+          <h3>因果归因</h3>
+          <p>DAG 16 条边、贝叶斯网络与 SHAP 双向互证，方向一致率 100%。埋深单项贡献 38.6%，前四项合计 82.5%。</p>
+          <div class="kv">XGBoost · MAE 1.718±0.618 · −24% vs 基线</div>
+        </div>
       </div>
-      <div class="ln" data-k="C">
-        <h3>时序预测</h3>
-        <p>ARIMA、LSTM 与融合模型三段推进，MAE 2.381 → 1.948 → 1.788；三折回测与公开真实数据均设对照。</p>
-        <div class="kv">真实数据 Naïve 0.811 · LSTM 0.803</div>
+      <div class="ln glass">
+        <div class="thumb"><img src="assets/img/slide4.png" alt="时序预测页"></div>
+        <div class="body">
+          <h3>时序预测</h3>
+          <p>ARIMA、LSTM 与融合模型三段推进，MAE 2.381 → 1.948 → 1.788；三折回测与公开真实数据均设对照。</p>
+          <div class="kv">真实数据 Naïve 0.811 · LSTM 0.803</div>
+        </div>
       </div>
-      <div class="ln" data-k="D">
-        <h3>空间外推</h3>
-        <p>IDW 与克里金采用留点交叉，量化跨地质单元的精度代价：单元内 R² 0.995，全局转负，变程 1,642 m。</p>
-        <div class="kv">差值 3.9 · 盲测单元 U020 · 4–5 热点</div>
+      <div class="ln glass">
+        <div class="thumb"><img src="assets/img/slide8.png" alt="空间外推页"></div>
+        <div class="body">
+          <h3>空间外推</h3>
+          <p>IDW 与克里金采用留点交叉，量化跨地质单元的精度代价：单元内 R² 0.995，全局转负，变程 1,642 m。</p>
+          <div class="kv">差值 3.9 · 盲测单元 U020 · 4–5 热点</div>
+        </div>
       </div>
     </div>
   </section>
@@ -320,7 +414,7 @@ footer .fl img{height:20px}
   <!-- 进展 -->
   <section id="now">
     <div class="shead"><span class="no">03</span><h2>项目进展</h2><span class="en">Progress</span></div>
-    <div class="tl">
+    <div class="tl glass">
       <div class="row"><div class="w">2026.05</div><div class="t">立项申报<small>校级大创，经费 6,600 元，指导教师刘海滨（管理学院教授）</small></div><div class="s">已完成</div></div>
       <div class="row"><div class="w">2026.06—09</div><div class="t">双轨数据与四线模型<small>公开数据集（Sikora &amp; Wróbel, 2014）与自建仿真集 v1／v2</small></div><div class="s">已完成</div></div>
       <div class="row"><div class="w">2026.10</div><div class="t">四端上线，验收规范 v1.17<small>五道校验通过，246 点台账封版</small></div><div class="s">已完成</div></div>
@@ -331,9 +425,9 @@ footer .fl img{height:20px}
 
     <p class="txt">以下三项为当前主要短板，报名前应予知悉。</p>
     <div class="frank">
-      <div class="fr"><h4>缺少真实矿井数据</h4><p>现用公开数据与自建仿真集，真实数据签约流程尚未完成。</p></div>
-      <div class="fr"><h4>跨单元外推精度转负</h4><p>单元内 R² 0.995，跨地质单元降至负值，边界效应构成主要误差来源。</p></div>
-      <div class="fr"><h4>实践环节材料不足</h4><p>评审指标中“实践过程”占 25 分，现缺矿方走访、访谈与试用记录。</p></div>
+      <div class="fr glass"><h4>缺少真实矿井数据</h4><p>现用公开数据与自建仿真集，真实数据签约流程尚未完成。</p></div>
+      <div class="fr glass"><h4>跨单元外推精度转负</h4><p>单元内 R² 0.995，跨地质单元降至负值，边界效应构成主要误差来源。</p></div>
+      <div class="fr glass"><h4>实践环节材料不足</h4><p>评审指标中“实践过程”占 25 分，现缺矿方走访、访谈与试用记录。</p></div>
     </div>
   </section>
 
@@ -348,11 +442,12 @@ footer .fl img{height:20px}
     <div class="deck">
       <div class="shot"><img src="assets/img/slide1.png" alt="封面页"><div class="cap">封面</div></div>
       <div class="shot"><img src="assets/img/slide3.png" alt="数据页"><div class="cap">数据治理</div></div>
-      <div class="shot"><img src="assets/img/slide6.png" alt="模型页"><div class="cap">模型构建</div></div>
-      <div class="shot"><img src="assets/img/slide8.png" alt="对照页"><div class="cap">对照实验</div></div>
+      <div class="shot"><img src="assets/img/slide10.png" alt="系统页"><div class="cap">系统与四端</div></div>
+      <div class="shot"><img src="assets/img/slide13.png" alt="结论页"><div class="cap">结论</div></div>
     </div>
 
-    <div class="dossier">
+    <div class="dossier glass">
+      <div class="d"><span>项目代号</span><span>智警御安（挑战杯包装名）</span></div>
       <div class="d"><span>内核版本</span><span>0.2.63-r181 · 四端共用</span></div>
       <div class="d"><span>入库规模</span><span>SQLite 16,779 行（legacy 16,725）</span></div>
       <div class="d"><span>服务端口</span><span>API 8790 · 实机连续运行约两周</span></div>
@@ -366,50 +461,57 @@ footer .fl img{height:20px}
     <div class="shead"><span class="no">05</span><h2>招募计划</h2><span class="en">Recruitment</span></div>
 
     <div class="muster">
-      <div class="c">
+      <div class="c glass">
         <h4>团队编制</h4>
         <p>校级赛事团队上限 8 人。现有成员 6 人，本次招募 <b>2 人</b>，合计 8 人。<br>现有成员另承担教学与科研任务，合计投入约相当于 3 个全职当量，可承接任务并按期交付，但无法全程驻线。</p>
       </div>
-      <div class="c">
+      <div class="c glass">
         <h4>职责定位</h4>
         <p>项目第一责任人为项目组现有成员。新成员承担<b>主力执行与核心贡献</b>，署名次序按实际贡献调整；论文、软件著作权等成果在需要时可列入署名。</p>
       </div>
     </div>
 
     <div class="roles">
-      <div class="role">
-        <span class="no">岗位一 · 1 人</span>
-        <h3>技术与作品主笔</h3>
-        <h5>职责</h5>
-        <ul>
-          <li>复现三条模型线实验，补充<b>跨单元分层对照</b>实验</li>
-          <li>撰写 8,000 字级申报书主体与配套论文</li>
-          <li>维护图表规范与指标口径，保证全文一致</li>
-        </ul>
-        <h5>要求</h5>
-        <ul>
-          <li>Python、交叉验证、空间插值可在参与后学习</li>
-          <li>重点考察执行完整性与自我驱动，不设技能硬门槛</li>
-        </ul>
+      <div class="role glass">
+        <div class="thumb"><img src="assets/img/slide6.png" alt="模型页"></div>
+        <div class="body">
+          <span class="no">岗位一 · 1 人</span>
+          <h3>技术与作品主笔</h3>
+          <h5>职责</h5>
+          <ul>
+            <li>复现三条模型线实验，补充<b>跨单元分层对照</b>实验</li>
+            <li>撰写 8,000 字级申报书主体与配套论文</li>
+            <li>维护图表规范与指标口径，保证全文一致</li>
+          </ul>
+          <h5>要求</h5>
+          <ul>
+            <li>Python、交叉验证、空间插值可在参与后学习</li>
+            <li>重点考察执行完整性与自我驱动，不设技能硬门槛</li>
+          </ul>
+        </div>
       </div>
-      <div class="role">
-        <span class="no">岗位二 · 1 人</span>
-        <h3>落地、答辩与实践</h3>
-        <h5>职责</h5>
-        <ul>
-          <li>完成四端系统演示版本，制作 3 分钟演示视频</li>
-          <li>承担 PPT 制版、答辩稿、问答库与现场答辩</li>
-          <li><b>兼实践调研</b>：矿方走访、访谈记录、试用证明</li>
-        </ul>
-        <h5>要求</h5>
-        <ul>
-          <li>前端、剪辑、排版可在参与后学习，项目提供素材与模板</li>
-          <li>重点考察对外沟通与材料整理能力</li>
-        </ul>
+      <div class="role glass">
+        <div class="thumb"><img src="assets/img/slide10.png" alt="系统页"></div>
+        <div class="body">
+          <span class="no">岗位二 · 1 人</span>
+          <h3>落地、答辩与实践</h3>
+          <h5>职责</h5>
+          <ul>
+            <li>完成四端系统演示版本，制作 3 分钟演示视频</li>
+            <li>承担 PPT 制版、答辩稿、问答库与现场答辩</li>
+            <li><b>兼实践调研</b>：矿方走访、访谈记录、试用证明</li>
+          </ul>
+          <h5>要求</h5>
+          <ul>
+            <li>前端、剪辑、排版可在参与后学习，项目提供素材与模板</li>
+            <li>重点考察对外沟通与材料整理能力</li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <table>
+    <div class="tablewrap">
+    <table class="glass">
       <thead><tr><th>工作事项</th><th>主责</th><th>协作</th></tr></thead>
       <tbody>
         <tr><td>申报书主体与论文</td><td>岗位一</td><td>现有成员：文献、图表、口径</td></tr>
@@ -422,22 +524,23 @@ footer .fl img{height:20px}
         <tr><td>节点控制与对外沟通</td><td>项目负责人邓国栋</td><td>全体成员</td></tr>
       </tbody>
     </table>
+    </div>
 
     <p class="txt">准入条件共四项：</p>
     <div class="bars">
-      <div class="bar"><b>每周投入约 5 小时。</b>会议按节点召开，提前三日通知。</div>
-      <div class="bar"><b>持续参与至挑战杯参赛流程结束。</b>中途退出将直接影响申报。</div>
-      <div class="bar"><b>具备独立检索与问题解决能力。</b>项目提供方法与素材，不代做具体工作。</div>
-      <div class="bar"><b>具备推进与协调能力。</b>承担任务跟进、节点控制与成果验收。</div>
+      <div class="bar glass"><b>每周投入约 5 小时。</b>会议按节点召开，提前三日通知。</div>
+      <div class="bar glass"><b>持续参与至挑战杯参赛流程结束。</b>中途退出将直接影响申报。</div>
+      <div class="bar glass"><b>具备独立检索与问题解决能力。</b>项目提供方法与素材，不代做具体工作。</div>
+      <div class="bar glass"><b>具备推进与协调能力。</b>承担任务跟进、节点控制与成果验收。</div>
     </div>
-    <p class="txt" style="font-size:13px;margin-top:14px">本科一年级、二年级优先；须保证 2027 年 6 月前在校（挑战杯对学籍有明确要求）。</p>
+    <p class="txt" style="font-size:12.5px;margin-top:13px">本科一年级、二年级优先；须保证 2027 年 6 月前在校（挑战杯对学籍有明确要求）。</p>
   </section>
 
   <!-- 条件 -->
   <section id="deal">
     <div class="shead"><span class="no">06</span><h2>参与条件</h2><span class="en">Terms</span></div>
     <div class="deal">
-      <div class="dc g">
+      <div class="dc glass g">
         <h4>项目提供</h4>
         <ul>
           <li>已跑通的完整项目底座与实验环境</li>
@@ -448,7 +551,7 @@ footer .fl img{height:20px}
           <li>成熟的答辩与写作方法</li>
         </ul>
       </div>
-      <div class="dc a">
+      <div class="dc glass a">
         <h4>成员需承担</h4>
         <ul>
           <li>每周约 5 小时投入</li>
@@ -458,7 +561,7 @@ footer .fl img{height:20px}
           <li>署名按实际贡献排序</li>
         </ul>
       </div>
-      <div class="dc n">
+      <div class="dc glass n">
         <h4>项目不作承诺</h4>
         <ul>
           <li>不承诺获奖</li>
@@ -474,13 +577,13 @@ footer .fl img{height:20px}
   <section id="join">
     <div class="shead"><span class="no">07</span><h2>报名方式</h2><span class="en">Application</span></div>
 
-    <div class="cta">
+    <div class="cta glass">
       <h3>报名表共 29 题，均为必答</h3>
       <p>无相关经历者填「暂无」。提交后 7 个工作日内以邮件或微信联系，安排约 20 分钟线上沟通，双方确认后确定分工。</p>
       <div class="btns">
         <a class="btn main" href="https://my.feishu.cn/share/base/shrcnCTyPK2fv3bGCa7dnagl1gc" target="_blank" rel="noopener">填写报名表</a>
-        <a class="btn ghost" href="assets/deck.pdf" target="_blank" rel="noopener">查看答辩稿（PDF 版）</a>
-        <a class="btn ghost" href="mailto:2733532815@qq.com">邮件咨询</a>
+        <a class="btn" href="assets/deck.pdf" target="_blank" rel="noopener">查看答辩稿（PDF 版）</a>
+        <a class="btn" href="mailto:2733532815@qq.com">邮件咨询</a>
       </div>
       <p class="fine">报名不设截止日期，名额满即止。个人信息仅用于本次招募联系，不进入公开页面。</p>
     </div>
@@ -488,8 +591,8 @@ footer .fl img{height:20px}
 
   <footer>
     <div class="footbg"></div>
-    <div class="fl"><img src="assets/img/logo.png" alt="智警预安"><b>智警预安 · 突出预警</b></div>
-    <b>多源数据融合驱动的煤与瓦斯突出预警模型研究</b><br>
+    <div class="fl"><img src="assets/img/logo.png" alt="智警御安"><b>智警御安 · 突出预警</b></div>
+    <b>多源数据融合驱动的煤与瓦斯突出预警模型研究</b>（「智警御安」为挑战杯参赛包装名称）<br>
     中国矿业大学（北京）· 2024 级大学生创新训练项目 · 指导教师：刘海滨<br>
     项目负责人：邓国栋 · 联系邮箱：2733532815@qq.com<br>
     数据来源：Sikora &amp; Wróbel（2014）公开数据集、项目自建仿真数据集（v1／v2）。真实矿井数据尚在签约流程中，本页结论均基于上述数据。
