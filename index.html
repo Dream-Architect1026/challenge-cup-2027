@@ -58,14 +58,15 @@ img{display:block;max-width:100%}
 
 /* 首屏 */
 .hero{position:relative;padding:52px 0 0;overflow:hidden}
-.hero .bg{position:absolute;inset:0;background:url("assets/img/control-room.png") center/cover no-repeat;
-  opacity:.34;filter:saturate(.55) contrast(1.1)}
+.hero .bg{position:absolute;inset:0;background:url("assets/img/mine-depth.png") center/cover no-repeat;
+  opacity:.9;filter:saturate(.82) contrast(1.04) brightness(1.04)}
 .hero .bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(8,6,4,.42) 0%,rgba(8,6,4,.78) 44%,var(--bg) 92%)}
+  background:linear-gradient(90deg,rgba(8,6,4,.66) 0%,rgba(8,6,4,.34) 40%,rgba(8,6,4,.16) 62%,rgba(8,6,4,.26) 100%),
+             linear-gradient(180deg,rgba(8,6,4,.02) 0%,rgba(8,6,4,.22) 40%,rgba(8,6,4,.76) 84%,var(--bg) 100%)}
 .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:radial-gradient(720px 360px at 6% 0%,rgba(200,164,92,.13),transparent 64%),
              radial-gradient(560px 320px at 97% 14%,rgba(226,83,63,.10),transparent 66%)}
-.eyebrow{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.2em;color:var(--gold)}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.2em;color:#E7CF9C;font-weight:500}
 .eyebrow::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,rgba(214,176,112,.42),transparent)}
 h1{font-family:var(--serif);font-weight:900;font-size:clamp(40px,5.4vw,82px);line-height:1.1;
   margin:22px 0 0;letter-spacing:.12em;
@@ -349,7 +350,7 @@ h1{font-size:clamp(44px,6.6vw,112px);line-height:1.02;letter-spacing:.05em;margi
 /* 数字条：整条面板 + 斜向分隔，不再各自成盒 */
 .figrow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:26px;
   border:1px solid rgba(214,176,112,.22);border-radius:2px;overflow:hidden;
-  background:linear-gradient(105deg,rgba(255,243,220,.07),rgba(12,9,6,.35) 46%,rgba(255,243,220,.03))}
+  background:linear-gradient(105deg,rgba(255,243,220,.05),rgba(8,6,4,.72) 46%,rgba(255,243,220,.02))}
 .hero-figs{grid-template-columns:repeat(2,1fr)}
 .fig,.fig.glass{padding:16px 20px;border:0;border-radius:0;box-shadow:none;background:none;position:relative}
 .fig+.fig::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:1px;
@@ -374,6 +375,14 @@ h1{font-size:clamp(44px,6.6vw,112px);line-height:1.02;letter-spacing:.05em;margi
   clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);
   border-radius:0 !important;
 }
+/* 文字压暗保护层：软雾渐变，不形成硬边暗块 */
+.hero-copy{position:relative;z-index:2}
+.hero-copy::before{content:"";position:absolute;z-index:-1;left:-6%;right:-3%;top:-4%;bottom:-2%;pointer-events:none;
+  background:radial-gradient(118% 92% at 16% 42%,rgba(8,6,4,.88) 0%,rgba(8,6,4,.62) 44%,rgba(8,6,4,.22) 70%,transparent 88%)}
+h1{text-shadow:0 4px 26px rgba(0,0,0,.92),0 1px 2px rgba(0,0,0,.75)}
+.sub{text-shadow:0 2px 14px rgba(0,0,0,.9)}
+.lede{text-shadow:0 2px 16px rgba(0,0,0,.92)}
+.eyebrow{text-shadow:0 2px 12px rgba(0,0,0,.9)}
 /* ===== 标题艺术字：毛笔主标 + 小薇副标 ===== */
 h1{font-family:'Ma Shan Zheng','Noto Serif SC',serif;font-weight:400;
   font-size:clamp(56px,6.8vw,124px);line-height:1.04;letter-spacing:.10em;
