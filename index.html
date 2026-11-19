@@ -27,7 +27,8 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.82;
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
-.wrap{max-width:1160px;margin:0 auto;padding:0 26px;position:relative;z-index:2}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px;position:relative;z-index:2}
+@media (min-width:1560px){.wrap{max-width:1380px}}
 
 /* 液态玻璃基类 */
 .glass{position:relative;border:1px solid var(--lg-edge);border-radius:14px;background:var(--lg-tint);
@@ -64,22 +65,34 @@ img{display:block;max-width:100%}
              radial-gradient(560px 320px at 97% 14%,rgba(226,83,63,.10),transparent 66%)}
 .eyebrow{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.2em;color:var(--gold)}
 .eyebrow::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,rgba(214,176,112,.42),transparent)}
-h1{font-family:var(--serif);font-weight:900;font-size:clamp(38px,6vw,68px);line-height:1.12;
-  margin:24px 0 0;letter-spacing:.12em;
+h1{font-family:var(--serif);font-weight:900;font-size:clamp(40px,5.4vw,82px);line-height:1.1;
+  margin:22px 0 0;letter-spacing:.12em;
   background:linear-gradient(100deg,#FFF2D2 0%,var(--gold-hi) 46%,#C08A2E 92%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
   text-shadow:0 4px 44px rgba(0,0,0,.62)}
-.sub{font-family:var(--serif);font-size:clamp(14px,1.7vw,18px);color:#DCCDB6;margin:16px 0 0;letter-spacing:.06em}
-.lede{margin:22px 0 0;max-width:760px;font-size:15px;color:#C3B5A5;line-height:2}
+.sub{font-family:var(--serif);font-size:clamp(15px,1.5vw,20px);color:#DCCDB6;margin:16px 0 0;letter-spacing:.05em}
+.lede{margin:20px 0 0;max-width:660px;font-size:15px;color:#C3B5A5;line-height:1.95}
 .lede b{color:var(--ink);font-weight:500}
 
-/* 视频 + 截图 */
-.stage{display:grid;grid-template-columns:1.42fr 1fr;gap:14px;margin:38px 0 0}
-.screen{position:relative;overflow:hidden;border-radius:14px;border:1px solid rgba(214,176,112,.26);background:#000;
-  box-shadow:inset 0 1px 0 rgba(255,241,216,.24),0 20px 46px rgba(0,0,0,.56)}
+/* 首屏双栏 */
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 460px;gap:44px;align-items:start;margin:0}
+@media (min-width:1560px){.hero-grid{grid-template-columns:minmax(0,1fr) 520px}}
+.hero-side{display:grid;gap:12px}
+.hero-side .shot{aspect-ratio:1950/1211}
+.metaline{border-radius:14px;overflow:hidden}
+.metaline .m{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 15px;
+  font-size:11.5px;border-bottom:1px solid rgba(214,176,112,.12)}
+.metaline .m:last-child{border-bottom:0}
+.metaline .m span:first-child{color:var(--dim)}
+.metaline .m span:last-child{font-family:var(--mono);color:#E8D7B9;text-align:right}
+
+/* 视频 */
+.videoband{margin:34px 0 0}
+.screen{position:relative;overflow:hidden;border-radius:16px;border:1px solid rgba(214,176,112,.26);background:#000;
+  box-shadow:inset 0 1px 0 rgba(255,241,216,.24),0 24px 54px rgba(0,0,0,.58)}
 .screen video{width:100%;display:block;aspect-ratio:3070/1918}
-.lbl{position:absolute;left:11px;top:11px;font-size:10.5px;letter-spacing:.08em;color:#F6EAD6;
-  background:rgba(10,8,5,.72);border:1px solid rgba(214,176,112,.30);border-radius:8px;padding:3px 8px;z-index:2;
+.lbl{position:absolute;left:13px;top:13px;font-size:10.5px;letter-spacing:.08em;color:#F6EAD6;
+  background:rgba(10,8,5,.72);border:1px solid rgba(214,176,112,.30);border-radius:8px;padding:3px 9px;z-index:2;
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .shot{position:relative;overflow:hidden;border-radius:14px;border:1px solid rgba(214,176,112,.24);
   background:#0E0B08;box-shadow:inset 0 1px 0 rgba(255,241,216,.22),0 20px 46px rgba(0,0,0,.56)}
@@ -88,9 +101,9 @@ h1{font-family:var(--serif);font-weight:900;font-size:clamp(38px,6vw,68px);line-
   background:linear-gradient(0deg,rgba(8,6,4,.96),rgba(8,6,4,.62) 60%,transparent)}
 
 /* 数字条 */
-.figrow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:34px 0 0}
+.figrow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:26px 0 0}
 .fig{padding:16px 16px 14px}
-.fig b{display:block;font-family:var(--mono);font-size:clamp(19px,2.4vw,26px);color:var(--gold-hi);line-height:1.24}
+.fig b{display:block;font-family:var(--mono);font-size:clamp(19px,2.2vw,28px);color:var(--gold-hi);line-height:1.24}
 .fig span{display:block;margin-top:6px;font-size:11px;color:var(--dim);line-height:1.6}
 
 /* 节 */
@@ -225,7 +238,9 @@ footer .fl img{height:20px}
 }
 @media (max-width:980px){
   .wrap{padding:0 20px}
-  .stage{grid-template-columns:1fr}
+  .hero-grid{grid-template-columns:1fr;gap:24px}
+  .hero-side{grid-template-columns:1fr;gap:10px}
+  .hero-side .shot{aspect-ratio:16/10}
   .lines,.roles,.deal,.frank,.muster,.bars{grid-template-columns:1fr}
   .deck{grid-template-columns:1fr 1fr}
   .gates{grid-template-columns:repeat(3,1fr)}
@@ -316,24 +331,35 @@ footer .fl img{height:20px}
   <div class="hero">
     <div class="bg"></div>
     <div class="eyebrow">中国矿业大学（北京）· 2024 级大学生创新训练项目</div>
-    <h1>智警御安</h1>
-    <p class="sub">多源数据融合驱动的煤与瓦斯突出预警模型研究</p>
-    <p class="lede">
-      四条模型线已完成，四端系统已上线，五道可信度校验全部通过，2026 年 11 月 19 日完成中期答辩。
-      <b>现面向 2027 年「挑战杯」课外学术科技作品竞赛，招募 2 名主力成员。</b>
-    </p>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1>智警御安</h1>
+        <p class="sub">多源数据融合驱动的煤与瓦斯突出预警模型研究</p>
+        <p class="lede">
+          四条模型线已完成，四端系统已上线，五道可信度校验全部通过，2026 年 11 月 19 日完成中期答辩。
+          <b>现面向 2027 年「挑战杯」课外学术科技作品竞赛，招募 2 名主力成员。</b>
+        </p>
+      </div>
+      <div class="hero-side">
+        <div class="shot">
+          <span class="lbl">中控台 · 最小可用版</span>
+          <img src="assets/img/smoke_center.png" alt="中控台界面截图">
+          <div class="cap">12/12 测点在线 · 最高预警值 0.38% · 0 条告警</div>
+        </div>
+        <div class="metaline glass">
+          <div class="m"><span>判定内核</span><span>0.2.63-r181 · 四端共用</span></div>
+          <div class="m"><span>入库规模</span><span>SQLite 16,779 行 / API 8790</span></div>
+          <div class="m"><span>结果台账</span><span>246 点 · 70 字段</span></div>
+        </div>
+      </div>
+    </div>
 
-    <div class="stage">
+    <div class="videoband">
       <div class="screen">
         <span class="lbl">项目介绍 · 23 秒</span>
         <video controls preload="metadata" poster="assets/cover.jpg">
           <source src="assets/demo-1080p.mp4" type="video/mp4">
         </video>
-      </div>
-      <div class="shot">
-        <span class="lbl">中控台 · 最小可用版</span>
-        <img src="assets/img/smoke_center.png" alt="中控台界面截图">
-        <div class="cap">12/12 测点在线 · 最高预警值 0.38% · 0 条告警</div>
       </div>
     </div>
 
