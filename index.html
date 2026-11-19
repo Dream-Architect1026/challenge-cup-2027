@@ -149,7 +149,7 @@ section{padding:72px 0 0;position:relative}
 /* 四线（带图卡片） */
 .lines{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin:24px 0 0}
 .ln{overflow:hidden;padding:0}
-.ln .thumb{position:relative;aspect-ratio:2.2/1;overflow:hidden;background:#0C0907}
+.ln .thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0C0907}
 .ln .thumb img{width:100%;height:100%;object-fit:cover;object-position:center;
   filter:saturate(.95) brightness(.92)}
 .ln .thumb::after{content:"";position:absolute;inset:0;
@@ -331,6 +331,84 @@ footer .fl img{height:20px}
 }
 .tablewrap{margin:22px 0 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tablewrap table{margin:0;min-width:560px}
+
+/* ===== 版式：贴边满屏 · 异形但不乱 ===== */
+.wrap{max-width:none;width:100%;padding:0 clamp(12px,1.5vw,28px)}
+@media (min-width:1600px){.wrap{max-width:none}}
+h1{font-size:clamp(44px,6.6vw,112px);line-height:1.02;letter-spacing:.05em;margin-top:18px}
+.sub{font-size:clamp(15px,1.1vw,21px);letter-spacing:.05em}
+.lede{max-width:min(48ch,760px);font-size:clamp(14px,.95vw,16.5px)}
+.hero-grid{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(20px,3vw,64px);align-items:end}
+.hero-side{transform:none}
+.shead{align-items:flex-end;gap:clamp(12px,1.4vw,22px);padding-bottom:0;border-bottom:0;position:relative}
+.shead::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;
+  background:linear-gradient(90deg,rgba(214,176,112,.55),rgba(214,176,112,.10) 55%,transparent);transform:skewY(-.6deg)}
+.shead .no{font-family:var(--serif);font-weight:900;font-size:clamp(30px,3vw,52px);line-height:.88;
+  color:transparent;-webkit-text-stroke:1px rgba(214,176,112,.45);letter-spacing:0;margin-left:-.04em}
+.shead h2{font-size:clamp(21px,2vw,31px);letter-spacing:.09em}
+/* 数字条：整条面板 + 斜向分隔，不再各自成盒 */
+.figrow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:26px;
+  border:1px solid rgba(214,176,112,.22);border-radius:2px;overflow:hidden;
+  background:linear-gradient(105deg,rgba(255,243,220,.07),rgba(12,9,6,.35) 46%,rgba(255,243,220,.03))}
+.hero-figs{grid-template-columns:repeat(2,1fr)}
+.fig,.fig.glass{padding:16px 20px;border:0;border-radius:0;box-shadow:none;background:none;position:relative}
+.fig+.fig::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:1px;
+  background:linear-gradient(180deg,transparent,rgba(214,176,112,.4),transparent);transform:skewX(-11deg)}
+.hero-figs .fig:nth-child(3)::before{display:none}
+.hero-figs .fig:nth-child(3),.hero-figs .fig:nth-child(4){border-top:1px solid rgba(214,176,112,.16)}
+/* 四线：斜切图片 + 切角卡片 */
+.ln,.ln.glass{clip-path:polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,0 100%);border-radius:0;
+  border:0;box-shadow:inset 0 1px 0 rgba(255,241,216,.16),0 18px 40px rgba(0,0,0,.5);
+  background:linear-gradient(168deg,rgba(255,243,220,.06),rgba(12,9,6,.55))}
+.ln .thumb{clip-path:polygon(0 0,100% 0,100% 80%,0 100%)}
+.ln .thumb img{filter:saturate(.95) brightness(.94)}
+.ln .thumb::after{background:linear-gradient(180deg,rgba(12,9,6,0),rgba(12,9,6,.5) 70%,rgba(12,9,6,.72))}
+/* 岗位卡同一切角，保持一致 */
+.role,.role.glass{clip-path:polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,0 100%);border-radius:0;border:0;
+  background:linear-gradient(168deg,rgba(255,243,220,.06),rgba(12,9,6,.55));
+  box-shadow:inset 0 1px 0 rgba(255,241,216,.16),0 18px 40px rgba(0,0,0,.5)}
+/* 去掉错位 */
+.lines .ln,.roles .role,.deal .dc,.deck .shot{transform:none !important}
+/* 统一切角语言：除按钮外，卡片不做圆角矩形 */
+.notebox,.tl,.dc,.bar,.gate,.hshot,.metaline,.vnotes,.screen,.cta,.dossier,.deck .shot,.tablewrap table{
+  clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);
+  border-radius:0 !important;
+}
+/* 移动端：回到单列，避免挤成两栏 */
+@media (max-width:980px){
+  .top .tagline,.top .sep{display:none}
+  .hero-grid{grid-template-columns:minmax(0,1fr) !important;gap:22px}
+  .videoband{grid-template-columns:minmax(0,1fr)}
+  .lines,.roles,.deal,.bars,.frank,.muster,.deck{grid-template-columns:1fr}
+  .deck{grid-template-columns:1fr 1fr}
+  .gates{grid-template-columns:1fr 1fr 1fr}
+  .figrow{grid-template-columns:1fr 1fr}
+  .hero-figs{grid-template-columns:1fr 1fr}
+  .shead .no{font-size:30px}
+}
+@media (min-width:1500px){
+  .lines{grid-template-columns:repeat(4,1fr)}
+}
+/* 斜切分隔细线 */
+section{position:relative}
+section::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(214,176,112,.22) 18%,rgba(214,176,112,.06) 62%,transparent);
+  transform:rotate(-.35deg);transform-origin:left center;pointer-events:none}
+/* 视频与要点错层 */
+.videoband{align-items:start;margin-top:clamp(30px,3vw,52px)}
+.vnotes{margin-top:clamp(12px,2.4vw,60px)}
+/* 数字改用细线账本式，不用方框 */
+.hero-figs .fig{background:none;border:0;border-top:1px solid rgba(214,176,112,.24);border-radius:0;padding:16px 2px 0;
+  box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.gates .gate{background:none;border:0;border-top:1px solid rgba(214,176,112,.24);border-radius:0;
+  text-align:left;padding:14px 2px 0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.gates .gate b{font-size:clamp(20px,2vw,30px)}
+.gate span{font-size:10.5px;letter-spacing:.06em}
+@media (max-width:980px){
+  .hero-side{transform:none}
+  .lines .ln,.roles .role,.deal .dc,.deck .shot{transform:none !important}
+  .shead .no{font-size:30px}
+}
 </style>
 </head>
 <body>
@@ -369,7 +447,7 @@ footer .fl img{height:20px}
         </p>
         <div class="btns hero-cta">
           <a class="btn main" href="https://my.feishu.cn/share/base/shrcnCTyPK2fv3bGCa7dnagl1gc" target="_blank" rel="noopener">填写报名表</a>
-          <a class="btn" href="assets/deck.pdf" target="_blank" rel="noopener">查看答辩稿 PDF</a>
+          <a class="btn" href="assets/deck.pdf" target="_blank" rel="noopener">查看项目介绍 PDF</a>
         </div>
         <div class="figrow hero-figs">
           <div class="fig glass"><b>33.0→42.7%</b><span>突出先验概率抬升</span></div>
@@ -444,7 +522,7 @@ footer .fl img{height:20px}
     <div class="shead"><span class="no">02</span><h2>四条模型线</h2><span class="en">Model lines</span></div>
     <div class="lines">
       <div class="ln glass">
-        <div class="thumb"><img src="assets/img/gen_line1.jpg" alt="数据治理配图"></div>
+        <div class="thumb"><img src="assets/img/slide3.png" alt="数据治理配图"></div>
         <div class="body">
           <h3>数据治理</h3>
           <p>86,400 行原始数据入库，清洗至 306,791 行、28 通道；70 字段封版，246 点结果台账，指标口径唯一。</p>
@@ -452,7 +530,7 @@ footer .fl img{height:20px}
         </div>
       </div>
       <div class="ln glass">
-        <div class="thumb"><img src="assets/img/gen_line2.jpg" alt="因果归因配图"></div>
+        <div class="thumb"><img src="assets/img/slide6.png" alt="因果归因配图"></div>
         <div class="body">
           <h3>因果归因</h3>
           <p>DAG 16 条边、贝叶斯网络与 SHAP 双向互证，方向一致率 100%。埋深单项贡献 38.6%，前四项合计 82.5%。</p>
@@ -460,7 +538,7 @@ footer .fl img{height:20px}
         </div>
       </div>
       <div class="ln glass">
-        <div class="thumb"><img src="assets/img/gen_line3.jpg" alt="时序预测配图"></div>
+        <div class="thumb"><img src="assets/img/slide4.png" alt="时序预测配图"></div>
         <div class="body">
           <h3>时序预测</h3>
           <p>ARIMA、LSTM 与融合模型三段推进，MAE 2.381 → 1.948 → 1.788；三折回测与公开真实数据均设对照。</p>
@@ -468,7 +546,7 @@ footer .fl img{height:20px}
         </div>
       </div>
       <div class="ln glass">
-        <div class="thumb"><img src="assets/img/gen_line4.jpg" alt="空间外推配图"></div>
+        <div class="thumb"><img src="assets/img/slide8.png" alt="空间外推配图"></div>
         <div class="body">
           <h3>空间外推</h3>
           <p>IDW 与克里金采用留点交叉，量化跨地质单元的精度代价：单元内 R² 0.995，全局转负，变程 1,642 m。</p>
@@ -503,7 +581,7 @@ footer .fl img{height:20px}
     <div class="shead"><span class="no">04</span><h2>作品形态</h2><span class="en">Deliverable</span></div>
     <p class="txt">
       申报作品为“方法与系统”：以四线模型、四端系统与五道校验构成可复现的方法体系，论文与专利为副线，署名按贡献排序。
-      下列页面取自中期答辩稿；界面部分为最小可用版本，答辩前须完成一轮重构。
+      下列页面取自项目介绍材料；界面部分为最小可用版本，答辩前须完成一轮重构。
     </p>
 
     <div class="deck">
@@ -519,7 +597,7 @@ footer .fl img{height:20px}
       <div class="d"><span>入库规模</span><span>SQLite 16,779 行（legacy 16,725）</span></div>
       <div class="d"><span>服务端口</span><span>API 8790 · 实机连续运行约两周</span></div>
       <div class="d"><span>结果台账</span><span>246 点 · 70 字段封版</span></div>
-      <div class="d"><span>答辩材料</span><span>14 页答辩稿 · 28 问预设问答集 · 5 分钟讲稿</span></div>
+      <div class="d"><span>材料</span><span>14 页项目介绍 · 28 问预设问答集 · 5 分钟讲稿</span></div>
     </div>
   </section>
 
@@ -649,7 +727,7 @@ footer .fl img{height:20px}
       <p>无相关经历者填「暂无」。提交后 7 个工作日内以邮件或微信联系，安排约 20 分钟线上沟通，双方确认后确定分工。</p>
       <div class="btns">
         <a class="btn main" href="https://my.feishu.cn/share/base/shrcnCTyPK2fv3bGCa7dnagl1gc" target="_blank" rel="noopener">填写报名表</a>
-        <a class="btn" href="assets/deck.pdf" target="_blank" rel="noopener">查看答辩稿（PDF 版）</a>
+        <a class="btn" href="assets/deck.pdf" target="_blank" rel="noopener">查看项目介绍（PDF 版）</a>
         <a class="btn" href="mailto:2733532815@qq.com">邮件咨询</a>
       </div>
       <p class="fine">报名不设截止日期，名额满即止。个人信息仅用于本次招募联系，不进入公开页面。</p>
