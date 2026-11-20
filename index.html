@@ -175,7 +175,7 @@ img{display:block;max-width:100%}
 .eyebrow::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,rgba(214,176,112,.42),transparent)}
 /* 主标题：直接使用封面书法字（绿幕抠出的透明金字），不再用字体模拟 */
 h1{margin:40px 0 0;line-height:0;padding:0}
-h1 img{display:block;width:clamp(300px,33vw,566px);height:auto;
+h1 img{display:block;width:clamp(300px,35vw,596px);height:auto;
   filter:drop-shadow(0 6px 26px rgba(0,0,0,.86)) drop-shadow(0 1px 2px rgba(0,0,0,.62))}
 @media (max-width:640px){h1 img{width:min(72vw,300px)}}
 .kicker{display:flex;align-items:center;gap:10px;margin-top:12px;
@@ -277,10 +277,10 @@ h1 img{display:block;width:clamp(300px,33vw,566px);height:auto;
 .hero-media .hfline i{font-style:normal;color:rgba(214,176,112,.55)}
 /* 速览 / 详情 切换（方角，置于下边框内右侧） */
 .vswitch{display:flex;flex:0 0 auto;gap:3px;padding:2px;border:1px solid rgba(214,176,112,.34);
-  background:rgba(255,243,220,.05);border-radius:0}
+  background:rgba(255,243,220,.05);border-radius:8px}
 .vs-btn{appearance:none;border:0;background:transparent;cursor:pointer;padding:4px 11px;
   font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:rgba(232,220,200,.62);
-  border-radius:0;transition:color .18s,background .18s}
+  border-radius:6px;transition:color .18s,background .18s}
 .vs-btn:hover{color:var(--ink-19)}
 .vs-btn[aria-selected="true"]{background:linear-gradient(120deg,var(--gold-hi),#C08A2E);color:#1A1206}
 .vs-btn:focus-visible{outline:2px solid rgba(242,185,78,.6);outline-offset:1px}
@@ -722,7 +722,7 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
     <div class="hero-grid">
       <div class="hero-copy">
         <div class="eyebrow">中国矿业大学（北京）· 2024 级大学生创新训练项目</div>
-        <h1><img src="assets/img/webp/title-calligraphy.webp" alt="智警御安" width="1795" height="550"></h1>
+        <h1><img src="assets/img/webp/title-calli.png" alt="智警御安" width="859" height="292"></h1>
         <p class="sub">多源数据融合驱动的煤与瓦斯突出预警模型研究</p>
         <p class="lede">
           面向煤与瓦斯突出灾害的「数据—模型—系统」一体化预警研究：四条模型线、四端系统与五道可信度校验已全部跑通，
@@ -897,7 +897,7 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
     <div class="muster">
       <div class="c glass">
         <h3>团队编制</h3>
-        <p>校级赛事团队上限 8 人。现有成员 <b>6 人</b>，来自大数据管理与应用、管理科学与工程、计算机等方向，覆盖数据建模、系统开发与论文写作；本次招募 <b>2 人</b>，合计 8 人。<br>现有成员均为在校学生，另有课业与考试安排，合计投入约相当于 3 个全职当量，可承接任务并按期交付，但无法全程驻线。</p>
+        <p>校级赛事团队上限 8 人。现有成员 <b>6 人</b>，来自大数据管理与应用、安全科学与工程、计算机等方向，覆盖数据建模、系统开发与论文写作；本次招募 <b>2 人</b>，合计 8 人。<br>现有成员均为在校学生，另有课业与考试安排，合计投入约相当于 3 个全职当量，可承接任务并按期交付，但无法全程驻线。</p>
       </div>
       <div class="c glass">
         <h3>赛事经验</h3>
@@ -1027,7 +1027,7 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
   <p>中国矿业大学（北京）· 2024 级大学生创新训练项目 · 管理学院</p>
   <p>数据来源：Sikora &amp; Wróbel（2014）公开数据集、项目自建仿真数据集（v1／v2）</p>
   <div class="metaln">
-    <span>© 2024–2026 多源数据融合驱动的煤与瓦斯突出预警模型研究项目组</span>
+    <span>© 2026–2027 多源数据融合驱动的煤与瓦斯突出预警模型研究项目组</span>
     <span>保留所有权利</span>
     <span>如有引用请注明出处</span>
   </div>
@@ -1161,5 +1161,6 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
 </script>
 </body>
 </html>
+
 
 
