@@ -118,6 +118,9 @@ img{display:block;max-width:100%}
 .glass::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(420px 120px at 12% -10%,rgba(255,246,226,.12),transparent 70%)}
 .glass:hover{border-color:rgba(214,176,112,.46);box-shadow:inset 0 1px 0 rgba(255,246,226,.40),0 18px 40px rgba(0,0,0,.52)}
+/* 系统与模型区：改用圆角矩形，避免过多硬切角 */
+#what .glass,#model .glass{border-radius:14px;clip-path:none}
+#what .notebox{border-radius:14px}
 
 /* 顶部导航 */
 .top{position:sticky;top:0;z-index:60;background:rgba(8,6,4,.62);
@@ -142,11 +145,10 @@ img{display:block;max-width:100%}
 /* 首屏：背景左右满幅出血（负边距抵掉容器内边距），并撑满整屏高度 */
 .hero{position:relative;overflow:hidden;margin-inline:calc(-1 * var(--pad));padding:52px var(--pad) clamp(30px,3.4vw,52px)}
 .hero .bg{position:absolute;inset:0;
-  background:url("assets/img/webp/mine-depth.webp") center/cover no-repeat;
-  opacity:.92;filter:saturate(.86) contrast(1.02) brightness(1.16)}
+  background:url("assets/img/webp/mine-depth.webp") center/100% 100% no-repeat;
+  opacity:.94;filter:saturate(.9) contrast(1.04) brightness(1.12)}
 .hero .bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(8,6,4,.64) 0%,rgba(8,6,4,.32) 40%,rgba(8,6,4,.10) 62%,rgba(8,6,4,.14) 100%),
-             linear-gradient(180deg,rgba(8,6,4,.02) 0%,rgba(8,6,4,.22) 40%,rgba(8,6,4,.76) 84%,var(--bg) 100%)}
+  background:linear-gradient(180deg,rgba(8,6,4,.04) 0%,rgba(8,6,4,.16) 46%,rgba(8,6,4,.62) 88%,var(--bg) 100%)}
 .hero-shade{position:absolute;inset:0;z-index:1;pointer-events:none;background:transparent}
 .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:radial-gradient(720px 360px at 6% 0%,rgba(200,164,92,.13),transparent 64%),
@@ -171,11 +173,21 @@ h1{font-family:"Ma Shan Zheng","Noto Serif SC",serif;font-weight:400;
 .lede{margin:20px 0 0;max-width:62ch;font-size:clamp(15px,1.05vw,18px);color:#C3B5A5;line-height:1.95;
   text-shadow:0 2px 16px rgba(0,0,0,.92)}
 .lede b{color:var(--ink);font-weight:500}
+/* 最新公告条 */
+.notice{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:18px 0 0;font-size:13px;color:#CFC1AE;
+  text-shadow:0 1px 10px rgba(0,0,0,.85)}
+.notice .tag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:#0E0A06;
+  background:linear-gradient(100deg,#F7D89A,#E9B75E);padding:3px 9px;border-radius:999px}
+.notice .ntxt{color:#D9CCB8}
+.notice a{color:var(--gold-hi);text-decoration:none;border-bottom:1px solid rgba(242,185,78,.42);padding-bottom:1px}
+.notice a:hover{color:#FFE6B8}
 .hero-copy{position:relative;z-index:2;display:flex;flex-direction:column}
-.hero-copy::before{content:"";position:absolute;z-index:-1;left:-10%;right:-16%;top:-6%;bottom:-6%;pointer-events:none;
-  background:
-    linear-gradient(90deg,rgba(8,6,4,.80) 0%,rgba(8,6,4,.58) 42%,rgba(8,6,4,.30) 68%,rgba(8,6,4,.06) 86%,transparent 100%),
-    radial-gradient(126% 96% at 14% 42%,rgba(8,6,4,.92) 0%,rgba(8,6,4,.76) 44%,rgba(8,6,4,.38) 70%,transparent 94%)}
+/* 文字底板：只覆盖文字区，中心向外径向渐隐（中心 0% 起，至 40% 后继续淡出到外侧 100% 全透明） */
+.hero-copy::before{content:"";position:absolute;z-index:-1;left:-3%;right:-6%;top:-2%;bottom:-4%;pointer-events:none;
+  background:radial-gradient(58% 66% at 42% 46%,
+    rgba(8,6,4,.86) 0%,rgba(8,6,4,.80) 26%,rgba(8,6,4,.62) 40%,
+    rgba(8,6,4,.30) 68%,rgba(8,6,4,.06) 86%,transparent 100%);
+  border-radius:50%}
 
 /* 首屏双栏：左（标题→报名按钮）+ 左下四宫格；右上视频 + 右下项目简介，四区各自对齐 */
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);
@@ -229,8 +241,12 @@ h1{font-family:"Ma Shan Zheng","Noto Serif SC",serif;font-weight:400;
   text-shadow:0 2px 12px rgba(0,0,0,.85)}
 .hero-figs .fig span{font-size:11px;color:#AE9F8C;margin-top:3px;line-height:1.5;letter-spacing:.03em;
   text-shadow:0 1px 8px rgba(0,0,0,.9)}
-/* 首屏视频卡：高度与左侧「主标题→报名按钮」齐平 */
-.hero-media{padding:0;overflow:hidden;position:relative;height:100%;min-height:0}
+/* 首屏视频卡：恢复外框（细金边 + 切角玻璃），高度与左侧「主标题→报名按钮」齐平 */
+.hero-media{padding:0;overflow:hidden;position:relative;height:100%;min-height:0;
+  border:1px solid rgba(214,176,112,.42);
+  box-shadow:inset 0 1px 0 rgba(255,241,216,.34),inset 0 0 0 1px rgba(242,185,78,.20),0 22px 48px rgba(0,0,0,.55)}
+.hero-media::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  box-shadow:inset 0 0 0 1px rgba(255,240,214,.14),inset 0 -26px 46px rgba(8,6,4,.42)}
 .hero-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;
   background:#000}
 .hero-media .hcap{position:absolute;left:0;top:0;padding:9px 15px;font-size:12px;letter-spacing:.06em;
@@ -287,19 +303,21 @@ section::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
 .gate span{display:block;font-size:12px;color:var(--dim);margin-top:5px;line-height:1.5}
 /* 系统现状：中控实机图（置于现状说明下方，高度与右侧校验列齐平） */
 .sysgrid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1fr);
-  gap:clamp(26px,3.4vw,64px);margin-top:clamp(18px,1.6vw,26px);align-items:stretch}
+  column-gap:clamp(26px,3.4vw,64px);row-gap:clamp(14px,1.4vw,20px);margin-top:clamp(18px,1.6vw,26px);align-items:stretch}
 .sysmain .txt{margin-top:0;max-width:none}
-.sysmain{display:flex;flex-direction:column;min-height:0;align-items:flex-start}
-.sysshot{position:relative;flex:0 0 auto;height:clamp(300px,26vw,368px);width:auto;aspect-ratio:1600/990;
-  max-width:100%;margin-top:16px;padding:0;overflow:hidden;display:flex}
-.sysshot img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block;
-  border:1px solid rgba(214,176,112,.34);
-  clip-path:polygon(0 0,calc(100% - var(--cut)) 0,100% var(--cut),100% 100%,0 100%)}
-.sysgrid .gates{margin:0;display:grid;grid-template-columns:1fr;gap:0}
+.sysmain{min-width:0}
+.sysshot{grid-column:1/-1;position:relative;margin-top:6px;padding:0;overflow:hidden;display:block;width:100%;
+  aspect-ratio:1600/990;border-radius:14px}
+.sysshot img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block;border-radius:14px;
+  border:1px solid rgba(214,176,112,.34)}
+.sysgrid .gates{margin:0;display:grid;grid-template-columns:1fr;gap:8px;grid-auto-rows:1fr;align-content:stretch}
 .sysgrid .gate{display:flex;align-items:center;justify-content:space-between;gap:18px;min-width:0;
-  padding:10px 8px 10px 0;border-top:1px solid rgba(214,176,112,.22);text-align:left;
-  background:none;border-radius:0;box-shadow:none}
-.sysgrid .gate b{order:2;font-family:var(--mono);font-size:clamp(20px,1.9vw,30px);letter-spacing:.02em;
+  padding:6px 14px 6px 16px;border:0;border-radius:10px;text-align:left;position:relative;
+  background:linear-gradient(100deg,rgba(255,243,220,.045),rgba(255,243,220,.012) 46%,rgba(255,243,220,0) 82%);
+  box-shadow:inset 0 0 0 1px rgba(214,176,112,.14)}
+.sysgrid .gate::before{content:"";position:absolute;left:0;top:14%;bottom:14%;width:2px;border-radius:2px;
+  background:linear-gradient(180deg,rgba(242,185,78,.75),rgba(226,83,63,.35))}
+.sysgrid .gate b{order:2;font-family:var(--mono);font-size:clamp(17px,1.5vw,22px);letter-spacing:.02em;
   color:var(--gold-hi);white-space:nowrap;min-width:0}
 .sysgrid .gate span{order:1;flex:1 1 auto;min-width:0;display:flex;align-items:baseline;margin:0;
   font-size:12px;letter-spacing:.20em;color:rgba(232,220,200,.62);white-space:nowrap}
@@ -350,7 +368,7 @@ section::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
 .role ul li{margin-bottom:5px}
 .role ul li b{color:var(--ink);font-weight:500}
 /* 职责与要求等高：两块固定同高，两个岗位的标题行与分栏位置一致 */
-.role .rb{flex:0 0 auto;padding-top:14px;min-height:120px}
+.role .rb{flex:0 0 auto;padding-top:14px;min-height:140px}
 
 /* 表格 */
 .tablewrap{margin:0}
@@ -367,9 +385,9 @@ td:last-child{color:var(--dim)}
 .wleft .wl{margin:0 0 9px;font-size:12px;color:var(--dim);letter-spacing:.03em;line-height:1.7}
 .wleft .wl b{color:var(--gold);font-weight:500}
 .wleft .tablewrap{min-width:0;flex:1 1 auto;display:flex;flex-direction:column;justify-content:center}
-.whoR{display:flex;flex-direction:column;min-width:0}
+.whoR{display:flex;flex-direction:column;min-width:0;height:100%}
 .whoR .rlabel{margin:0 0 10px;font-family:var(--serif);font-size:13px;letter-spacing:.10em;color:var(--gold-hi)}
-.whoR .bars{display:grid;grid-template-columns:1fr;gap:9px;margin:0;flex:1 1 auto}
+.whoR .bars{display:grid;grid-template-columns:1fr;grid-auto-rows:1fr;gap:9px;margin:0;flex:1 1 auto;min-height:0}
 .whoR .bar{display:flex;flex-direction:column;justify-content:center;padding:11px 14px;font-size:12px;line-height:1.8}
 .whoR .note-line{margin:12px 0 0;font-size:11.5px}
 
@@ -422,6 +440,7 @@ td:last-child{color:var(--dim)}
 footer{margin:58px 0 0;border-top:1px solid rgba(214,176,112,.16);padding:26px 0 54px;font-size:12px;color:var(--dim);
   line-height:1.9;position:relative;overflow:hidden}
 footer b{color:var(--muted);font-weight:500}
+footer p{margin:3px 0;font-size:12.5px;color:var(--dim);position:relative;z-index:2}
 footer .fl{display:flex;gap:12px;align-items:center;margin-bottom:12px;position:relative;z-index:2}
 footer .fl img{height:20px}
 .footbg{position:absolute;right:0;bottom:0;width:min(480px,60vw);height:280px;
@@ -583,18 +602,23 @@ footer .fl img{height:20px}
     <div class="bg"></div>
     <div class="hero-shade" aria-hidden="true"></div>
     <canvas id="heroShader" aria-hidden="true"></canvas>
-    <div class="eyebrow">中国矿业大学（北京）· 2024 级大学生创新训练项目</div>
     <div class="hero-grid">
       <div class="hero-copy">
+        <div class="eyebrow">中国矿业大学（北京）· 2024 级大学生创新训练项目</div>
         <h1>智警御安</h1>
         <p class="sub">多源数据融合驱动的煤与瓦斯突出预警模型研究</p>
         <p class="lede">
-          四条模型线已完成，四端系统已上线，五道可信度校验全部通过，2026 年 11 月 19 日完成中期答辩。
-          <b>现面向 2027 年「挑战杯」课外学术科技作品竞赛，招募 2 名主力成员。</b>
+          面向煤与瓦斯突出灾害的「数据—模型—系统」一体化预警研究：四条模型线、四端系统与五道可信度校验已全部跑通，
+          2026 年 11 月 19 日完成中期答辩，转入 2027 年「挑战杯」申报阶段。
+        </p>
+        <p class="notice">
+          <span class="tag">最新公告</span>
+          <span class="ntxt">2026 年 11 月开放 2 个成员名额，面向本科一年级、二年级</span>
+          <a href="#who">查看招募公告</a>
         </p>
         <div class="btns hero-cta">
           <a class="btn main" href="https://my.feishu.cn/share/base/shrcnCTyPK2fv3bGCa7dnagl1gc" target="_blank" rel="noopener">填写报名表</a>
-          <a class="btn" href="assets/deck.pdf" target="_blank" rel="noopener">查看项目介绍 PDF</a>
+          <a class="btn" href="assets/deck.pdf" target="_blank" rel="noopener">项目介绍 PDF</a>
         </div>
       </div>
       <div class="hero-media glass">
@@ -638,10 +662,6 @@ footer .fl img{height:20px}
             <li><b>真实矿井数据尚未接入。</b>当前全部结论基于公开数据集与自建仿真集。</li>
           </ul>
         </div>
-
-        <div class="sysshot">
-          <img src="assets/img/webp/smoke_center.webp" width="1600" height="990" alt="中控台界面截图（项目介绍材料同款）" loading="lazy" decoding="async">
-        </div>
       </div>
       <aside class="gates" aria-label="五道可信度校验结果">
         <div class="gate"><b>16 / 16</b><span>口径一致性</span></div>
@@ -650,6 +670,10 @@ footer .fl img{height:20px}
         <div class="gate"><b>13 / 13</b><span>容差为零</span></div>
         <div class="gate"><b>5 / 5</b><span>复现验收</span></div>
       </aside>
+
+      <div class="sysshot">
+        <img src="assets/img/webp/smoke_center.webp" width="1600" height="990" alt="中控台界面截图（项目介绍材料同款）" loading="lazy" decoding="async">
+      </div>
     </div>
   </section>
 
@@ -743,7 +767,11 @@ footer .fl img{height:20px}
 
   <!-- 招募 -->
   <section id="who">
-    <div class="shead"><span class="no">05</span><h2>招募计划</h2><span class="en">Recruitment</span></div>
+    <div class="shead"><span class="no">05</span><h2>招募公告</h2><span class="en">Notice</span></div>
+    <p class="txt">
+      <b>公告 2026-11：</b>面向中国矿业大学（北京）本科一年级、二年级开放 2 个成员名额，加入「智警御安」项目组，
+      参与 2027 年「挑战杯」课外学术科技作品竞赛的申报与答辩。名额满即止，报名后 7 个工作日内联系。
+    </p>
 
     <div class="muster">
       <div class="c glass">
@@ -827,11 +855,10 @@ footer .fl img{height:20px}
         <p class="rlabel">准入条件 · 四项</p>
         <div class="bars">
           <div class="bar glass"><b>学期内每周投入不超过 5 小时。</b>寒假设项目进展另行安排；会议不定期、提前三日通知。</div>
+          <div class="bar glass"><b>本科一年级、二年级。</b>在校身份须覆盖至挑战杯参赛流程结束，赛事对学籍有明确要求。</div>
           <div class="bar glass"><b>持续参与至挑战杯参赛流程结束。</b>中途退出将直接影响申报。</div>
-          <div class="bar glass"><b>具备独立检索与问题解决能力。</b>项目提供方法与素材，不代做具体工作。</div>
-          <div class="bar glass"><b>具备推进与协调能力。</b>承担任务跟进、节点控制与成果验收。</div>
+          <div class="bar glass"><b>具备独立检索与推进协调能力。</b>项目提供方法与素材，不代做具体工作，需自行跟进节点与成果验收。</div>
         </div>
-        <p class="txt note-line">招募对象：本科一年级、二年级。</p>
       </div>
     </div>
   </section>
@@ -876,10 +903,9 @@ footer .fl img{height:20px}
 
 <footer>
   <div class="footbg"></div>
-  <div class="fl"><b>智警御安 · 突出预警</b></div>
-  <b>多源数据融合驱动的煤与瓦斯突出预警模型研究</b>（「智警御安」为挑战杯参赛包装名称）<br>
-  中国矿业大学（北京）· 2024 级大学生创新训练项目 · 指导教师：刘海滨<br>
-  数据来源：Sikora &amp; Wróbel（2014）公开数据集、项目自建仿真数据集（v1／v2）。真实矿井数据尚在签约流程中，本页结论均基于上述数据。
+  <div class="fl"><b>智警御安 · 煤与瓦斯突出预警</b></div>
+  <p>中国矿业大学（北京）· 2024 级大学生创新训练项目 · 指导教师：刘海滨</p>
+  <p>数据来源：Sikora &amp; Wróbel（2014）公开数据集、项目自建仿真数据集（v1／v2）</p>
 </footer>
 
 <script>
