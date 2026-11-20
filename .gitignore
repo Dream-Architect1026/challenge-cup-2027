@@ -2,3 +2,5 @@ _*.png
 *.tmp
 .DS_Store
 REWORK-NOTES.md
+
+_put.json
