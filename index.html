@@ -790,6 +790,26 @@ footer .metaln span{white-space:normal;max-width:100%;text-align:center;line-hei
   .hero-figs .fig b{text-shadow:0 2px 14px rgba(0,0,0,.95),0 0 22px rgba(0,0,0,.7)}
 }
 
+/* 移动端续二：01 视频卡（整卡锁 16/10 会把视频压成一条，390 下只剩 84px 高） */
+@media (max-width:640px){
+  .filmgrid .hero-media{aspect-ratio:auto;height:auto}
+  .hero-media video{flex:0 0 auto;aspect-ratio:16/9;height:auto;min-height:0}
+  .hero-media .hcap{padding:8px 12px 7px;gap:8px}
+  .hero-media .hcap::after{display:none}
+  .hero-media .hfoot{gap:8px;padding:8px 10px 9px;flex-wrap:nowrap}
+  .hero-media .hfline{flex:0 1 auto;letter-spacing:.08em;gap:6px;white-space:nowrap}
+  .vswitch{flex:0 0 auto;padding:2px}
+  .vs-btn{padding:8px 10px;letter-spacing:.06em}
+}
+
+/* 移动端续三：视频卡下边框（标识三项 + 两个切换钮在 343px 内放不下，一段被按钮压住） */
+@media (max-width:640px){
+  .hero-media .hfoot{flex-direction:column;align-items:stretch;gap:8px;padding:9px 10px 10px;flex-wrap:nowrap}
+  .hero-media .hfline{flex:0 0 auto;justify-content:flex-start;white-space:nowrap}
+  .vswitch{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:3px}
+  .vs-btn{width:100%;padding:8px 4px;text-align:center}
+}
+
 @media (max-width:380px){
   h1{margin-top:14px}
   .figrow,.gates,.deck{grid-template-columns:1fr}
