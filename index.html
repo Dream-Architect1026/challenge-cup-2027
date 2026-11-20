@@ -231,7 +231,7 @@ h1 img{display:block;width:clamp(270px,31.5vw,504px);height:auto;
 /* 视频 */
 .vnotes{padding:14px 16px 14px;margin:0}
 .vnotes .vtitle{font-family:var(--serif);font-size:15.5px;margin:0 0 10px;letter-spacing:.12em;color:var(--gold)}
-.vnotes .vi{display:flex;gap:9px;font-size:12.5px;color:var(--muted);line-height:1.75;margin-bottom:7px}
+.vnotes .vi{display:flex;gap:9px;font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:7px}
 .vnotes .vi b{font-family:var(--mono);font-size:12px;color:var(--gold-hi);flex:0 0 auto}
 .vnotes .vi span{color:var(--ink)}
 .lbl{position:absolute;left:13px;top:13px;font-size:12px;letter-spacing:.08em;color:var(--ink-2);
@@ -242,7 +242,7 @@ h1 img{display:block;width:clamp(270px,31.5vw,504px);height:auto;
   clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%);
   background:#0E0B08;box-shadow:inset 0 1px 0 rgba(255,241,216,.22),0 20px 46px rgba(0,0,0,.56)}
 .shot img{width:100%;height:100%;object-fit:cover;object-position:top left}
-.cap{position:absolute;left:0;right:0;bottom:0;padding:9px 11px;font-size:12px;color:var(--ink-6);line-height:1.6;
+.cap{position:absolute;left:0;right:0;bottom:0;padding:9px 11px;font-size:12.6px;color:var(--ink-6);line-height:1.6;
   background:linear-gradient(0deg,rgba(8,6,4,.96),rgba(8,6,4,.62) 60%,transparent)}
 
 /* 数字条（账本式，显式不套斜切角） */
@@ -259,9 +259,10 @@ h1 img{display:block;width:clamp(270px,31.5vw,504px);height:auto;
   margin:0;max-width:min(100%,660px);border:0;background:none;overflow:visible;align-content:center}
 .hero-figs .fig{padding:0;border:0;border-radius:0;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none}
 .hero-figs .fig+.fig::before{display:none}
+.hero-figs{transform:translateY(-25%)}   /* 上移自身高度的 25% */
 .hero-figs .fig b{font-size:clamp(20px,1.7vw,27px);line-height:1.25;
   text-shadow:0 2px 12px rgba(0,0,0,.85)}
-.hero-figs .fig span{font-size:12.8px;color:var(--ink-17);margin-top:3px;line-height:1.5;letter-spacing:.03em;
+.hero-figs .fig span{font-size:13.2px;color:var(--ink-17);margin-top:3px;line-height:1.5;letter-spacing:.03em;
   text-shadow:0 1px 8px rgba(0,0,0,.9)}
 /* 首屏视频卡：玻璃边框（切角外观 + 金线），题注放在边框条上而不是压在画面上 */
 .hero-media{padding:0;overflow:hidden;position:relative;height:calc(100% + clamp(24px,2.4vw,40px));min-height:0;margin-top:calc(-1 * clamp(24px,2.4vw,40px));
@@ -300,6 +301,14 @@ h1 img{display:block;width:clamp(270px,31.5vw,504px);height:auto;
 .hero-notes .vtitle{margin:0 0 8px}
 .hero-notes .vpara{margin:0;font-size:13.6px;line-height:1.85;color:var(--ink-3);letter-spacing:.01em}
 .hero-notes .vpara b{color:var(--ink);font-weight:500}
+/* 01 项目介绍：视频左 · 简介右，两栏等高 */
+.filmgrid{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);gap:clamp(18px,2.4vw,44px);
+  align-items:stretch;margin-top:clamp(16px,1.8vw,26px)}
+.filmgrid .hero-media,.filmgrid .filmnotes{grid-area:auto}
+.filmgrid .hero-media{height:auto;margin-top:0;aspect-ratio:16/10;min-height:0}
+.filmgrid .filmnotes{display:flex;flex-direction:column;justify-content:center;padding:20px 22px}
+.filmgrid .filmnotes .vpara{font-size:14.2px;line-height:2.05}
+.filmgrid .filmnotes .vtitle{font-size:16px;margin-bottom:10px}
 
 /* 节 */
 section{padding:60px 0 0;position:relative}
@@ -349,13 +358,13 @@ section::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
 .ln p{margin:0;font-size:13.6px;color:var(--muted);line-height:1.85}
 .ln .kv{margin-top:11px;padding-top:10px;border-top:1px solid rgba(214,176,112,.16);
   font-family:var(--mono);font-size:12px;color:var(--teal)}
-.ln .note{margin:8px 0 0;font-size:12px;color:var(--dim);line-height:1.7}
+.ln .note{margin:8px 0 0;font-size:12.8px;color:var(--dim);line-height:1.7}
 
 /* 校验条 */
 .gates{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:20px 0 0}
 .gate{padding:12px 10px;text-align:center}
 .gate b{display:block;font-family:var(--mono);font-size:15.5px;color:var(--gold-hi)}
-.gate span{display:block;font-size:12.8px;color:var(--dim);margin-top:5px;line-height:1.5}
+.gate span{display:block;font-size:13.2px;color:var(--dim);margin-top:5px;line-height:1.5}
 /* 系统现状：左列＝正文+现状说明+中控小图（只占半边），右列五道校验与左列整体等高 */
 .sysgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto;
   column-gap:clamp(26px,3.4vw,64px);row-gap:clamp(10px,1.1vw,16px);margin-top:clamp(18px,1.6vw,26px);align-items:stretch}
@@ -396,21 +405,21 @@ section::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
 .htl::before{content:"";position:absolute;left:0;right:0;top:56px;height:1px;
   background:linear-gradient(90deg,rgba(214,176,112,.52),rgba(214,176,112,.26) 72%,rgba(226,83,63,.45));z-index:0}
 .step{position:relative;padding:0 14px 0 0;z-index:1}
-.step .w{display:block;font-family:var(--mono);font-size:12px;color:var(--gold);letter-spacing:.02em}
+.step .w{display:block;font-family:var(--mono);font-size:12.8px;color:var(--gold);letter-spacing:.02em}
 .step .dot{width:9px;height:9px;margin:14px 0 16px;background:var(--gold-hi);border-radius:50%;
   box-shadow:0 0 0 4px rgba(242,185,78,.12)}
 .step.now .dot{background:var(--red);box-shadow:0 0 0 5px rgba(226,83,63,.18)}
 .step.next .dot{background:transparent;border:1px solid rgba(214,176,112,.55);box-shadow:none}
-.step h3{font-family:var(--serif);font-size:13.5px;margin:0 0 6px;color:var(--ink-19);font-weight:600;line-height:1.55}
-.step p{margin:0;font-size:12px;color:var(--dim);line-height:1.75}
-.step .st{display:inline-block;margin-top:9px;font-size:10.5px;letter-spacing:.12em;color:var(--dim)}
+.step h3{font-family:var(--serif);font-size:14.2px;margin:0 0 6px;color:var(--ink-19);font-weight:600;line-height:1.55}
+.step p{margin:0;font-size:13px;color:var(--dim);line-height:1.75}
+.step .st{display:inline-block;margin-top:9px;font-size:11.2px;letter-spacing:.12em;color:var(--dim)}
 .step.now .st{color:var(--red)}
 
 /* 短板 */
 .frank{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:20px 0 0}
 .fr{padding:16px 17px;border-left:2px solid rgba(226,83,63,.55)}
-.fr h3{font-family:var(--serif);font-size:13px;margin:0 0 7px;color:var(--rose-2);font-weight:600}
-.fr p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.85}
+.fr h3{font-family:var(--serif);font-size:14px;margin:0 0 7px;color:var(--rose-2);font-weight:600}
+.fr p{margin:0;font-size:13.4px;color:var(--muted);line-height:1.85}
 
 /* 编制 */
 .muster{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0 0}
@@ -420,7 +429,7 @@ section::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
 .muster .c p b{color:var(--gold-hi);font-weight:500}
 
 .roles{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:18px 0 0}
-.rolenote{grid-column:1/-1;margin:0 0 -4px;font-size:12px;color:var(--dim);letter-spacing:.04em}
+.rolenote{grid-column:1/-1;margin:0 0 -4px;font-size:12.8px;color:var(--dim);letter-spacing:.04em}
 .role{overflow:hidden;padding:0;display:flex;flex-direction:column;border-radius:0;
   clip-path:polygon(0 0,calc(100% - var(--cut)) 0,100% var(--cut),100% 100%,0 100%);
   background:linear-gradient(168deg,rgba(255,243,220,.06),rgba(12,9,6,.55))}
@@ -429,9 +438,9 @@ section::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
 .role .thumb img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.92) saturate(.95)}
 .role .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,9,6,.05),rgba(12,9,6,.55) 78%,rgba(12,9,6,.8) 100%)}
 .role .body{padding:22px 26px 26px;display:flex;flex-direction:column;flex:1 1 auto}
-.role .no{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--gold)}
+.role .no{font-family:var(--mono);font-size:12.8px;letter-spacing:.16em;color:var(--gold)}
 .role h3{font-family:var(--serif);font-size:21px;margin:9px 0 13px;font-weight:700;letter-spacing:.04em}
-.role h4{margin:0 0 7px;font-size:12px;font-weight:500;letter-spacing:.16em;color:var(--dim)}
+.role h4{margin:0 0 7px;font-size:12.8px;font-weight:500;letter-spacing:.16em;color:var(--dim)}
 .role ul{margin:0;padding-left:18px;font-size:13.6px;color:var(--muted);line-height:1.95}
 .role ul li{margin-bottom:5px}
 .role ul li b{color:var(--ink);font-weight:500}
@@ -450,7 +459,7 @@ td:last-child{color:var(--dim)}
 /* 招募计划：工作事项左 · 准入条件右（纵向等高） */
 .whogrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin:20px 0 0;align-items:stretch}
 .wleft{display:flex;flex-direction:column;min-width:0}
-.wleft .wl{margin:0 0 9px;font-size:12px;color:var(--dim);letter-spacing:.03em;line-height:1.7}
+.wleft .wl{margin:0 0 9px;font-size:12.8px;color:var(--dim);letter-spacing:.03em;line-height:1.7}
 .wleft .wl b{color:var(--gold);font-weight:500}
 .wleft .tablewrap{min-width:0;min-height:0;flex:1 1 auto;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start}
 .wleft .tablewrap table{flex:1 1 auto;min-height:0;height:100%}
@@ -482,10 +491,10 @@ td:last-child{color:var(--dim)}
 .deck.grid2{grid-template-columns:1fr 1fr;gap:10px}
 .deck.grid2 .shot{aspect-ratio:16/10}
 .dossier{margin:0;overflow:hidden;display:grid;grid-auto-rows:minmax(0,1fr);height:100%}
-.dossier .d{display:grid;grid-template-columns:132px 1fr;font-size:13.2px;border-bottom:1px solid rgba(214,176,112,.12);align-items:center}
+.dossier .d{display:grid;grid-template-columns:132px 1fr;font-size:13.6px;border-bottom:1px solid rgba(214,176,112,.12);align-items:center}
 .dossier .d:last-child{border-bottom:0}
 .dossier .d span:first-child{padding:10px 14px;color:var(--dim);letter-spacing:.06em;border-right:1px solid rgba(214,176,112,.12)}
-.dossier .d span:last-child{padding:10px 14px;color:var(--muted);font-family:var(--mono);font-size:13px;line-height:1.7}
+.dossier .d span:last-child{padding:10px 14px;color:var(--muted);font-family:var(--mono);font-size:13.4px;line-height:1.7}
 
 /* 报名 */
 .cta{margin:24px 0 0;padding:30px 28px;
@@ -710,6 +719,7 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
     <span class="sep"></span>
     <span class="tagline">多源数据融合驱动的煤与瓦斯突出预警模型研究</span>
     <nav class="nav" aria-label="页面导航">
+      <a href="#film">介绍</a>
       <a href="#what">系统</a>
       <a href="#model">模型</a>
       <a href="#now">进展</a>
@@ -745,9 +755,24 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
           <a class="btn" href="assets/deck.pdf" target="_blank" rel="noopener">项目介绍 PDF</a>
         </div>
       </div>
+      <div class="figrow hero-figs">
+        <div class="fig"><b>33.0→42.7%</b><span>突出先验概率抬升</span></div>
+        <div class="fig"><b>1.718</b><span>XGBoost MAE（基线 2.275，−24%）</span></div>
+        <div class="fig"><b>82.5%</b><span>前四项归因贡献合计</span></div>
+        <div class="fig"><b>5 / 5</b><span>可信度校验通过</span></div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- 项目介绍 · 视频左 · 简介右 -->
+  <section id="film" tabindex="-1">
+    <div class="shead"><span class="no">01</span><h2>项目介绍</h2><span class="en">Project film</span></div>
+    <div class="filmgrid">
       <div class="hero-media glass">
         <span class="hcap"><span id="vcap">项目介绍 · 速览版 · 约 23 秒</span></span>
-        <video id="vfilm" controls preload="metadata" playsinline poster="assets/img/webp/cover.webp"
+        <video id="vfilm" controls preload="metadata" playsinline poster="assets/img/webp/cover-fast.webp"
                src="assets/demo-1080p.mp4" aria-label="项目介绍视频（速览版），约 23 秒">
           <track id="vtt" kind="captions" srclang="zh" label="要点字幕" default src="assets/demo-keypoints.vtt">
         </video>
@@ -759,23 +784,16 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
           </div>
         </div>
       </div>
-      <div class="figrow hero-figs">
-        <div class="fig"><b>33.0→42.7%</b><span>突出先验概率抬升</span></div>
-        <div class="fig"><b>1.718</b><span>XGBoost MAE（基线 2.275，−24%）</span></div>
-        <div class="fig"><b>82.5%</b><span>前四项归因贡献合计</span></div>
-        <div class="fig"><b>5 / 5</b><span>可信度校验通过</span></div>
-      </div>
-      <div class="vnotes glass hero-notes">
+      <div class="vnotes glass filmnotes">
         <p class="vtitle">项目简介</p>
         <p class="vpara">本项目立足人工智能、矿业工程与安全科学的交叉，针对煤矿瓦斯治理中各系统相互独立、单一阈值报警滞后的问题，构建多源监测数据治理体系与煤与瓦斯突出预警模型。研究先以文献梳理与矿企调研锁定真实痛点，再完成数据清洗、标准化与融合治理，形成统一口径的数据底座；在此基础上跑通数据治理、因果归因、时序预测、空间外推四条模型线，并让中控台、服务器端、井下站点与演示端共用同一判定内核，配以五道可信度校验；最终通过实验室与现场联合测试迭代至预期精度，沉淀学术论文、软件著作权与竞赛成果。</p>
       </div>
     </div>
-
-  </div>
+  </section>
 
   <!-- 系统 -->
   <section id="what" tabindex="-1">
-    <div class="shead"><span class="no">01</span><h2>系统现状</h2><span class="en">System status</span></div>
+    <div class="shead"><span class="no">02</span><h2>系统现状</h2><span class="en">System status</span></div>
     <div class="sysgrid">
       <div class="sysmain">
         <p class="txt">
@@ -807,7 +825,7 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
 
   <!-- 四线 -->
   <section id="model">
-    <div class="shead"><span class="no">02</span><h2>四条模型线</h2><span class="en">Model lines</span></div>
+    <div class="shead"><span class="no">03</span><h2>四条模型线</h2><span class="en">Model lines</span></div>
     <div class="lines">
       <div class="ln glass">
         <div class="thumb"><img src="assets/img/webp/slide5.webp" width="1600" height="900" alt="数据线架构配图" loading="lazy" decoding="async"></div>
@@ -847,7 +865,7 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
 
   <!-- 进展 -->
   <section id="now">
-    <div class="shead"><span class="no">03</span><h2>项目进展</h2><span class="en">Progress</span></div>
+    <div class="shead"><span class="no">04</span><h2>项目进展</h2><span class="en">Progress</span></div>
     <div class="htl">
       <div class="step done"><span class="w">2026.05</span><div class="dot"></div><h3>立项申报</h3><p>校级大创，经费 6,600 元，指导教师刘海滨（管理学院教授）</p><span class="st">已完成</span></div>
       <div class="step done"><span class="w">2026.06—09</span><div class="dot"></div><h3>双轨数据与四线模型</h3><p>公开数据集（Sikora &amp; Wróbel, 2014）与自建仿真集 v1／v2</p><span class="st">已完成</span></div>
@@ -867,7 +885,7 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
 
   <!-- 作品 -->
   <section id="work">
-    <div class="shead"><span class="no">04</span><h2>作品形态</h2><span class="en">Deliverable</span></div>
+    <div class="shead"><span class="no">05</span><h2>作品形态</h2><span class="en">Deliverable</span></div>
     <p class="txt">
       申报作品为“方法与系统”：以四线模型、四端系统与五道校验构成可复现的方法体系，论文与专利为副线，署名按贡献排序。
       下列页面取自项目介绍材料；界面部分为最小可用版本，答辩前须完成一轮重构。
@@ -895,7 +913,7 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
 
   <!-- 招募 -->
   <section id="who">
-    <div class="shead"><span class="no">05</span><h2>招募公告</h2><span class="en">Notice</span></div>
+    <div class="shead"><span class="no">06</span><h2>招募公告</h2><span class="en">Notice</span></div>
     <p class="txt">
       <b>公告 2026-11：</b>面向中国矿业大学（北京）本科一年级、二年级开放 2 个成员名额，加入「智警御安」项目组，
       参与 2027 年「挑战杯」课外学术科技作品竞赛的申报与答辩。名额满即止，报名后 7 个工作日内联系。
@@ -993,7 +1011,7 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
 
   <!-- 条件 -->
   <section id="deal">
-    <div class="shead"><span class="no">06</span><h2>参与条件</h2><span class="en">Terms</span></div>
+    <div class="shead"><span class="no">07</span><h2>参与条件</h2><span class="en">Terms</span></div>
     <div class="deal">
       <div class="dc glass g">
         <h3>项目提供</h3>
@@ -1142,7 +1160,7 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
   const vtt=document.getElementById('vtt');
   const vsBtns=[...document.querySelectorAll('.vs-btn')];
   const VERS={
-    fast:{src:'assets/demo-1080p.mp4',poster:'assets/img/webp/cover.webp',
+    fast:{src:'assets/demo-1080p.mp4',poster:'assets/img/webp/cover-fast.webp',
           cap:'项目介绍 · 速览版 · 约 23 秒',label:'项目介绍视频（速览版），约 23 秒',sub:true},
     detail:{src:'assets/demo-detail.mp4',poster:'assets/img/webp/cover-detail.webp',
           cap:'项目介绍 · 详情版 · 约 1 分 54 秒',label:'项目介绍视频（详情版），约 1 分 54 秒',sub:false}
@@ -1168,6 +1186,11 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
 </script>
 </body>
 </html>
+
+
+
+
+
 
 
 
