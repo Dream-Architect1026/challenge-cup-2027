@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dream-architect1026.github.io/challenge-cup-2027/sitemap.xml
