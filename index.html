@@ -122,24 +122,34 @@ img{display:block;max-width:100%}
 #what .glass,#model .glass{border-radius:14px;clip-path:none}
 #what .notebox{border-radius:14px}
 
-/* 顶部导航 */
-.top{position:sticky;top:0;z-index:60;background:rgba(8,6,4,.62);
+/* 顶部导航：图标 + 站名 + 副题，底纹加暖金流光与细网格，避免整条纯黑 */
+.top{position:sticky;top:0;z-index:60;background:
+    radial-gradient(520px 90px at 4% -40%,rgba(200,164,92,.20),transparent 72%),
+    radial-gradient(420px 80px at 72% -60%,rgba(242,185,78,.10),transparent 76%),
+    linear-gradient(180deg,rgba(14,10,7,.92),rgba(8,6,4,.86));
   backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);
-  border-bottom:1px solid rgba(214,176,112,.16)}
-.top .wrap{display:flex;align-items:center;gap:16px;height:60px}
-.logo{height:23px;width:auto}
+  border-bottom:1px solid rgba(214,176,112,.20)}
+.top::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:
+    repeating-linear-gradient(90deg,rgba(214,176,112,.055) 0 1px,transparent 1px 74px),
+    radial-gradient(1px 1px at 22% 50%,rgba(242,185,78,.55),transparent 60%),
+    radial-gradient(1px 1px at 41% 32%,rgba(255,240,214,.42),transparent 60%),
+    radial-gradient(1px 1px at 63% 68%,rgba(242,185,78,.40),transparent 60%)}
+.top::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(242,185,78,.55) 22%,rgba(214,176,112,.18) 58%,transparent)}
+.top .wrap{display:flex;align-items:center;gap:14px;height:60px}
+.logo{height:22px;width:auto;flex:0 0 auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,.6))}
 .top .brand{font-family:var(--serif);font-size:15px;letter-spacing:.16em;color:#F3E4C8}
 .top .sep{width:1px;height:16px;background:rgba(214,176,112,.30)}
 .top .tagline{font-size:12px;color:var(--dim);letter-spacing:.08em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-/* 导航容器是全站唯一保留胶囊圆角的例外：横向可滚动条目需要连续触摸滑轨，圆角胶囊保持滑动指示；
-   内部条目统一走 --cut-sm 小斜切角令牌 */
-.nav{margin-left:auto;display:flex;gap:4px;padding:3px;border:1px solid rgba(214,176,112,.16);border-radius:12px;
+/* 导航条目：统一圆角矩形（不再用斜切五边形） */
+.nav{margin-left:auto;display:flex;gap:4px;padding:3px;border:1px solid rgba(214,176,112,.18);border-radius:12px;
   background:linear-gradient(150deg,rgba(255,243,220,.055),rgba(18,13,9,.28));
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(255,241,216,.14)}
-.nav a{padding:5px 10px;color:var(--muted);text-decoration:none;font-size:12px;white-space:nowrap;
-  transition:color .2s,background-color .2s;
-  clip-path:polygon(0 0,calc(100% - var(--cut-sm)) 0,100% var(--cut-sm),100% 100%,0 100%)}
-.nav a.on{color:#FFF3DA;background:rgba(242,185,78,.13)}
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(255,241,216,.14);
+  position:relative;z-index:2}
+.nav a{padding:5px 11px;color:var(--muted);text-decoration:none;font-size:12px;white-space:nowrap;
+  border-radius:8px;transition:color .2s,background-color .2s}
+.nav a.on{color:#FFF3DA;background:rgba(242,185,78,.16);box-shadow:inset 0 0 0 1px rgba(242,185,78,.28)}
 .nav a:hover{color:#FFF4E2;background:rgba(255,255,255,.07);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.18)}
 
 /* 首屏：背景左右满幅出血（负边距抵掉容器内边距），并撑满整屏高度 */
@@ -241,16 +251,21 @@ h1{font-family:"Ma Shan Zheng","Noto Serif SC",serif;font-weight:400;
   text-shadow:0 2px 12px rgba(0,0,0,.85)}
 .hero-figs .fig span{font-size:11px;color:#AE9F8C;margin-top:3px;line-height:1.5;letter-spacing:.03em;
   text-shadow:0 1px 8px rgba(0,0,0,.9)}
-/* 首屏视频卡：恢复外框（细金边 + 切角玻璃），高度与左侧「主标题→报名按钮」齐平 */
+/* 首屏视频卡：玻璃边框（切角外观 + 金线），题注放在边框条上而不是压在画面上 */
 .hero-media{padding:0;overflow:hidden;position:relative;height:100%;min-height:0;
-  border:1px solid rgba(214,176,112,.42);
-  box-shadow:inset 0 1px 0 rgba(255,241,216,.34),inset 0 0 0 1px rgba(242,185,78,.20),0 22px 48px rgba(0,0,0,.55)}
-.hero-media::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
-  box-shadow:inset 0 0 0 1px rgba(255,240,214,.14),inset 0 -26px 46px rgba(8,6,4,.42)}
-.hero-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;
-  background:#000}
-.hero-media .hcap{position:absolute;left:0;top:0;padding:9px 15px;font-size:12px;letter-spacing:.06em;
-  color:#F6EAD6;background:linear-gradient(180deg,rgba(8,6,4,.86),rgba(8,6,4,.42) 72%,transparent);z-index:2}
+  display:flex;flex-direction:column;
+  border:1px solid rgba(214,176,112,.46);border-radius:0;clip-path:none;
+  background:linear-gradient(160deg,rgba(255,243,220,.10),rgba(255,255,255,.03) 36%,rgba(16,12,9,.66));
+  backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);
+  box-shadow:inset 0 1px 0 rgba(255,241,216,.34),inset 0 0 0 1px rgba(242,185,78,.16),0 22px 48px rgba(0,0,0,.55)}
+.hero-media::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;border-radius:0;
+  box-shadow:inset 0 0 0 1px rgba(255,240,214,.13),inset 0 -22px 42px rgba(8,6,4,.34)}
+.hero-media video{display:block;flex:1 1 auto;width:100%;min-height:0;height:auto;object-fit:cover;object-position:center 35%;
+  background:#000;margin:0 0 0;border-top:1px solid rgba(214,176,112,.16)}
+.hero-media .hcap{flex:0 0 auto;order:-1;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:7px 14px;font-size:12px;letter-spacing:.06em;color:#F6EAD6;z-index:2;
+  background:linear-gradient(180deg,rgba(8,6,4,.86),rgba(8,6,4,.58));border-bottom:1px solid rgba(214,176,112,.20)}
+.hero-media .hcap::after{content:"PROJECT FILM";font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:rgba(214,176,112,.68)}
 .hero-notes{padding:14px 16px 14px;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;align-content:center}
 .hero-notes .vtitle{grid-column:1/-1;margin:0 0 2px}
 .hero-notes .vi{margin:0}
@@ -301,16 +316,16 @@ section::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
 .gate{padding:12px 10px;text-align:center}
 .gate b{display:block;font-family:var(--mono);font-size:15.5px;color:var(--gold-hi)}
 .gate span{display:block;font-size:12px;color:var(--dim);margin-top:5px;line-height:1.5}
-/* 系统现状：中控实机图（置于现状说明下方，高度与右侧校验列齐平） */
-.sysgrid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1fr);
-  column-gap:clamp(26px,3.4vw,64px);row-gap:clamp(14px,1.4vw,20px);margin-top:clamp(18px,1.6vw,26px);align-items:stretch}
+/* 系统现状：左列＝正文+现状说明+中控小图（只占半边），右列五道校验与左列整体等高 */
+.sysgrid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1fr);grid-template-rows:auto auto;
+  column-gap:clamp(26px,3.4vw,64px);row-gap:clamp(10px,1.1vw,16px);margin-top:clamp(18px,1.6vw,26px);align-items:stretch}
 .sysmain .txt{margin-top:0;max-width:none}
-.sysmain{min-width:0}
-.sysshot{grid-column:1/-1;position:relative;margin-top:6px;padding:0;overflow:hidden;display:block;width:100%;
-  aspect-ratio:1600/990;border-radius:14px}
+.sysmain{grid-column:1;grid-row:1;min-width:0}
+.sysshot{grid-column:1;grid-row:2;position:relative;margin:0;padding:0;overflow:hidden;display:block;width:100%;
+  max-height:clamp(200px,27vh,320px);border-radius:14px}
 .sysshot img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block;border-radius:14px;
-  border:1px solid rgba(214,176,112,.34)}
-.sysgrid .gates{margin:0;display:grid;grid-template-columns:1fr;gap:8px;grid-auto-rows:1fr;align-content:stretch}
+  border:1px solid rgba(214,176,112,.34);box-shadow:0 12px 30px rgba(0,0,0,.42)}
+.sysgrid .gates{grid-column:2;grid-row:1/3;align-self:stretch;margin:0;display:grid;grid-template-columns:1fr;gap:8px;grid-auto-rows:1fr;align-content:stretch}
 .sysgrid .gate{display:flex;align-items:center;justify-content:space-between;gap:18px;min-width:0;
   padding:6px 14px 6px 16px;border:0;border-radius:10px;text-align:left;position:relative;
   background:linear-gradient(100deg,rgba(255,243,220,.045),rgba(255,243,220,.012) 46%,rgba(255,243,220,0) 82%);
@@ -437,17 +452,21 @@ td:last-child{color:var(--dim)}
 .fine{margin:14px 0 0;font-size:12px;color:var(--dim);line-height:1.85}
 .note-line{font-size:12.5px;margin-top:13px}
 
-footer{margin:58px 0 0;border-top:1px solid rgba(214,176,112,.16);padding:26px 0 54px;font-size:12px;color:var(--dim);
-  line-height:1.9;position:relative;overflow:hidden}
+footer{margin:58px 0 0;border-top:1px solid rgba(214,176,112,.16);padding:34px 0 40px;font-size:12px;color:var(--dim);
+  line-height:1.9;position:relative;overflow:hidden;text-align:center}
 footer b{color:var(--muted);font-weight:500}
-footer p{margin:3px 0;font-size:12.5px;color:var(--dim);position:relative;z-index:2}
-footer .fl{display:flex;gap:12px;align-items:center;margin-bottom:12px;position:relative;z-index:2}
+footer p{margin:5px 0;font-size:12.5px;color:var(--dim);position:relative;z-index:2}
+footer .fl{display:flex;gap:10px;align-items:center;justify-content:center;margin:0 0 12px;position:relative;z-index:2;
+  font-family:var(--serif);letter-spacing:.10em;font-size:14px;color:#EBD9B4}
+footer .fl::before,footer .fl::after{content:"";width:clamp(24px,7vw,90px);height:1px;
+  background:linear-gradient(90deg,transparent,rgba(214,176,112,.55))}
+footer .fl::after{background:linear-gradient(90deg,rgba(214,176,112,.55),transparent)}
 footer .fl img{height:20px}
-.footbg{position:absolute;right:0;bottom:0;width:min(480px,60vw);height:280px;
-  background:url("assets/img/webp/slide13.webp") center bottom/cover no-repeat;
-  opacity:.11;pointer-events:none;
-  -webkit-mask-image:linear-gradient(90deg,transparent,rgba(0,0,0,.8) 62%,rgba(0,0,0,.8));
-  mask-image:linear-gradient(0deg,rgba(0,0,0,.92),transparent)}
+footer .metaln{margin:14px auto 0;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:rgba(180,167,148,.72);position:relative;z-index:2}
+footer .metaln span{white-space:nowrap}
+.footbg{position:absolute;inset:0;background:radial-gradient(560px 200px at 50% 0%,rgba(200,164,92,.10),transparent 72%);
+  pointer-events:none}
 
 /* ============ 响应式 ============ */
 @media (hover:hover){
@@ -483,9 +502,11 @@ footer .fl img{height:20px}
   .top .tagline,.top .sep{display:none}
   .nav{order:3;width:100%;gap:2px;padding:2px}
   .nav a{padding:6px 9px;font-size:12px;letter-spacing:0;min-height:44px;min-width:44px;display:flex;align-items:center;justify-content:center}
-  .sysgrid{grid-template-columns:minmax(0,1fr);gap:18px}
-  .sysshot{flex:none;aspect-ratio:16/10;min-height:0}
+  .sysgrid{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto;gap:14px}
+  .sysshot{grid-column:1;grid-row:2;max-height:none;aspect-ratio:16/10;min-height:0}
   .sysshot img{height:100%;width:100%;object-fit:cover}
+  .sysgrid .gates{grid-column:1;grid-row:3;grid-auto-rows:auto}
+  .sysgrid .gate{padding:11px 14px 11px 16px}
   .sysgrid .gate span{letter-spacing:.08em}
   .workgrid{grid-template-columns:minmax(0,1fr);gap:12px}
   .whogrid{grid-template-columns:minmax(0,1fr);gap:14px}
@@ -581,10 +602,10 @@ footer .fl img{height:20px}
 
 <header class="top">
   <div class="wrap">
-    <img class="logo" src="assets/img/logo.png" width="560" height="140" alt="智警御安" decoding="async">
+    <img class="logo" src="assets/img/logo-mark.png" width="144" height="144" alt="" aria-hidden="true" decoding="async">
     <span class="brand">智警御安</span>
     <span class="sep"></span>
-    <span class="tagline">挑战杯 2027 参赛线 · 成员招募</span>
+    <span class="tagline">多源数据融合驱动的预警模型研究</span>
     <nav class="nav" aria-label="页面导航">
       <a href="#what">系统</a>
       <a href="#model">模型</a>
@@ -636,10 +657,10 @@ footer .fl img{height:20px}
       </div>
       <div class="vnotes glass hero-notes">
         <p class="vtitle">项目简介</p>
-        <div class="vi"><b>01</b><span>四条模型线并跑，先验概率由 33.0% 抬到 42.7%</span></div>
-        <div class="vi"><b>02</b><span>归因与时序同源，埋深一项占 38.6%</span></div>
-        <div class="vi"><b>03</b><span>四端共用同一判定内核 0.2.63-r181</span></div>
-        <div class="vi"><b>04</b><span>246 点台账、70 字段封版，口径唯一可复算</span></div>
+        <div class="vi"><b>01</b><span>面向煤与瓦斯突出灾害，构建「数据—模型—系统」一体化预警体系</span></div>
+        <div class="vi"><b>02</b><span>四条模型线并跑：数据治理、因果归因、时序预测、空间外推</span></div>
+        <div class="vi"><b>03</b><span>五道可信度校验全部通过，四端共用同一判定内核</span></div>
+        <div class="vi"><b>04</b><span>2026 年 11 月 19 日完成中期答辩，转入 2027 年「挑战杯」申报</span></div>
       </div>
     </div>
 
@@ -906,6 +927,11 @@ footer .fl img{height:20px}
   <div class="fl"><b>智警御安 · 煤与瓦斯突出预警</b></div>
   <p>中国矿业大学（北京）· 2024 级大学生创新训练项目 · 指导教师：刘海滨</p>
   <p>数据来源：Sikora &amp; Wróbel（2014）公开数据集、项目自建仿真数据集（v1／v2）</p>
+  <div class="metaln">
+    <span>© 2024–2026 智警御安项目组</span>
+    <span>保留所有权利</span>
+    <span>如有引用请注明出处</span>
+  </div>
 </footer>
 
 <script>
