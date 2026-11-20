@@ -96,22 +96,22 @@ img{display:block;max-width:100%}
   padding:10px 16px;text-decoration:none;font-size:13px;border-radius:10px}
 .skip:focus-visible{left:12px;top:12px}
 
-/* 焦点态：clip-path 卡片内 outline 会被裁剪，另加内阴影 */
+/* 焦点态：卡片内 outline 会被裁剪，另加内阴影 */
 :focus-visible{outline:2px solid #F2B94E;outline-offset:3px}
 .glass :is(a,button):focus-visible{box-shadow:0 0 0 3px rgba(242,185,78,.85) inset}
-/* 自带 clip-path 的可聚焦元素（.skip / .nav a / .btn）：外部 outline 会被斜切裁掉，
-   统一改 inset 环；focus 下取消 translateY，避免环位移抖动 */
+/* 可聚焦元素（.skip / .nav a / .btn）：外部 outline 统一改 inset 环；
+   focus 下取消 translateY，避免环位移抖动 */
 .skip:focus-visible,.nav a:focus-visible,.btn:focus-visible{
   outline:none;box-shadow:inset 0 0 0 2px #F2B94E;transform:none}
 /* 深字压金底主按钮：深色 inset 环，保证环与金底对比 ≥3:1 */
 .btn.main:focus-visible{box-shadow:inset 0 0 0 2px #1A1206}
 
 /* ============ components ============ */
-/* 液态玻璃基类（卡片统一 14px 圆角） */
+/* 液态玻璃基类（默认斜切角；只有明确要求的区块才用圆角） */
 .glass{position:relative;border:1px solid var(--lg-edge);background:var(--lg-tint);
   backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);
   box-shadow:var(--lg-shadow);transition:border-color .28s,box-shadow .28s,transform .28s;
-  border-radius:14px}
+  border-radius:0;clip-path:polygon(0 0,calc(100% - var(--cut)) 0,100% var(--cut),100% 100%,0 100%)}
 .glass::before{content:"";position:absolute;left:1px;right:1px;top:0;height:1px;
   background:linear-gradient(90deg,transparent,rgba(255,244,222,.55),rgba(214,176,112,.35),transparent);opacity:.8;pointer-events:none}
 .glass::after{content:"";position:absolute;inset:0;pointer-events:none;
@@ -121,15 +121,16 @@ img{display:block;max-width:100%}
 #what .glass,#model .glass{border-radius:14px;clip-path:none}
 #what .notebox{border-radius:14px}
 
-/* 顶部导航：完全透明的玻璃条（不铺黑色底），叠加暖金流光 */
-.top{position:sticky;top:0;z-index:60;background:
-    radial-gradient(520px 90px at 6% -40%,rgba(200,164,92,.14),transparent 74%),
-    linear-gradient(180deg,rgba(255,246,228,.045),rgba(255,246,228,.012));
-  backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);
-  border-bottom:1px solid rgba(214,176,112,.22)}
+/* 顶部导航：玻璃条内嵌首屏背景图的同一张底图，避免整条压成死黑 */
+.top{position:sticky;top:0;z-index:60;
+  background:
+    linear-gradient(180deg,rgba(8,6,4,.50),rgba(8,6,4,.64) 70%,rgba(8,6,4,.72)),
+    url("assets/img/webp/mine-depth.webp") center 22%/cover no-repeat;
+  backdrop-filter:blur(10px) saturate(140%);-webkit-backdrop-filter:blur(10px) saturate(140%);
+  border-bottom:1px solid rgba(214,176,112,.24)}
 .top::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.42;
   background:
-    repeating-linear-gradient(90deg,rgba(214,176,112,.045) 0 1px,transparent 1px 74px),
+    repeating-linear-gradient(90deg,rgba(214,176,112,.055) 0 1px,transparent 1px 74px),
     radial-gradient(1px 1px at 22% 50%,rgba(242,185,78,.55),transparent 60%),
     radial-gradient(1px 1px at 41% 32%,rgba(255,240,214,.42),transparent 60%),
     radial-gradient(1px 1px at 63% 68%,rgba(242,185,78,.40),transparent 60%)}
@@ -187,7 +188,8 @@ h1{font-family:"Ma Shan Zheng","Noto Serif SC",serif;font-weight:400;
 .notice .tag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:#0E0A06;
   background:linear-gradient(100deg,#F7D89A,#E9B75E);padding:3px 9px;border-radius:999px}
 .notice .ntxt{color:#D9CCB8}
-.notice a{color:var(--gold-hi);text-decoration:none;border-bottom:1px solid rgba(242,185,78,.42);padding-bottom:1px}
+.notice a{color:var(--gold-hi);text-decoration:none;border-bottom:1px solid rgba(242,185,78,.42);padding-bottom:1px;
+  display:inline-flex;align-items:center;min-height:44px}
 .notice a:hover{color:#FFE6B8}
 .hero-copy{position:relative;z-index:2;display:flex;flex-direction:column}
 /* 文字底板：只覆盖文字区，中心向外径向渐隐（中心 0% 起，至 40% 后继续淡出到外侧 100% 全透明） */
@@ -221,9 +223,11 @@ h1{font-family:"Ma Shan Zheng","Noto Serif SC",serif;font-weight:400;
 .vnotes .vi b{font-family:var(--mono);font-size:12px;color:var(--gold-hi);flex:0 0 auto}
 .vnotes .vi span{color:var(--ink)}
 .lbl{position:absolute;left:13px;top:13px;font-size:12px;letter-spacing:.08em;color:#F6EAD6;
-  background:rgba(10,8,5,.72);border:1px solid rgba(214,176,112,.30);padding:3px 9px;z-index:2;border-radius:10px;
+  background:rgba(10,8,5,.72);border:1px solid rgba(214,176,112,.30);padding:3px 9px;z-index:2;border-radius:0;
+  clip-path:polygon(0 0,calc(100% - var(--cut-sm)) 0,100% var(--cut-sm),100% 100%,0 100%);
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.shot{position:relative;overflow:hidden;border:1px solid rgba(214,176,112,.24);border-radius:10px;
+.shot{position:relative;overflow:hidden;border:1px solid rgba(214,176,112,.24);border-radius:0;
+  clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%);
   background:#0E0B08;box-shadow:inset 0 1px 0 rgba(255,241,216,.22),0 20px 46px rgba(0,0,0,.56)}
 .shot img{width:100%;height:100%;object-fit:cover;object-position:top left}
 .cap{position:absolute;left:0;right:0;bottom:0;padding:9px 11px;font-size:12px;color:#EFE3D2;line-height:1.6;
@@ -256,7 +260,7 @@ h1{font-family:"Ma Shan Zheng","Noto Serif SC",serif;font-weight:400;
   box-shadow:inset 0 1px 0 rgba(255,241,216,.34),inset 0 0 0 1px rgba(242,185,78,.16),0 22px 48px rgba(0,0,0,.55)}
 .hero-media::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;border-radius:0;
   box-shadow:inset 0 0 0 1px rgba(255,240,214,.13),inset 0 -22px 42px rgba(8,6,4,.34)}
-.hero-media video{display:block;flex:1 1 auto;width:100%;min-height:0;height:auto;object-fit:cover;object-position:center 35%;
+.hero-media video{display:block;flex:1 1 auto;width:100%;min-height:0;height:auto;object-fit:cover;object-position:center center;
   background:#000;margin:0 0 0;border-top:1px solid rgba(214,176,112,.16)}
 /* 视频卡下边框只放一行标识，项目简介独立成卡，两者之间留缝 */
 .hero-media .hfoot{flex:0 0 auto;padding:8px 14px 9px;border-top:1px solid rgba(214,176,112,.34);
@@ -268,7 +272,7 @@ h1{font-family:"Ma Shan Zheng","Noto Serif SC",serif;font-weight:400;
 .hero-media .hcap{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px;
   padding:7px 14px;font-size:12px;letter-spacing:.06em;color:#F6EAD6;z-index:2;
   background:linear-gradient(180deg,rgba(8,6,4,.86),rgba(8,6,4,.58));border-bottom:1px solid rgba(214,176,112,.20)}
-.hero-media .hcap::after{content:"PROJECT FILM";font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:rgba(214,176,112,.68)}
+.hero-media .hcap::after{content:"PROJECT FILM";font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:rgba(214,176,112,.82)}
 /* 项目简介独立卡：散文式说明，与左侧四宫格同高 */
 .hero-notes{padding:16px 18px;margin:0;display:block;align-self:stretch}
 .hero-notes .vtitle{margin:0 0 8px}
@@ -311,11 +315,9 @@ section::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
 
 /* 四线（带图卡片） */
 .lines{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin:24px 0 0}
-.ln{overflow:hidden;padding:0;border:0;
-  background:linear-gradient(168deg,rgba(255,243,220,.06),rgba(12,9,6,.55));
-  clip-path:polygon(0 0,calc(100% - var(--cut)) 0,100% var(--cut),100% 100%,0 100%)}
-.ln .thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0C0907;
-  clip-path:polygon(0 0,100% 0,100% 86%,0 100%)}
+.ln{overflow:hidden;padding:0;border:0;border-radius:14px;
+  background:linear-gradient(168deg,rgba(255,243,220,.06),rgba(12,9,6,.55))}
+.ln .thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0C0907;border-radius:10px}
 .ln .thumb img{width:100%;height:100%;object-fit:cover;object-position:center;
   filter:saturate(.95) brightness(.94)}
 .ln .thumb::after{content:"";position:absolute;inset:0;
@@ -376,7 +378,7 @@ section::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
   box-shadow:0 0 0 4px rgba(242,185,78,.12)}
 .step.now .dot{background:var(--red);box-shadow:0 0 0 5px rgba(226,83,63,.18)}
 .step.next .dot{background:transparent;border:1px solid rgba(214,176,112,.55);box-shadow:none}
-.step h4{font-family:var(--serif);font-size:13.5px;margin:0 0 6px;color:#F3E6CE;font-weight:600;line-height:1.55}
+.step h3{font-family:var(--serif);font-size:13.5px;margin:0 0 6px;color:#F3E6CE;font-weight:600;line-height:1.55}
 .step p{margin:0;font-size:11.5px;color:var(--dim);line-height:1.75}
 .step .st{display:inline-block;margin-top:9px;font-size:10.5px;letter-spacing:.12em;color:var(--dim)}
 .step.now .st{color:var(--red)}
@@ -396,11 +398,11 @@ section::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
 
 .roles{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:18px 0 0}
 .rolenote{grid-column:1/-1;margin:0 0 -4px;font-size:11.5px;color:var(--dim);letter-spacing:.04em}
-.role{overflow:hidden;padding:0;display:flex;flex-direction:column;
-  background:linear-gradient(168deg,rgba(255,243,220,.06),rgba(12,9,6,.55));
-  clip-path:polygon(0 0,calc(100% - var(--cut)) 0,100% var(--cut),100% 100%,0 100%)}
-.role .thumb{position:relative;aspect-ratio:3/1;overflow:hidden;background:#0C0907;
-  clip-path:polygon(0 0,100% 0,100% 86%,0 100%)}
+.role{overflow:hidden;padding:0;display:flex;flex-direction:column;border-radius:0;
+  clip-path:polygon(0 0,calc(100% - var(--cut)) 0,100% var(--cut),100% 100%,0 100%);
+  background:linear-gradient(168deg,rgba(255,243,220,.06),rgba(12,9,6,.55))}
+.role .thumb{position:relative;aspect-ratio:3/1;overflow:hidden;background:#0C0907;border-radius:0;
+  clip-path:polygon(0 0,100% 0,100% 88%,0 100%)}
 .role .thumb img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.92) saturate(.95)}
 .role .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,9,6,.05),rgba(12,9,6,.55) 78%,rgba(12,9,6,.8) 100%)}
 .role .body{padding:22px 26px 26px;display:flex;flex-direction:column;flex:1 1 auto}
@@ -427,14 +429,15 @@ td:last-child{color:var(--dim)}
 .wleft{display:flex;flex-direction:column;min-width:0}
 .wleft .wl{margin:0 0 9px;font-size:12px;color:var(--dim);letter-spacing:.03em;line-height:1.7}
 .wleft .wl b{color:var(--gold);font-weight:500}
-.wleft .tablewrap{min-width:0;min-height:0;flex:1 1 auto;display:flex;flex-direction:column;justify-content:flex-start}
-.wleft .tablewrap table{flex:1 1 auto;height:100%}
+.wleft .tablewrap{min-width:0;min-height:0;flex:1 1 auto;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start}
+.wleft .tablewrap table{flex:1 1 auto;min-height:0;height:100%}
 .wleft .tablewrap tbody{height:100%}
 .wleft .tablewrap tbody tr{height:12.5%}
 .whoR{display:flex;flex-direction:column;min-width:0;height:100%}
 .whoR .rlabel{margin:0 0 10px;font-family:var(--serif);font-size:13px;letter-spacing:.10em;color:var(--gold-hi)}
 .whoR .bars{display:grid;grid-template-columns:1fr;grid-auto-rows:1fr;gap:9px;margin:0;flex:1 1 auto;min-height:0}
-.whoR .bar{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;height:100%;padding:11px 14px;font-size:12px;line-height:1.8}
+.whoR .bar{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;height:100%;padding:11px 14px;font-size:12px;line-height:1.8;
+  border-radius:0;clip-path:none}
 .whoR .note-line{margin:12px 0 0;font-size:11.5px}
 
 /* 条件 */
@@ -467,10 +470,10 @@ td:last-child{color:var(--dim)}
 .cta p{color:var(--muted);font-size:12.5px;margin:0;line-height:1.9}
 .btns{display:flex;flex-wrap:wrap;gap:11px;margin:20px 0 0}
 .btn{display:inline-flex;align-items:center;padding:12px 22px;font-size:13px;text-decoration:none;
-  letter-spacing:.05em;border:1px solid rgba(214,176,112,.34);
+  letter-spacing:.05em;border:1px solid rgba(214,176,112,.34);border-radius:0;
+  clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%);
   background:rgba(255,243,220,.06);color:#F6EAD6;
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  clip-path:polygon(0 0,calc(100% - var(--cut-sm)) 0,100% var(--cut-sm),100% 100%,0 100%);
   box-shadow:inset 0 1px 0 rgba(255,241,216,.22),0 8px 20px rgba(0,0,0,.32)}
 .btn:hover{transform:translateY(-1px);border-color:rgba(242,185,78,.72)}
 .btn.main{background:linear-gradient(120deg,var(--gold-hi),#C08A2E);color:#1A1206;font-weight:500;border-color:transparent;
@@ -494,7 +497,7 @@ footer .fl::before,footer .fl::after{content:"";width:clamp(24px,7vw,90px);heigh
 footer .fl::after{background:linear-gradient(90deg,rgba(214,176,112,.55),transparent)}
 footer .fl img{height:20px}
 footer .metaln{margin:14px auto 0;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;
-  font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:rgba(180,167,148,.72);position:relative;z-index:2}
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:rgba(180,167,148,.82);position:relative;z-index:2}
 footer .metaln span{white-space:nowrap}
 .footbg{position:absolute;inset:0;background:radial-gradient(560px 200px at 50% 0%,rgba(200,164,92,.10),transparent 72%);
   pointer-events:none}
@@ -548,6 +551,7 @@ footer .metaln span{white-space:nowrap}
   .lines{grid-template-columns:repeat(4,1fr)}
 }
 @media (max-width:640px){
+  html{scroll-padding-top:116px}
   body{line-height:1.78}
   .wrap{padding:0 var(--pad)}
   :root{--pad:16px}
@@ -572,7 +576,7 @@ footer .metaln span{white-space:nowrap}
   .role .body{padding:15px 16px 16px}
   .htl{padding:16px 16px 8px;row-gap:16px}
   .step{padding-right:10px}
-  .step h4{font-size:12.5px}
+  .step h3{font-size:12.5px}
   .step p{font-size:11px}
   /* 小屏时间轴改为纵向轨 */
   .htl{grid-template-columns:1fr;padding:14px 14px 6px;row-gap:0}
@@ -603,6 +607,7 @@ footer .metaln span{white-space:nowrap}
   .lbl{background:rgba(10,8,5,.82)}
   /* 表格堆叠为卡片 */
   .tablewrap{overflow:visible}
+  .wleft .tablewrap tbody tr{height:auto}
   table{border:0}
   thead{display:none}
   tr{display:block;border:1px solid rgba(214,176,112,.16);margin-bottom:10px;padding:6px 0}
@@ -669,8 +674,8 @@ footer .metaln span{white-space:nowrap}
           <a href="#who">查看招募公告</a>
         </p>
         <div class="btns hero-cta">
-          <a class="btn" href="https://my.feishu.cn/share/base/shrcnCTyPK2fv3bGCa7dnagl1gc" target="_blank" rel="noopener">填写报名表</a>
-          <a class="btn main" href="assets/deck.pdf" target="_blank" rel="noopener">项目介绍 PDF</a>
+          <a class="btn main" href="https://my.feishu.cn/share/base/shrcnCTyPK2fv3bGCa7dnagl1gc" target="_blank" rel="noopener">填写报名表</a>
+          <a class="btn" href="assets/deck.pdf" target="_blank" rel="noopener">项目介绍 PDF</a>
         </div>
       </div>
       <div class="hero-media glass">
@@ -773,12 +778,12 @@ footer .metaln span{white-space:nowrap}
   <section id="now">
     <div class="shead"><span class="no">03</span><h2>项目进展</h2><span class="en">Progress</span></div>
     <div class="htl">
-      <div class="step done"><span class="w">2026.05</span><div class="dot"></div><h4>立项申报</h4><p>校级大创，经费 6,600 元，指导教师刘海滨（管理学院教授）</p><span class="st">已完成</span></div>
-      <div class="step done"><span class="w">2026.06—09</span><div class="dot"></div><h4>双轨数据与四线模型</h4><p>公开数据集（Sikora &amp; Wróbel, 2014）与自建仿真集 v1／v2</p><span class="st">已完成</span></div>
-      <div class="step done"><span class="w">2026.10</span><div class="dot"></div><h4>四端上线 · 验收规范 v1.17</h4><p>五道校验通过，246 点台账封版</p><span class="st">已完成</span></div>
-      <div class="step done hot"><span class="w">2026.11.19</span><div class="dot"></div><h4>中期答辩</h4><p>14 页项目介绍与 28 问预设问答集；评审肯定进展，并提出模型有效性改进意见</p><span class="st">已完成</span></div>
-      <div class="step now"><span class="w">2026.11—12</span><div class="dot"></div><h4>成员招募与组队</h4><p>本页事项，面试与分工确认</p><span class="st">进行中</span></div>
-      <div class="step next"><span class="w">2027.01—03</span><div class="dot"></div><h4>挑战杯校级申报与答辩</h4><p>名单确认后，复赛阶段仅可删减成员</p><span class="st">待启动</span></div>
+      <div class="step done"><span class="w">2026.05</span><div class="dot"></div><h3>立项申报</h3><p>校级大创，经费 6,600 元，指导教师刘海滨（管理学院教授）</p><span class="st">已完成</span></div>
+      <div class="step done"><span class="w">2026.06—09</span><div class="dot"></div><h3>双轨数据与四线模型</h3><p>公开数据集（Sikora &amp; Wróbel, 2014）与自建仿真集 v1／v2</p><span class="st">已完成</span></div>
+      <div class="step done"><span class="w">2026.10</span><div class="dot"></div><h3>四端上线 · 验收规范 v1.17</h3><p>五道校验通过，246 点台账封版</p><span class="st">已完成</span></div>
+      <div class="step done hot"><span class="w">2026.11.19</span><div class="dot"></div><h3>中期答辩</h3><p>14 页项目介绍与 28 问预设问答集；评审肯定进展，并提出模型有效性改进意见</p><span class="st">已完成</span></div>
+      <div class="step now"><span class="w">2026.11—12</span><div class="dot"></div><h3>成员招募与组队</h3><p>本页事项，面试与分工确认</p><span class="st">进行中</span></div>
+      <div class="step next"><span class="w">2027.01—03</span><div class="dot"></div><h3>挑战杯校级申报与答辩</h3><p>名单确认后，复赛阶段仅可删减成员</p><span class="st">待启动</span></div>
     </div>
 
     <p class="txt">以下三项为当前主要短板，报名前应予知悉。</p>
@@ -838,7 +843,7 @@ footer .metaln span{white-space:nowrap}
 
     <div class="roles">
       <p class="rolenote">岗位职责与要求为初步安排，仅供参考，具体以实际执行情况为准。</p>      <div class="role glass">
-        <div class="thumb"><img src="assets/img/gen_role1.jpg" width="1600" height="900" alt="技术与作品主笔" loading="lazy" decoding="async"></div>
+        <div class="thumb"><img src="assets/img/gen_role1.jpg" width="1600" height="900" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
         <div class="body">
           <span class="no">岗位一 · 1 人</span>
           <h3>技术与作品主笔</h3>
@@ -860,7 +865,7 @@ footer .metaln span{white-space:nowrap}
         </div>
       </div>
       <div class="role glass">
-        <div class="thumb"><img src="assets/img/gen_role2.jpg" width="1600" height="900" alt="落地与答辩" loading="lazy" decoding="async"></div>
+        <div class="thumb"><img src="assets/img/gen_role2.jpg" width="1600" height="900" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
         <div class="body">
           <span class="no">岗位二 · 1 人</span>
           <h3>落地、答辩与实践</h3>
@@ -1045,9 +1050,14 @@ footer .metaln span{white-space:nowrap}
   cv.addEventListener('webglcontextrestored',()=>{running=true;size();if(!reduced)requestAnimationFrame(frame);});
 
   const rv=document.querySelectorAll('section, .hero-side, .videoband, .figrow, .deck, .tablewrap');
-  const io2=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io2.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px'});
-  rv.forEach(el=>{el.classList.add('reveal');io2.observe(el);});
-  setTimeout(()=>{document.querySelectorAll('.reveal:not(.in)').forEach(el=>{ if(el.getBoundingClientRect().top < innerHeight*1.2) el.classList.add('in'); });},1200);
+  if(!('IntersectionObserver' in window)){
+    rv.forEach(el=>el.classList.add('reveal','in'));
+  }else{
+    const io2=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io2.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px'});
+    rv.forEach(el=>{el.classList.add('reveal');io2.observe(el);});
+    setTimeout(()=>{document.querySelectorAll('.reveal:not(.in)').forEach(el=>{ if(el.getBoundingClientRect().top < innerHeight*1.2) el.classList.add('in'); });},1200);
+  }
+  setTimeout(()=>{document.querySelectorAll('.reveal:not(.in)').forEach(el=>el.classList.add('in'));},3000);
 
   const links=[...document.querySelectorAll('.nav a')];
   const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
