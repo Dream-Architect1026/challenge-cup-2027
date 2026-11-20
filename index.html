@@ -731,6 +731,65 @@ footer .metaln span{white-space:normal;max-width:100%;text-align:center;line-hei
   td:last-child{border-bottom:0}
   td::before{content:attr(data-label);color:var(--gold);flex:0 0 auto;letter-spacing:.06em}
 }
+/* ===== 移动端专项（≤640，桌面端零影响） ===== */
+@media (max-width:640px){
+  /* 1 导航：七项均分一行，不再右端裁切 */
+  .top .wrap{gap:6px}
+  .nav{gap:3px;padding:2px 0;justify-content:space-between;overflow:visible}
+  .nav a{flex:1 1 0;min-width:0;padding:6px 3px;font-size:13.2px;white-space:nowrap}
+
+  /* 2 首屏时间轴：左右交错改纵向单列（390 下原窄栏每行只剩四五个字） */
+  .hero-tl{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;width:auto;justify-self:stretch;margin-top:20px;row-gap:0}
+  .hero-tl::before{left:7px;right:auto;top:8px;bottom:16px}
+  .hero-tl .tl-eyebrow{grid-column:1;grid-row:auto;justify-content:flex-start;margin:0 0 14px;padding-left:22px;letter-spacing:.16em}
+  .hero-tl .tl-eyebrow::before{display:none}
+  .hero-tl .tl-i.l,.hero-tl .tl-i.r{grid-column:1;grid-row:auto;text-align:left;padding:0 0 18px 26px}
+  .hero-tl .tl-i:last-child{padding-bottom:4px}
+  .hero-tl .tl-i.l::after,.hero-tl .tl-i.r::after{left:7px;right:auto;top:9px;transform:translate(-50%,-50%)}
+  .hero-tl .tl-i .n{font-size:16px}
+  .hero-tl .tl-i .p{font-size:13.2px;line-height:1.72}
+
+  /* 3 首屏四宫格：照片下缘补柔暗层，数字与说明在亮矿景上可读 */
+  .hero .bg::after{background:linear-gradient(180deg,rgba(8,6,4,.02) 0%,rgba(8,6,4,.16) 44%,rgba(8,6,4,.56) 74%,rgba(8,6,4,.86) 100%)}
+  .hero-figs{gap:14px 16px;margin-top:8px;padding-top:10px}
+  .hero-figs .fig b{font-size:22px}
+  .hero-figs .fig span{font-size:13.2px;line-height:1.55;margin-top:4px}
+
+  /* 4 公告条：标识 / 正文 / 链接各占一行 */
+  .notice{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-top:16px}
+  .notice .tag{display:inline-flex;margin:0}
+  .notice .ntxt{display:block}
+  .notice a{display:inline-flex;margin:2px 0;padding:0}
+  .notice a .gpill{padding:0 16px}
+
+  /* 5 正文与列表：行距放宽、段间距拉开 */
+  .lede{font-size:14.5px;line-height:1.9;margin-top:18px}
+  .txt{font-size:14px;line-height:1.95}
+  .filmgrid .filmnotes .vpara{font-size:14px;line-height:1.95;margin-bottom:12px}
+  .dc ul,.role ul,.notebox ul{line-height:1.85;padding-left:18px;margin-top:10px}
+  .dc li,.role li,.notebox li{margin-bottom:6px}
+
+  /* 6 节标题：序号与标题留呼吸 */
+  .shead{gap:10px 14px}
+  .shead .no{font-size:27px}
+  .shead h2{font-size:22px}
+
+  /* 7 卡片内边距与页脚留白 */
+  .ln .body,.role .body{padding:16px 18px}
+  .dossier .d{padding:10px 16px}
+  footer{padding-left:22px;padding-right:22px}
+  footer .metaln{gap:8px 12px}
+}
+
+/* 移动端续：首屏四宫格的可读性（仅窄屏） */
+@media (max-width:640px){
+  .hero-figs{position:relative;z-index:2}
+  .hero-figs::before{content:"";position:absolute;inset:-18px -14px -12px -14px;z-index:-1;pointer-events:none;
+    background:radial-gradient(124% 96% at 20% 48%,rgba(8,6,4,.80) 0%,rgba(8,6,4,.58) 44%,rgba(8,6,4,.24) 76%,transparent 100%)}
+  .hero-figs .fig span{color:#EFE6D3;text-shadow:0 1px 6px rgba(0,0,0,.95),0 0 16px rgba(0,0,0,.82)}
+  .hero-figs .fig b{text-shadow:0 2px 14px rgba(0,0,0,.95),0 0 22px rgba(0,0,0,.7)}
+}
+
 @media (max-width:380px){
   h1{margin-top:14px}
   .figrow,.gates,.deck{grid-template-columns:1fr}
