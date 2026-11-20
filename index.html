@@ -170,6 +170,11 @@ img{display:block;max-width:100%}
 .hero .bg::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(8,6,4,.02) 0%,rgba(8,6,4,.10) 52%,rgba(8,6,4,.34) 86%,rgba(8,6,4,.62) 100%)}
 .hero-shade{position:absolute;inset:0;z-index:1;pointer-events:none;background:transparent}
+/* 右侧推进路线区域：只在照片上加一层右缘暗晕（非纯黑底、保留矿景细节） */
+.hero-tl-veil{position:absolute;right:0;top:0;bottom:0;width:min(820px,55vw);z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(8,6,4,0) 0%,rgba(8,6,4,.40) 34%,rgba(8,6,4,.66) 60%,rgba(8,6,4,.84) 100%);
+  -webkit-mask-image:radial-gradient(120% 74% at 88% 48%,#000 0%,rgba(0,0,0,.82) 58%,transparent 100%);
+  mask-image:radial-gradient(120% 74% at 88% 48%,#000 0%,rgba(0,0,0,.82) 58%,transparent 100%)}
 .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:radial-gradient(720px 360px at 6% 0%,rgba(200,164,92,.13),transparent 64%),
              radial-gradient(560px 320px at 97% 14%,rgba(226,83,63,.10),transparent 66%),
@@ -218,6 +223,29 @@ h1 img{display:block;width:clamp(270px,31.5vw,504px);height:auto;
 .hero-media{grid-area:1/2}
 .hero-figs{grid-area:2/1}
 .hero-notes{grid-area:2/2}
+/* 首屏右侧纵向时间轴：透明底、左右交错排布 */
+.hero-tl{grid-area:1/2/3/3;align-self:center;justify-self:end;width:min(566px,36.5vw);position:relative;z-index:2;
+  display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr);column-gap:14px;align-items:start}
+.hero-tl::before{content:"";position:absolute;left:50%;top:12px;bottom:10px;width:1px;transform:translateX(-50%);
+  background:linear-gradient(180deg,rgba(214,176,112,0) 0%,rgba(214,176,112,.55) 10%,rgba(214,176,112,.6) 62%,rgba(214,176,112,0) 100%)}
+.hero-tl .tl-eyebrow{grid-column:1/4;margin:0 0 clamp(14px,1.4vw,22px);font-family:var(--mono);font-size:11px;
+  letter-spacing:.2em;color:rgba(230,203,150,.92);text-align:center;text-shadow:0 1px 3px rgba(0,0,0,.8)}
+.hero-tl .tl-eyebrow i{font-style:normal;color:rgba(226,210,184,.5);letter-spacing:.16em}
+.hero-tl .tl-i{position:relative;margin:0 0 clamp(18px,1.9vw,30px)}
+.hero-tl .tl-i.l{grid-column:1;text-align:right;padding-right:4px}
+.hero-tl .tl-i.r{grid-column:3;text-align:left;padding-left:4px}
+.hero-tl .tl-i:last-child{margin-bottom:0}
+.hero-tl .tl-i::after{content:"";position:absolute;top:5px;width:7px;height:7px;border-radius:50%;background:#E0C58C;
+  box-shadow:0 0 0 4px rgba(212,175,55,.14),0 0 10px rgba(0,0,0,.55)}
+.hero-tl .tl-i.l::after{right:-25px;transform:translateX(50%)}
+.hero-tl .tl-i.r::after{left:-25px;transform:translateX(-50%)}
+.hero-tl .tl-i.on::after{background:var(--gold);box-shadow:0 0 0 4px rgba(212,175,55,.26),0 0 14px rgba(212,175,55,.4)}
+.hero-tl .tl-i .d{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--gold);
+  text-shadow:0 1px 3px rgba(0,0,0,.85),0 0 12px rgba(0,0,0,.6)}
+.hero-tl .tl-i .n{margin:5px 0 3px;font-family:var(--serif);font-size:clamp(15px,1.12vw,17.5px);letter-spacing:.08em;
+  color:#F4ECDD;text-shadow:0 1px 4px rgba(0,0,0,.85),0 0 16px rgba(0,0,0,.6)}
+.hero-tl .tl-i .p{margin:0;font-size:12.8px;line-height:1.7;color:#DCD2C0;letter-spacing:.01em;
+  text-shadow:0 1px 4px rgba(0,0,0,.9),0 0 14px rgba(0,0,0,.7)}}
 .hero-side{display:grid;gap:12px}
 .hero-side .hshot{overflow:hidden;padding:0}
 .hshot .hbar{display:flex;justify-content:space-between;gap:10px;padding:12px 16px;font-size:12px;
@@ -302,13 +330,14 @@ h1 img{display:block;width:clamp(270px,31.5vw,504px);height:auto;
 .hero-notes .vpara{margin:0;font-size:13.6px;line-height:1.85;color:var(--ink-3);letter-spacing:.01em}
 .hero-notes .vpara b{color:var(--ink);font-weight:500}
 /* 01 项目介绍：视频左 · 简介右，两栏等高 */
-.filmgrid{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);gap:clamp(18px,2.4vw,44px);
+.filmgrid{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);gap:clamp(18px,2.4vw,44px);align-items:start;
   align-items:stretch;margin-top:clamp(16px,1.8vw,26px)}
 .filmgrid .hero-media,.filmgrid .filmnotes{grid-area:auto}
-.filmgrid .hero-media{height:auto;margin-top:0;aspect-ratio:16/10;min-height:0}
-.filmgrid .filmnotes{display:flex;flex-direction:column;justify-content:center;padding:20px 22px}
-.filmgrid .filmnotes .vpara{font-size:14.2px;line-height:2.05}
-.filmgrid .filmnotes .vtitle{font-size:16px;margin-bottom:10px}
+.filmgrid .hero-media{height:auto;margin-top:0;aspect-ratio:16/10;min-height:0;width:100%;align-self:start;justify-self:stretch}
+.filmgrid .filmnotes{display:flex;flex-direction:column;justify-content:center;padding:20px 26px;align-self:stretch;overflow:hidden}
+.filmgrid .filmnotes .vpara{font-size:clamp(13.4px,1.07vw,18.6px);line-height:1.75;margin:0 0 8px;text-align:left}
+.filmgrid .filmnotes .vpara:last-child{margin-bottom:0}
+.filmgrid .filmnotes .vtitle{font-size:clamp(15px,1.18vw,20px);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(212,175,55,.22)}
 
 /* 节 */
 section{padding:60px 0 0;position:relative}
@@ -547,6 +576,9 @@ footer .metaln span{white-space:nowrap}
   :root{--pad:20px}
   .hero-grid{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;gap:16px}
   .hero-copy,.hero-media,.hero-figs,.hero-notes{grid-area:auto}
+  .hero-tl{grid-area:auto;justify-self:stretch;width:auto;margin-top:14px}
+  .filmgrid{grid-template-columns:minmax(0,1fr)}
+  .filmgrid .hero-media{aspect-ratio:16/10}
   .hero-media{height:auto;aspect-ratio:16/10}
   .hero-figs{gap:9px 18px;margin-top:4px}
   .hero-notes{margin-top:0}
@@ -737,6 +769,7 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
     <div class="hero-shade" aria-hidden="true"></div>
     <canvas id="heroShader" aria-hidden="true"></canvas>
     <div class="hero-grid">
+    <div class="hero-tl-veil" aria-hidden="true"></div>
       <div class="hero-copy">
         <div class="eyebrow">中国矿业大学（北京）· 2024 级大学生创新训练项目</div>
         <h1><img src="assets/img/webp/title-calli.png" alt="智警御安" width="859" height="292"></h1>
@@ -761,6 +794,13 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
         <div class="fig"><b>82.5%</b><span>前四项归因贡献合计</span></div>
         <div class="fig"><b>5 / 5</b><span>可信度校验通过</span></div>
       </div>
+      <div class="hero-tl" aria-label="项目推进路线">
+        <p class="tl-eyebrow">推进路线 <i>ROADMAP</i></p>
+        <div class="tl-i l on"><span class="d">2026.11</span><p class="n">中期答辩</p><p class="p">四条模型线、四端系统与五道校验全部跑通，答辩通过。</p></div>
+        <div class="tl-i r"><span class="d">2026.12</span><p class="n">补真值</p><p class="p">U020 盲测闭环；真实数据换 5 分钟粒度重比。</p></div>
+        <div class="tl-i l"><span class="d">2027.01</span><p class="n">挑战杯申报</p><p class="p">申报材料与答辩打磨，完成校级与省级报送。</p></div>
+        <div class="tl-i r"><span class="d">2027 上半年</span><p class="n">扩场景</p><p class="p">第二矿接入；跨矿区泛化与迁移学习。</p></div>
+      </div>
 
     </div>
 
@@ -774,7 +814,6 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
         <span class="hcap"><span id="vcap">项目介绍 · 速览版 · 约 23 秒</span></span>
         <video id="vfilm" controls preload="metadata" playsinline poster="assets/img/webp/cover-fast.webp"
                src="assets/demo-1080p.mp4" aria-label="项目介绍视频（速览版），约 23 秒">
-          <track id="vtt" kind="captions" srclang="zh" label="要点字幕" default src="assets/demo-keypoints.vtt">
         </video>
         <div class="hfoot">
           <p class="hfline"><b>四线验证</b><i>·</i><b>系统闭环</b><i>·</i><b>口径唯一</b></p>
@@ -786,7 +825,9 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
       </div>
       <div class="vnotes glass filmnotes">
         <p class="vtitle">项目简介</p>
-        <p class="vpara">本项目立足人工智能、矿业工程与安全科学的交叉，针对煤矿瓦斯治理中各系统相互独立、单一阈值报警滞后的问题，构建多源监测数据治理体系与煤与瓦斯突出预警模型。研究先以文献梳理与矿企调研锁定真实痛点，再完成数据清洗、标准化与融合治理，形成统一口径的数据底座；在此基础上跑通数据治理、因果归因、时序预测、空间外推四条模型线，并让中控台、服务器端、井下站点与演示端共用同一判定内核，配以五道可信度校验；最终通过实验室与现场联合测试迭代至预期精度，沉淀学术论文、软件著作权与竞赛成果。</p>
+        <p class="vpara">本项目立足人工智能、矿业工程与安全科学的交叉，面向煤与瓦斯突出的预测预警问题。现场多套系统各自独立、口径不通、报警滞后且误报偏多，研究据此提出「数据—模型—系统」一体化路线：先把多源监测数据治理成统一口径底座，再构建可解释预警模型，最后以同一判定内核落到四端系统。</p>
+<p class="vpara">数据侧完成 86,400 行入账、9,199,930 条清洗与 306,791 行 28 通道融合，梳理 65 篇文献、完成矿企调研。模型侧跑通四条线：数据治理、DAG 因果归因（16 条边，BN 与 SHAP 方向一致率 100%）、时序预测（MAE 2.381→1.948→1.788，三折 R² 0.624）、空间外推（单元内 R² 0.995、变程 1,642 m）。XGBoost 主线把突出先验由 33.0% 抬到 42.7%，MAE 1.718（基线 2.275，−24%），埋深单项贡献 38.6%。</p>
+<p class="vpara">中控台、服务器端、井下站点与演示端共用内核 0.2.63-r181 与单一 SQLite 库（16,779 行），服务 API 8790 覆盖数据接入、规则判定与告警输出，五道可信度校验 16/16、6/6、7/7、13/13、5/5 全通过。2026 年 11 月 19 日完成中期答辩，转入 2027 年「挑战杯」申报。</p>
       </div>
     </div>
   </section>
@@ -1161,7 +1202,7 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
   const vsBtns=[...document.querySelectorAll('.vs-btn')];
   const VERS={
     fast:{src:'assets/demo-1080p.mp4',poster:'assets/img/webp/cover-fast.webp',
-          cap:'项目介绍 · 速览版 · 约 23 秒',label:'项目介绍视频（速览版），约 23 秒',sub:true},
+          cap:'项目介绍 · 速览版 · 约 23 秒',label:'项目介绍视频（速览版），约 23 秒',sub:false},
     detail:{src:'assets/demo-detail.mp4',poster:'assets/img/webp/cover-detail.webp',
           cap:'项目介绍 · 详情版 · 约 1 分 54 秒',label:'项目介绍视频（详情版），约 1 分 54 秒',sub:false}
   };
@@ -1186,6 +1227,23 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
