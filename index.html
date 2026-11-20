@@ -144,9 +144,14 @@ img{display:block;max-width:100%}
   background:linear-gradient(90deg,transparent,rgba(242,185,78,.55) 22%,rgba(214,176,112,.18) 58%,transparent)}
 .top .wrap{display:flex;align-items:center;gap:14px;height:60px}
 .logo{height:34px;width:auto;flex:0 0 auto;filter:drop-shadow(0 0 10px rgba(150,196,232,.30)) drop-shadow(0 1px 3px rgba(0,0,0,.5))}
-.top .brand{font-family:var(--serif);font-size:15px;letter-spacing:.16em;color:var(--ink-8)}
+.top .brand{font-family:var(--serif);font-size:15px;letter-spacing:.16em;color:var(--ink-8);display:flex;align-items:center}
+.top .brand img{display:block;height:27px;width:auto;
+  filter:drop-shadow(0 2px 10px rgba(0,0,0,.75)) drop-shadow(0 1px 2px rgba(0,0,0,.55))}
 .top .sep{width:1px;height:16px;background:rgba(214,176,112,.30)}
-.top .tagline{font-size:12px;color:var(--dim);letter-spacing:.08em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top .tagline{font-size:12px;color:var(--dim);letter-spacing:.08em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  display:flex;align-items:center}
+.top .tagline img{display:block;height:22px;width:auto;opacity:.96;
+  filter:drop-shadow(0 1px 8px rgba(0,0,0,.72))}
 /* 导航条目：统一圆角矩形（不再用斜切五边形） */
 .nav{margin-left:auto;display:flex;gap:4px;padding:3px;border:1px solid rgba(214,176,112,.18);border-radius:12px;
   background:linear-gradient(150deg,rgba(255,243,220,.055),rgba(18,13,9,.28));
@@ -175,9 +180,9 @@ img{display:block;max-width:100%}
 .eyebrow::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,rgba(214,176,112,.42),transparent)}
 /* 主标题：直接使用封面书法字（绿幕抠出的透明金字），不再用字体模拟 */
 h1{margin:40px 0 0;line-height:0;padding:0}
-h1 img{display:block;width:clamp(300px,35vw,596px);height:auto;
+h1 img{display:block;width:clamp(270px,31.5vw,504px);height:auto;
   filter:drop-shadow(0 6px 26px rgba(0,0,0,.86)) drop-shadow(0 1px 2px rgba(0,0,0,.62))}
-@media (max-width:640px){h1 img{width:min(72vw,300px)}}
+@media (max-width:640px){h1 img{width:min(65vw,272px)}}
 .kicker{display:flex;align-items:center;gap:10px;margin-top:12px;
   font-family:var(--serif);font-size:clamp(13px,1.05vw,16px);font-weight:600;
   letter-spacing:.30em;color:var(--ink-12);text-shadow:0 2px 12px rgba(0,0,0,.95)}
@@ -699,7 +704,7 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
 <header class="top">
   <div class="wrap">
     <img class="logo" src="assets/img/logo-icon.png" width="160" height="160" alt="" aria-hidden="true" decoding="async">
-    <span class="brand">智警御安</span>
+    <span class="brand"><img src="assets/img/webp/title-calli.png" width="859" height="292" alt="智警御安" decoding="async"></span>
     <span class="sep"></span>
     <span class="tagline">多源数据融合驱动的煤与瓦斯突出预警模型研究</span>
     <nav class="nav" aria-label="页面导航">
@@ -1161,6 +1166,8 @@ section.in .shead h2::after,.shead.in h2::after{transform:scaleX(1)}
 </script>
 </body>
 </html>
+
+
 
 
 
