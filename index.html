@@ -61,6 +61,8 @@
 :root{
   --bg:#080604;
   --ink:#F1E7D8; --muted:#B4A794; --dim:#A6947E;
+  --ink-2:#F6EAD6; --ink-3:#C6B7A4; --ink-4:#E8DCC8;
+  --ink-5:#F1DFBC; --ink-6:#EFE3D2; --ink-7:#C3B5A5; --rose:#EDA392;
   --gold:#C8A45C; --gold-hi:#F2B94E; --red:#E2533F; --teal:#59D3B4;
   --cut:18px; --cut-sm:9px;
   --pad:clamp(12px,1.5vw,28px);
@@ -179,7 +181,7 @@ h1{font-family:"Ma Shan Zheng","Noto Serif SC",serif;font-weight:400;
 .kicker::before{content:"";width:26px;height:1px;background:linear-gradient(90deg,rgba(242,185,78,.85),transparent)}
 .sub{font-family:var(--serif);font-size:clamp(15px,1.1vw,21px);color:#DCCDB6;margin:16px 0 0;letter-spacing:.05em;
   text-shadow:0 2px 14px rgba(0,0,0,.9)}
-.lede{margin:20px 0 0;max-width:62ch;font-size:clamp(15px,1.05vw,18px);color:#C3B5A5;line-height:1.95;
+.lede{margin:20px 0 0;max-width:62ch;font-size:clamp(15px,1.05vw,18px);color:var(--ink-7);line-height:1.95;
   text-shadow:0 2px 16px rgba(0,0,0,.92)}
 .lede b{color:var(--ink);font-weight:500}
 /* 最新公告条 */
@@ -209,7 +211,7 @@ h1{font-family:"Ma Shan Zheng","Noto Serif SC",serif;font-weight:400;
 .hero-side{display:grid;gap:12px}
 .hero-side .hshot{overflow:hidden;padding:0}
 .hshot .hbar{display:flex;justify-content:space-between;gap:10px;padding:12px 16px;font-size:12px;
-  letter-spacing:.04em;color:#EFE3D2;border-bottom:1px solid rgba(214,176,112,.14);
+  letter-spacing:.04em;color:var(--ink-6);border-bottom:1px solid rgba(214,176,112,.14);
   background:linear-gradient(180deg,rgba(8,6,4,.88),rgba(8,6,4,.62));position:relative;z-index:2}
 .hshot .hbar span:last-child{color:var(--dim);font-family:var(--mono)}
 .hshot img{display:block;width:100%;height:auto}
@@ -222,7 +224,7 @@ h1{font-family:"Ma Shan Zheng","Noto Serif SC",serif;font-weight:400;
 .vnotes .vi{display:flex;gap:9px;font-size:12.5px;color:var(--muted);line-height:1.75;margin-bottom:7px}
 .vnotes .vi b{font-family:var(--mono);font-size:12px;color:var(--gold-hi);flex:0 0 auto}
 .vnotes .vi span{color:var(--ink)}
-.lbl{position:absolute;left:13px;top:13px;font-size:12px;letter-spacing:.08em;color:#F6EAD6;
+.lbl{position:absolute;left:13px;top:13px;font-size:12px;letter-spacing:.08em;color:var(--ink-2);
   background:rgba(10,8,5,.72);border:1px solid rgba(214,176,112,.30);padding:3px 9px;z-index:2;border-radius:0;
   clip-path:polygon(0 0,calc(100% - var(--cut-sm)) 0,100% var(--cut-sm),100% 100%,0 100%);
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
@@ -230,7 +232,7 @@ h1{font-family:"Ma Shan Zheng","Noto Serif SC",serif;font-weight:400;
   clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%);
   background:#0E0B08;box-shadow:inset 0 1px 0 rgba(255,241,216,.22),0 20px 46px rgba(0,0,0,.56)}
 .shot img{width:100%;height:100%;object-fit:cover;object-position:top left}
-.cap{position:absolute;left:0;right:0;bottom:0;padding:9px 11px;font-size:12px;color:#EFE3D2;line-height:1.6;
+.cap{position:absolute;left:0;right:0;bottom:0;padding:9px 11px;font-size:12px;color:var(--ink-6);line-height:1.6;
   background:linear-gradient(0deg,rgba(8,6,4,.96),rgba(8,6,4,.62) 60%,transparent)}
 
 /* 数字条（账本式，显式不套斜切角） */
@@ -239,7 +241,7 @@ h1{font-family:"Ma Shan Zheng","Noto Serif SC",serif;font-weight:400;
   background:linear-gradient(105deg,rgba(255,243,220,.05),rgba(8,6,4,.9) 46%,rgba(255,243,220,.02))}
 .fig{padding:16px 20px;border:0;background:none;box-shadow:none;position:relative}
 .fig b{display:block;font-family:var(--mono);font-size:clamp(19px,2.2vw,28px);color:var(--gold-hi);line-height:1.24}
-.fig span{display:block;margin-top:6px;font-size:12px;color:var(--muted);line-height:1.6}
+.fig span{display:block;margin-top:6px;font-size:12.4px;color:var(--muted);line-height:1.6}
 .fig+.fig::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:1px;
   background:linear-gradient(180deg,transparent,rgba(214,176,112,.4),transparent);transform:skewX(-11deg)}
 /* 首屏四宫格：去掉整块黑底，只留数字与说明文字 */
@@ -256,7 +258,7 @@ h1{font-family:"Ma Shan Zheng","Noto Serif SC",serif;font-weight:400;
   display:flex;flex-direction:column;
   border:1px solid rgba(214,176,112,.46);border-radius:0;clip-path:none;
   background:linear-gradient(160deg,rgba(255,243,220,.10),rgba(255,255,255,.03) 36%,rgba(16,12,9,.66));
-  backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);
+  backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);
   box-shadow:inset 0 1px 0 rgba(255,241,216,.34),inset 0 0 0 1px rgba(242,185,78,.16),0 22px 48px rgba(0,0,0,.55)}
 .hero-media::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;border-radius:0;
   box-shadow:inset 0 0 0 1px rgba(255,240,214,.13),inset 0 -22px 42px rgba(8,6,4,.34)}
@@ -270,13 +272,13 @@ h1{font-family:"Ma Shan Zheng","Noto Serif SC",serif;font-weight:400;
 .hero-media .hfline b{font-weight:500;color:#EFD9A8}
 .hero-media .hfline i{font-style:normal;color:rgba(214,176,112,.55)}
 .hero-media .hcap{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding:7px 14px;font-size:12px;letter-spacing:.06em;color:#F6EAD6;z-index:2;
+  padding:7px 14px;font-size:12px;letter-spacing:.06em;color:var(--ink-2);z-index:2;
   background:linear-gradient(180deg,rgba(8,6,4,.86),rgba(8,6,4,.58));border-bottom:1px solid rgba(214,176,112,.20)}
 .hero-media .hcap::after{content:"PROJECT FILM";font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:rgba(214,176,112,.82)}
 /* 项目简介独立卡：散文式说明，与左侧四宫格同高 */
 .hero-notes{padding:16px 18px;margin:0;display:block;align-self:stretch}
 .hero-notes .vtitle{margin:0 0 8px}
-.hero-notes .vpara{margin:0;font-size:12.4px;line-height:1.85;color:#C6B7A4;letter-spacing:.01em}
+.hero-notes .vpara{margin:0;font-size:13.6px;line-height:1.85;color:var(--ink-3);letter-spacing:.01em}
 .hero-notes .vpara b{color:var(--ink);font-weight:500}
 
 /* 节 */
@@ -308,8 +310,8 @@ section::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
 
 /* 现状 */
 .notebox{padding:20px 22px;margin:20px 0 0}
-.notebox h3{font-family:var(--serif);font-size:14px;margin:0 0 11px;color:#F1DFBC;letter-spacing:.04em}
-.notebox ul{margin:0;padding-left:16px;font-size:13px;color:var(--muted);line-height:1.9}
+.notebox h3{font-family:var(--serif);font-size:15.2px;margin:0 0 11px;color:var(--ink-5);letter-spacing:.04em}
+.notebox ul{margin:0;padding-left:16px;font-size:13.8px;color:var(--muted);line-height:1.9}
 .notebox li{margin-bottom:7px}
 .notebox li b{color:var(--ink);font-weight:500}
 
@@ -324,7 +326,7 @@ section::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
   background:linear-gradient(180deg,rgba(12,9,6,0),rgba(12,9,6,.5) 70%,rgba(12,9,6,.72))}
 .ln .body{padding:18px 20px 16px;position:relative;z-index:2}
 .ln h3{font-family:var(--serif);font-size:16px;margin:0 0 8px;font-weight:600;letter-spacing:.03em}
-.ln p{margin:0;font-size:13px;color:var(--muted);line-height:1.85}
+.ln p{margin:0;font-size:13.6px;color:var(--muted);line-height:1.85}
 .ln .kv{margin-top:11px;padding-top:10px;border-top:1px solid rgba(214,176,112,.16);
   font-family:var(--mono);font-size:12px;color:var(--teal)}
 .ln .note{margin:8px 0 0;font-size:12px;color:var(--dim);line-height:1.7}
@@ -344,10 +346,11 @@ section::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
 .sysshot img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block;border-radius:14px;
   border:1px solid rgba(214,176,112,.34);box-shadow:0 12px 30px rgba(0,0,0,.42)}
 .sysgrid .gates{grid-column:2;grid-row:1/3;align-self:stretch;margin:0;display:grid;grid-template-columns:1fr;gap:8px;grid-auto-rows:1fr;align-content:stretch}
-.sysgrid .gate{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:5px;min-width:0;
+.sysgrid .gate{display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;gap:5px;min-width:0;
   padding:10px 16px;border:0;border-radius:10px;text-align:left;position:relative;
   background:linear-gradient(100deg,rgba(255,243,220,.045),rgba(255,243,220,.012) 46%,rgba(255,243,220,0) 82%);
   box-shadow:inset 0 0 0 1px rgba(214,176,112,.14)}
+.sysgrid .gate .seq{position:absolute;right:12px;top:8px;font-family:var(--mono);font-style:normal;font-size:10.5px;letter-spacing:.06em;color:rgba(214,176,112,.55)}
 .sysgrid .gate::before{content:"";position:absolute;left:0;top:14%;bottom:14%;width:2px;border-radius:2px;
   background:linear-gradient(180deg,rgba(242,185,78,.75),rgba(226,83,63,.35))}
 .sysgrid .gate{animation:gateBreathe 8s ease-in-out infinite}
@@ -365,7 +368,7 @@ section::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
 .sysgrid .gate b{order:2;font-family:var(--mono);font-size:24px;letter-spacing:.02em;line-height:1.2;
   color:var(--gold-hi);white-space:nowrap;min-width:0}
 .sysgrid .gate span{order:1;flex:0 0 auto;margin:0;display:block;
-  font-size:12px;letter-spacing:.04em;color:rgba(232,220,200,.62);white-space:nowrap}
+  font-size:13px;letter-spacing:.04em;color:rgba(232,220,200,.68);white-space:nowrap}
 
 /* 时间线 · 横向 */
 .htl{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;padding:22px 4px 20px;margin-top:24px;position:relative;
@@ -392,8 +395,8 @@ section::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
 /* 编制 */
 .muster{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0 0}
 .muster .c{padding:18px 20px}
-.muster .c h3{font-family:var(--serif);font-size:14px;margin:0 0 9px;color:#F1DFBC;font-weight:600}
-.muster .c p{margin:0;font-size:13px;color:var(--muted);line-height:1.9}
+.muster .c h3{font-family:var(--serif);font-size:14px;margin:0 0 9px;color:var(--ink-5);font-weight:600}
+.muster .c p{margin:0;font-size:13.6px;color:var(--muted);line-height:1.9}
 .muster .c p b{color:var(--gold-hi);font-weight:500}
 
 .roles{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:18px 0 0}
@@ -409,7 +412,7 @@ section::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
 .role .no{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--gold)}
 .role h3{font-family:var(--serif);font-size:21px;margin:9px 0 13px;font-weight:700;letter-spacing:.04em}
 .role h4{margin:0 0 7px;font-size:12px;font-weight:500;letter-spacing:.16em;color:var(--dim)}
-.role ul{margin:0;padding-left:18px;font-size:13px;color:var(--muted);line-height:1.95}
+.role ul{margin:0;padding-left:18px;font-size:13.6px;color:var(--muted);line-height:1.95}
 .role ul li{margin-bottom:5px}
 .role ul li b{color:var(--ink);font-weight:500}
 /* 职责与要求等高：两块固定同高，两个岗位的标题行与分栏位置一致 */
@@ -436,15 +439,16 @@ td:last-child{color:var(--dim)}
 .whoR{display:flex;flex-direction:column;min-width:0;height:100%}
 .whoR .rlabel{margin:0 0 10px;font-family:var(--serif);font-size:13px;letter-spacing:.10em;color:var(--gold-hi)}
 .whoR .bars{display:grid;grid-template-columns:1fr;grid-auto-rows:1fr;gap:9px;margin:0;flex:1 1 auto;min-height:0}
-.whoR .bar{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;height:100%;padding:11px 14px;font-size:12px;line-height:1.8;
+.whoR .bar{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;position:relative;gap:6px;height:100%;padding:11px 14px;font-size:12.8px;line-height:1.8;
   border-radius:0;clip-path:none}
+.whoR .bar::before{content:"";position:absolute;left:0;top:12%;bottom:12%;width:4px;background:rgba(242,185,78,.30)}
 .whoR .note-line{margin:12px 0 0;font-size:11.5px}
 
 /* 条件 */
 .deal{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0 0}
 .dc{padding:22px 20px}
 .dc h3{font-family:var(--serif);font-size:15px;margin:0 0 12px;letter-spacing:.04em}
-.dc.g h3{color:var(--teal)} .dc.a h3{color:var(--gold-hi)} .dc.n h3{color:#EDA392}
+.dc.g h3{color:var(--teal)} .dc.a h3{color:var(--gold-hi)} .dc.n h3{color:var(--rose)}
 .dc ul{margin:0;padding-left:16px;font-size:14px;color:var(--muted);line-height:2.0}
 .dc ul li{margin-bottom:6px}
 .dc ul li b{color:var(--ink);font-weight:500}
@@ -454,28 +458,30 @@ td:last-child{color:var(--dim)}
 .workgrid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:12px;margin:22px 0 0;align-items:stretch}
 .deck{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:0}
 .deck .shot{aspect-ratio:16/9}
-.deck .cap{font-size:12px}
+.deck .cap{font-size:12.6px}
 .deck.grid2{grid-template-columns:1fr 1fr;gap:10px}
 .deck.grid2 .shot{aspect-ratio:16/10}
 .dossier{margin:0;overflow:hidden;display:grid;grid-auto-rows:minmax(0,1fr);height:100%}
-.dossier .d{display:grid;grid-template-columns:132px 1fr;font-size:12.5px;border-bottom:1px solid rgba(214,176,112,.12);align-items:center}
+.dossier .d{display:grid;grid-template-columns:132px 1fr;font-size:13.2px;border-bottom:1px solid rgba(214,176,112,.12);align-items:center}
 .dossier .d:last-child{border-bottom:0}
 .dossier .d span:first-child{padding:10px 14px;color:var(--dim);letter-spacing:.06em;border-right:1px solid rgba(214,176,112,.12)}
-.dossier .d span:last-child{padding:10px 14px;color:var(--muted);font-family:var(--mono);font-size:12.5px;line-height:1.7}
+.dossier .d span:last-child{padding:10px 14px;color:var(--muted);font-family:var(--mono);font-size:13px;line-height:1.7}
 
 /* 报名 */
 .cta{margin:24px 0 0;padding:30px 28px;
   background:linear-gradient(140deg,rgba(255,243,220,.12),rgba(200,164,92,.06) 42%,rgba(18,13,9,.62) 100%)}
 .cta h3{font-family:var(--serif);font-size:clamp(18px,2.3vw,24px);margin:0 0 9px;letter-spacing:.03em}
-.cta p{color:var(--muted);font-size:12.5px;margin:0;line-height:1.9}
+.cta p{color:var(--muted);font-size:13.2px;margin:0;line-height:1.9}
 .btns{display:flex;flex-wrap:wrap;gap:11px;margin:20px 0 0}
 .btn{display:inline-flex;align-items:center;padding:12px 22px;font-size:13px;text-decoration:none;
   letter-spacing:.05em;border:1px solid rgba(214,176,112,.34);border-radius:0;
   clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%);
-  background:rgba(255,243,220,.06);color:#F6EAD6;
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  box-shadow:inset 0 1px 0 rgba(255,241,216,.22),0 8px 20px rgba(0,0,0,.32)}
+  background:rgba(255,243,220,.06);color:var(--ink-2);
+  backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);
+  box-shadow:inset 0 1px 0 rgba(255,241,216,.22),0 8px 20px rgba(0,0,0,.32);
+  transition:transform .12s,filter .12s}
 .btn:hover{transform:translateY(-1px);border-color:rgba(242,185,78,.72)}
+.btn:active{transform:translateY(1px);filter:brightness(.94)}
 .btn.main{background:linear-gradient(120deg,var(--gold-hi),#C08A2E);color:#1A1206;font-weight:500;border-color:transparent;
   box-shadow:0 10px 26px rgba(200,164,92,.30),inset 0 1px 0 rgba(255,255,255,.45)}
 .btn.main:hover{box-shadow:0 14px 32px rgba(242,185,78,.40),inset 0 1px 0 rgba(255,255,255,.55)}
@@ -489,7 +495,7 @@ td:last-child{color:var(--dim)}
 footer{margin:58px 0 0;border-top:1px solid rgba(214,176,112,.16);padding:34px 0 40px;font-size:12px;color:var(--dim);
   line-height:1.9;position:relative;overflow:hidden;text-align:center}
 footer b{color:var(--muted);font-weight:500}
-footer p{margin:5px 0;font-size:12.5px;color:var(--dim);position:relative;z-index:2}
+footer p{margin:5px 0;font-size:13px;color:var(--dim);position:relative;z-index:2}
 footer .fl{display:flex;gap:10px;align-items:center;justify-content:center;margin:0 0 12px;position:relative;z-index:2;
   font-family:var(--serif);letter-spacing:.10em;font-size:14px;color:#EBD9B4}
 footer .fl::before,footer .fl::after{content:"";width:clamp(24px,7vw,90px);height:1px;
@@ -647,7 +653,7 @@ footer .metaln span{white-space:nowrap}
       <a href="#model">模型</a>
       <a href="#now">进展</a>
       <a href="#work">作品</a>
-      <a href="#who">招募</a>
+      <a href="#who">公告</a>
       <a href="#deal">条件</a>
     </nav>
   </div>
@@ -721,11 +727,11 @@ footer .metaln span{white-space:nowrap}
         </div>
       </div>
       <aside class="gates" aria-label="五道可信度校验结果">
-        <div class="gate"><b>16 / 16</b><span>口径一致性</span></div>
-        <div class="gate"><b>6 / 6</b><span>真值入模</span></div>
-        <div class="gate"><b>7 / 7</b><span>方向可辨</span></div>
-        <div class="gate"><b>13 / 13</b><span>容差为零</span></div>
-        <div class="gate"><b>5 / 5</b><span>复现验收</span></div>
+        <div class="gate"><i class="seq">01</i><b>16 / 16</b><span>真值恢复（渠道一致性）</span></div>
+        <div class="gate"><i class="seq">02</i><b>6 / 6</b><span>边界（取值域）</span></div>
+        <div class="gate"><i class="seq">03</i><b>7 / 7</b><span>泄漏（提前量）</span></div>
+        <div class="gate"><i class="seq">04</i><b>13 / 13</b><span>单位（量纲）</span></div>
+        <div class="gate"><i class="seq">05</i><b>5 / 5</b><span>结论（复现）</span></div>
       </aside>
 
       <div class="sysshot">
@@ -767,8 +773,8 @@ footer .metaln span{white-space:nowrap}
         <div class="thumb"><img src="assets/img/webp/slide8.webp" width="1600" height="900" alt="空间外推配图" loading="lazy" decoding="async"></div>
         <div class="body">
           <h3>空间外推</h3>
-          <p>IDW 与克里金采用留点交叉，量化跨地质单元的精度代价：单元内 R² 0.995，全局 R² −2.883，变程 1,642 m。</p>
-          <div class="kv">差值 3.9 · 盲测单元 U020 · 4–5 热点</div>
+          <p>IDW 与克里金采用留点交叉验证，量化跨地质单元的精度代价：单元内 R² 0.995，全局 R² −2.883，变程 1,642 m。</p>
+          <div class="kv">差值 3.9 · 盲测单元 U020 · 5 个热点</div>
         </div>
       </div>
     </div>
@@ -782,7 +788,7 @@ footer .metaln span{white-space:nowrap}
       <div class="step done"><span class="w">2026.06—09</span><div class="dot"></div><h3>双轨数据与四线模型</h3><p>公开数据集（Sikora &amp; Wróbel, 2014）与自建仿真集 v1／v2</p><span class="st">已完成</span></div>
       <div class="step done"><span class="w">2026.10</span><div class="dot"></div><h3>四端上线 · 验收规范 v1.17</h3><p>五道校验通过，246 点台账封版</p><span class="st">已完成</span></div>
       <div class="step done hot"><span class="w">2026.11.19</span><div class="dot"></div><h3>中期答辩</h3><p>14 页项目介绍与 28 问预设问答集；评审肯定进展，并提出模型有效性改进意见</p><span class="st">已完成</span></div>
-      <div class="step now"><span class="w">2026.11—12</span><div class="dot"></div><h3>成员招募与组队</h3><p>本页事项，面试与分工确认</p><span class="st">进行中</span></div>
+      <div class="step now"><span class="w">2026.11—12</span><div class="dot"></div><h3>组队进展</h3><p>招募公告与面试、分工确认</p><span class="st">进行中</span></div>
       <div class="step next"><span class="w">2027.01—03</span><div class="dot"></div><h3>挑战杯校级申报与答辩</h3><p>名单确认后，复赛阶段仅可删减成员</p><span class="st">待启动</span></div>
     </div>
 
@@ -837,7 +843,7 @@ footer .metaln span{white-space:nowrap}
       </div>
       <div class="c glass">
         <h3>赛事经验</h3>
-        <p>团队已完成校级大创立项、四线模型复现、四端系统上线与《验收规范 v1.17》编制，并通过中期答辩；具备申报书撰写、图表制版、问答库准备与现场答辩的<b>完整参赛经验</b>，新成员可直接沿用既有方法与素材，不必从零摸索。</p>
+        <p>团队已完成校级大创立项、四线模型复现、四端系统上线与《验收规范 v1.17》编制，并通过中期答辩；具备申报书撰写、图表制版、问答库准备与现场答辩的<b>完整参赛经验</b>；既有方法与素材可直接沿用。</p>
       </div>
     </div>
 
@@ -850,7 +856,7 @@ footer .metaln span{white-space:nowrap}
           <div class="rb">
             <h4>职责</h4>
             <ul>
-              <li>复现三条模型线实验，补充<b>跨单元分层对照</b>实验</li>
+              <li>复现模型线实验，补充<b>跨单元分层对照</b>实验</li>
               <li>撰写 8,000 字级申报书主体与配套论文</li>
               <li>维护图表规范与指标口径，保证全文一致</li>
             </ul>
@@ -938,8 +944,7 @@ footer .metaln span{white-space:nowrap}
       <div class="dc glass a">
         <h3>成员需承担</h3>
         <ul>
-          <li>学期内每周投入不超过 5 小时，寒假视项目进展而定</li>
-          <li>独立完成文献检索与实验</li>
+          <li>投入时长与独立推进要求见上方准入条件</li>
           <li>在真实数据未接入的条件下推进工作</li>
           <li>2027 年 1 月前完成申报书定稿</li>
           <li>署名按实际贡献排序</li>
@@ -1067,3 +1072,4 @@ footer .metaln span{white-space:nowrap}
 </script>
 </body>
 </html>
+
