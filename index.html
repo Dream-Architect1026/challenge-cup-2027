@@ -139,8 +139,9 @@ img{display:block;max-width:100%}
 .nav a.on{color:#FFF3DA;background:rgba(242,185,78,.13)}
 .nav a:hover{color:#FFF4E2;background:rgba(255,255,255,.07);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.18)}
 
-/* 首屏：背景左右满幅出血（负边距抵掉容器内边距） */
-.hero{position:relative;overflow:hidden;margin-inline:calc(-1 * var(--pad));padding:52px var(--pad) 0}
+/* 首屏：背景左右满幅出血（负边距抵掉容器内边距），并撑满整屏高度 */
+.hero{position:relative;overflow:hidden;margin-inline:calc(-1 * var(--pad));padding:52px var(--pad) 0;
+  min-height:calc(100svh - 60px)}
 .hero .bg{position:absolute;inset:0;
   background:url("assets/img/webp/mine-depth.webp") center/cover no-repeat;
   opacity:.92;filter:saturate(.86) contrast(1.02) brightness(1.16)}
@@ -450,8 +451,8 @@ footer .fl img{height:20px}
   h1{font-size:38px;letter-spacing:.06em;margin-top:12px}
   .sub{font-size:14px;line-height:1.7}
   .lede{font-size:14px;line-height:1.9;margin-top:16px}
-  .hero{padding:38px var(--pad) 0}
-  .hero .bg{height:100svh;background-size:cover;background-position:50% 22%}
+  .hero{padding:38px var(--pad) 0;min-height:calc(100svh - 104px)}
+  .hero .bg{background-size:cover;background-position:50% 22%}
   .hero-shade{background:linear-gradient(180deg,rgba(8,6,4,.62) 0%,rgba(8,6,4,.88) 100%)}
   section{padding:52px 0 0}
   .shead{flex-wrap:wrap;row-gap:4px}
